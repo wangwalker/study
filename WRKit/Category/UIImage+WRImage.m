@@ -1,12 +1,14 @@
 //
 //  UIImage+WRImage.m
-//  WRKit
+//  tCCSC
 //
-//  Created by jfy on 16/10/25.
-//  Copyright © 2016年 jfy. All rights reserved.
+//  Created by IMAC on 2018/4/20.
+//  Copyright © 2018年 IMAC. All rights reserved.
 //
 
 #import "UIImage+WRImage.h"
+
+
 
 @implementation UIImage (WRImage)
 
@@ -34,6 +36,15 @@
     UIGraphicsEndImageContext();
     
     return scaledImage;
+}
+
+-(UIImage *)uniformScaleToWidth:(CGFloat)width {
+    float ratio = width / self.size.width;
+    return [self imageScaleToSize:CGSizeMake(width, self.size.height*ratio)];
+}
+
+-(UIImage *)uniformScaleWithRatio:(CGFloat)ratio{
+    return [self imageScaleToSize:CGSizeMake(self.size.width*ratio, self.size.height*ratio)];
 }
 
 + (UIImage *)imageStretch:(NSString *)imageName
@@ -82,10 +93,10 @@
         return self;
     }
     
-    //	return [other applyBlendFilter:filterOverlay  other:self context:nil];
+    //    return [other applyBlendFilter:filterOverlay  other:self context:nil];
     // First get the image into your data buffer
     CGImageRef inImage = self.CGImage;
-    long nbPerCompt = CGImageGetBitsPerPixel(inImage);
+    int nbPerCompt = (int)CGImageGetBitsPerPixel(inImage);
     
     if(nbPerCompt != 32)
     {
@@ -446,7 +457,7 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
     return [UIImage imageWithCIImage:transformedImage];
 }
 
-+ (UIImage*)imageFromView:(UIView*)view{
++ (UIImage*) imageWithUIView:(UIView*) view{
     // 创建一个bitmap的context
     // 并把它设置成为当前正在使用的context
     UIGraphicsBeginImageContext(view.bounds.size);
@@ -461,14 +472,54 @@ inline static void zeroClearInt(int* p, size_t count) { memset(p, 0, sizeof(int)
     return image;
 }
 
--(NSString *)imageBase64String
+-(NSString *)getSizeWithCompressRatio:(CGFloat)ratio
 {
-    NSData *data = UIImagePNGRepresentation(self);
-    if (!data)
-    {
-        data = UIImageJPEGRepresentation(self, 0.8);
+    NSData *data = UIImageJPEGRepresentation(self, ratio);
+    double imageSize = (double) [data length];
+    NSArray *typeArray = @[@"bytes",@"KB",@"MB",@"GB",@"TB",@"PB", @"EB",@"ZB",@"YB"];
+    NSInteger index = 0;
+    while (imageSize > 1024) {
+        imageSize /= 1024.0;
+        index ++;
     }
-    return [data base64EncodedStringWithOptions:0];
+    
+    return [NSString stringWithFormat:@"%.2f%@", imageSize, typeArray[index]];
+    
 }
+
+
+-(Boolean)isLandscape
+{
+    return self.size.width > self.size.height;
+}
+
+
++(NSDictionary *)getImageExifWithMediaURL:(NSURL *)mediaURL
+{
+    CGImageSourceRef source = CGImageSourceCreateWithURL((CFURLRef)  mediaURL, NULL);
+    
+    CFDictionaryRef infoDict = CGImageSourceCopyPropertiesAtIndex(source, 0, NULL);
+    
+    NSDictionary *exif = (__bridge NSDictionary *)CFDictionaryGetValue(infoDict, kCGImagePropertyExifDictionary);
+    
+    NSDictionary *gps = (__bridge NSDictionary*)CFDictionaryGetValue(infoDict, kCGImagePropertyGPSDictionary);
+    
+    
+    NSMutableDictionary *ExifInfoDict = [@{} mutableCopy];
+    
+    NSMutableDictionary *exifDict = [exif mutableCopy];
+    
+    NSMutableDictionary *gpsDict = [gps mutableCopy];
+    
+    [ExifInfoDict setObject:exifDict forKey:(NSString*)kCGImagePropertyExifDictionary];
+    
+    if (gpsDict)
+    {
+        [ExifInfoDict setObject:gpsDict forKey:(NSString*)kCGImagePropertyGPSDictionary];
+    }
+    
+    return ExifInfoDict;
+}
+
 
 @end

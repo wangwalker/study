@@ -45,4 +45,16 @@
     return size;
 }
 
+- (CGFloat)getWidthReferToHeight:(CGFloat)height fontSize:(CGFloat)fontSize {
+    CGSize newSize = [self .text boundingRectWithSize:CGSizeMake(MAXFLOAT, height) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]} context:nil].size;
+    
+    return newSize.width;
+}
+
+- (CGFloat)getHeightReferToWidth:(CGFloat)width fontSize:(CGFloat)fontSize {
+    CGSize newSize = [self.text boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]} context:nil].size;
+    
+    return newSize.height;
+}
+
 @end

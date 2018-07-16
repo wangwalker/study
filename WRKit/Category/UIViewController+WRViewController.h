@@ -1,17 +1,15 @@
 //
-//  UIViewController+WRVC.h
-//  WRKit
+//  UIViewController+WRViewController.h
+//  tCCSC
 //
-//  Created by jfy on 16/10/26.
-//  Copyright © 2016年 jfy. All rights reserved.
+//  Created by IMAC on 2018/4/19.
+//  Copyright © 2018年 IMAC. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
-
-typedef void(^actionBlock)(void);
-typedef void(^stringBlock)(NSString *string);
-typedef void(^alertAction)(UIAlertAction *action);
+extern  NSNotificationName  WRNetworkSpeedKey;
+extern  NSNotificationName  WRNetworkTotalTrafficKey;
+extern  NSNotificationName  WRNetworkTrafficSpeedNotificationName;
 
 //系统设置
 #define GENERAL_SYSTEM_SETTING      @"General"
@@ -31,13 +29,9 @@ typedef void(^alertAction)(UIAlertAction *action);
 #define WIFI_SYSTEM_SETTING         @"WIFI"
 #define SETTING_SYSTEM_SETTING      @"INTERNET_TETHERING"
 
-
-@interface UIViewController (WRVC)
-
+@interface UIViewController (WRViewController)
 /**
  *  跳转到系统设置页面
- *
- *  @param setting
  */
 -(void)pushToSettingOfSystem:(NSString *)setting;
 
@@ -51,8 +45,8 @@ typedef void(^alertAction)(UIAlertAction *action);
 /**
  *  提示框，子按钮只有 【取消】 + 【确认】
  *
- *  @param title
- *  @param message
+ *  @param title 标题
+ *  @param message 详细信息
  *  @param action  【确认】按钮及其动作
  */
 -(void)showAlertWithTitle:(NSString *)title message:(NSString *)message action:(UIAlertAction *)action;
@@ -60,41 +54,33 @@ typedef void(^alertAction)(UIAlertAction *action);
 /**
  *  ActionSheet 【actions】 + 【取消】
  *
- *  @param title
- *  @param message
- *  @param actionArray 
+ *  @param title 标题
+ *  @param message 详细信息
+ *  @param actionArray  actions
  */
 -(void)showActionSheetWithTitle:(NSString *)title message:(NSString *)message actionArray:(NSArray< UIAlertAction *>*)actionArray;
 
 /**
  *  拨打电话
- *
- *  @param phoneNumber
+ *  @param phoneNumber phone number
  */
 -(void)callPhoneWithNumber:(NSString *)phoneNumber;
 
 /**
  *  打开相机
- *
- *  @param delegate
- *  @param allowEditing
  */
 -(void)takeAPhotoWithCameraDelegate:(id)delegate isAllowEdit:(BOOL)allowEditing;
 
 /**
  *  在相册中选择照片
- *
- *  @param delegate
- *  @param allEditing
  */
 -(void)pickImageFromAlbumDelegate:(id)delegate isAllowEdit:(BOOL)allowEditing;
 
 /**
  *  检测网络状态
- *
- *  @return
  */
 -(BOOL)isConnectionAvailable;
 
-
+-(void)showAlertIMessage:(NSString *)message;
+-(void)postNetworkNotification;
 @end

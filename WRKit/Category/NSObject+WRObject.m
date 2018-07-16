@@ -1,25 +1,29 @@
 //
 //  NSObject+WRObject.m
-//  WRKit
+//  tCCSC
 //
-//  Created by jfy on 16/10/25.
-//  Copyright © 2016年 jfy. All rights reserved.
+//  Created by IMAC on 2018/4/19.
+//  Copyright © 2018年 IMAC. All rights reserved.
 //
 
 #import "NSObject+WRObject.h"
+#import <UIKit/UIKit.h>
 
 @implementation NSObject (WRObject)
 
-+ (BOOL)isHasAM_PMTime
-{
-    // 获取系统是24小时制或者12小时制
-    NSString *formatStringForHours = [NSDateFormatter dateFormatFromTemplate:@"j" options:0 locale:[NSLocale currentLocale]];
-    NSRange containsA = [formatStringForHours rangeOfString:@"a"];
-    BOOL hasAMPM = (containsA.location != NSNotFound);
-    
-    // hasAMPM == TURE为12小时制，否则为24小时制
-    
-    return hasAMPM;
+-(NSString *)getIDFA{
+    return [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+}
+
+-(NSString*)formatDataSize:(float)size{
+    float t = size;
+    NSArray<NSString*>* units = @[@"Byte", @"KB", @"MB", @"GB", @"TB", @"PB", @"EB"];
+    int level = 0;
+    while (t >= 1024) {
+        t /= 1024.0;
+        level ++;
+    }
+    return [NSString stringWithFormat:@"%.1f%@", t, units[level]];
 }
 
 @end

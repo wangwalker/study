@@ -1,16 +1,15 @@
 //
 //  UIView+WRView.m
-//  WRKit
+//  tCCSC
 //
-//  Created by jfy on 16/10/25.
-//  Copyright © 2016年 jfy. All rights reserved.
+//  Created by IMAC on 2018/4/23.
+//  Copyright © 2018年 IMAC. All rights reserved.
 //
 
 #import "UIView+WRView.h"
 
 @implementation UIView (WRView)
 
-#pragma mark - property
 -(void)setX:(CGFloat)x{
     CGRect frame = self.frame;
     frame.origin.x = x;
@@ -115,8 +114,6 @@
     
 }
 
-
-#pragma mark - about UI
 - (void)addRectCorner:(UIRectCorner)rectCorner withSize:(CGSize)size
 {
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
@@ -138,9 +135,14 @@
     
 }
 
+-(void)addCornerRadius:(CGFloat)radius
+{
+    [self addCornerRadius:radius color:nil lineWidth:0];
+}
+
 - (void)addCorner:(UIColor *)color withWidth:(CGFloat)width
 {
-    [self addCornerRadius:MIN(self.width, self.height) / 2 color:color lineWidth:width];
+    [self addCornerRadius:self.bounds.size.width / 2 color:color lineWidth:width];
 }
 
 -(void)addBorderWithColor:(UIColor *)color withWidth:(CGFloat)width{
@@ -150,33 +152,37 @@
     self.layer.borderWidth = width;
 }
 
--(void)addGradientLayerFromColor:(UIColor *)fColor toColor:(UIColor *)tColor
+- (void)animationWithViewTransition:(UIViewSimpleBlock)animationBlock
 {
-    UIView *gradentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.bounds.size.width, self.bounds.size.height)];
-    [self addSubview:gradentView];
-    
-    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-    gradientLayer.frame = gradentView.bounds;
-    
-    [gradentView.layer addSublayer:gradientLayer];
-    
-    gradientLayer.startPoint = CGPointMake(0, 0);
-    gradientLayer.endPoint = CGPointMake(0, 1);
-    
-    gradientLayer.colors = @[(__bridge id)tColor.CGColor,
-                             (__bridge id)fColor.CGColor];
+    [UIView transitionWithView:self
+                      duration:0.5
+                       options:UIViewAnimationOptionTransitionCrossDissolve | UIViewAnimationOptionAllowUserInteraction
+                    animations:^{
+                        if (animationBlock)
+                        {
+                            animationBlock(self, nil);
+                        }
+                    } completion:nil];
 }
 
 
-#pragma mark - animation
--(void)startRotate
-{
-    CABasicAnimation *rotate = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    rotate.toValue = [NSNumber numberWithFloat:M_PI * 2];
-    rotate.duration = 1.0f;
-    rotate.repeatCount = 60;
-    rotate.cumulative = YES;
++(UIView *)triangleIndicatorViewWithFrame:(CGRect)frame andBackgroundColor:(UIColor *)backgroundColor{
     
-    [self.layer addAnimation:rotate forKey:@"rotationAnimation"];
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGPoint topMiddlePoint = CGPointMake(frame.origin.x + frame.size.width / 2, frame.origin.y);
+    CGPoint bottomLeftPoint = CGPointMake(frame.origin.x, frame.origin.y + frame.size.height);
+    CGPoint bottomRightPoint = CGPointMake(frame.origin.x + frame.size.width, frame.origin.y + frame.size.height);
+    
+    CGContextMoveToPoint(context, topMiddlePoint.x, topMiddlePoint.y);
+    CGContextAddLineToPoint(context, bottomRightPoint.x, bottomRightPoint.y);
+    CGContextAddLineToPoint(context, bottomLeftPoint.x, bottomLeftPoint.y);
+    CGContextClosePath(context);
+    CGContextSetFillColorWithColor(context, backgroundColor.CGColor);
+    CGContextFillPath(context);
+    
+    return (__bridge UIView *)(context);
 }
+
+
 @end

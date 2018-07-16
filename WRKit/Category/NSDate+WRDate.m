@@ -1,17 +1,14 @@
 //
 //  NSDate+WRDate.m
-//  WRKit
+//  tCCSC
 //
-//  Created by jfy on 16/10/25.
-//  Copyright © 2016年 jfy. All rights reserved.
+//  Created by IMAC on 2018/4/19.
+//  Copyright © 2018年 IMAC. All rights reserved.
 //
 
 #import "NSDate+WRDate.h"
 
-
-
 @implementation NSDate (WRDate)
-
 @dynamic year;
 @dynamic month;
 @dynamic day;
@@ -19,18 +16,6 @@
 @dynamic minute;
 @dynamic second;
 @dynamic weekday;
-
-#pragma mark - private
-+(NSCalendar *)WR_currentCalender{
-    
-    NSMutableDictionary *dict = [[NSThread currentThread] threadDictionary];
-    NSCalendar *calender = [dict objectForKey:@"WR_Calender"];
-    if (calender == nil) {
-        calender = [NSCalendar currentCalendar];
-        [dict setObject:calender forKey:@"WR_Calender"];
-    }
-    return calender;
-}
 
 - (NSInteger)year
 {
@@ -69,7 +54,7 @@
 
 
 // @"yyyy-MM-dd HH:mm:ss"
-- (NSString *)dateToStringFormat:(NSString *)format
+- (NSString *)dateToStringByFormat:(NSString *)format
 {
 #if 0
     
@@ -81,7 +66,7 @@
     
     // thansk @lancy, changed: "NSDate depend on NSNumber" to "NSNumber depend on NSDate"
     
-    NSDateFormatter * dateFormatter = [NSDate dateFormatterTemp];
+    NSDateFormatter * dateFormatter = [NSDate dateFormatter];
     [dateFormatter setDateFormat:format];
     return [dateFormatter stringFromDate:self];
     
@@ -91,7 +76,7 @@
 // 日期转为字符串
 - (NSString *)dateToString
 {
-    NSDateFormatter* dateFormatter = [NSDate dateFormatterTemp];
+    NSDateFormatter* dateFormatter = [NSDate dateFormatter];
     [dateFormatter setDateStyle:NSDateFormatterFullStyle];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     
@@ -106,7 +91,7 @@
 }
 
 // 日期转为字符串 @"yyyy-MM-dd"
-- (NSString *)dateToDayString
+- (NSString *)dayString
 {
     NSString *dateString = [self dateToString];
     NSArray *array = [dateString componentsSeparatedByString:@" "];
@@ -114,19 +99,7 @@
     return array[0];
 }
 
-+ (NSDateFormatter *)dateFormatterTemp
-{
-    static NSDateFormatter* format;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        format = [[NSDateFormatter alloc] init];
-        format.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    });
-    
-    return format;
-}
-
-- (NSString *)showTimeAgo
+- (NSString *)readableDateString;
 {
     NSTimeInterval delta = [[NSDate date] timeIntervalSinceDate:self];
     
@@ -200,19 +173,45 @@
     return weekStr;
 }
 
-
 // 返回day天后的日期(若day为负数,则为|day|天前的日期)
-- (NSDate *)dateAfterDay:(int)day
+- (NSDate *)dateAfterDays:(int)dayCount
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     // Get the weekday component of the current date
     // NSDateComponents *weekdayComponents = [calendar components:NSWeekdayCalendarUnit fromDate:self];
     NSDateComponents *componentsToAdd = [[NSDateComponents alloc] init];
     // to get the end of week for a particular date, add (7 - weekday) days
-    [componentsToAdd setDay:day];
+    [componentsToAdd setDay:dayCount];
     NSDate *dateAfterDay = [calendar dateByAddingComponents:componentsToAdd toDate:self options:0];
     
     return dateAfterDay;
+}
+
+// 返回距离aDate有多少天
+- (NSInteger)dayCountBetweenDate:(NSDate *)aDate
+{
+    NSCalendar *calendar = [NSDate WR_currentCalender];
+    NSDateComponents *dateComponents = [calendar components:NSCalendarUnitDay fromDate:self toDate:aDate options:0];
+    
+    return [dateComponents day];
+}
+
++ (NSDateFormatter *)dateFormatter
+{
+    static NSDateFormatter* format;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        format = [[NSDateFormatter alloc] init];
+        format.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    });
+    
+    return format;
+}
+
+// 日期比较 同一天返回yes
+-(BOOL)isSameDay:(NSDate *)date
+{
+    return [NSDate twoDateIsSameDay:self second:date];
 }
 
 // 字符串转日期.
@@ -227,7 +226,7 @@
             NSString *dateString = [NSString stringWithFormat:@"%@ 00:00:00", timeString];
             NSDate *date = [NSDate dateByStringFormat:dateString];
             // 加上当前时区
-            date = [date dateByAddingTimeInterval:[NSDate DateByTimeZone] * 3600];
+            date = [date dateByAddingTimeInterval:[NSDate timeZone] * 3600];
             
             return date;
         }
@@ -247,7 +246,7 @@
 // 传入已经具备格式化的字符串.
 + (NSDate *)dateByStringFormat:(NSString *)timeString
 {
-    NSDateFormatter *formatter = [NSDate dateFormatterTemp];
+    NSDateFormatter *formatter = [NSDate dateFormatter];
     
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
@@ -258,29 +257,13 @@
     return date;
 }
 
-// 返回距离aDate有多少天
-- (NSInteger)dateByDistanceDaysWithDate:(NSDate *)aDate
-{
-    NSCalendar *calendar = [NSDate WR_currentCalender];
-    NSDateComponents *dateComponents = [calendar components:NSCalendarUnitDay fromDate:self toDate:aDate options:0];
-    
-    return [dateComponents day];
-}
-
 // 获得当前的时区
-+ (CGFloat)DateByTimeZone
++ (CGFloat)timeZone
 {
     NSTimeZone *tz = [NSTimeZone systemTimeZone];
     
     return tz.secondsFromGMT * 1.0 / 3600;
 }
-
-// 日期比较 同一天返回yes
--(BOOL)isTheSameDate:(NSDate *)date
-{
-    return [NSDate twoDateIsSameDay:self second:date];
-}
-
 
 + (BOOL)twoDateIsSameDay:(NSDate *)fistDate_
                   second:(NSDate *)secondDate_
@@ -303,7 +286,7 @@
 }
 
 // 判断当前日期是否是本周.
-+ (BOOL)dateIsThisWeek:(NSDate *)date
++ (BOOL)isThisWeek:(NSDate *)date
 {
     NSDate *start;
     NSTimeInterval extends;
@@ -331,7 +314,7 @@
 }
 
 // 判断当前日期是否是本月.
-+ (BOOL)dateIsThisMonth:(NSDate *)date
++ (BOOL)isThisMonth:(NSDate *)date
 {
     NSDate *start;
     NSTimeInterval extends;
@@ -360,6 +343,21 @@
     }
 }
 
++(NSString *)timeStampString{
+    NSDate* date = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval time=[date timeIntervalSince1970];
+    NSString *timeString = [NSString stringWithFormat:@"%.0f", time*1000];
+    return timeString;
+}
 
-
++(NSCalendar *)WR_currentCalender{
+    
+    NSMutableDictionary *dict = [[NSThread currentThread] threadDictionary];
+    NSCalendar *calender = [dict objectForKey:@"WR_Calender"];
+    if (calender == nil) {
+        calender = [NSCalendar currentCalendar];
+        [dict setObject:calender forKey:@"WR_Calender"];
+    }
+    return calender;
+}
 @end

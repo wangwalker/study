@@ -1,20 +1,18 @@
 //
 //  NSObject+WRObject.h
-//  WRKit
+//  tCCSC
 //
-//  Created by jfy on 16/10/25.
-//  Copyright © 2016年 jfy. All rights reserved.
+//  Created by IMAC on 2018/4/19.
+//  Copyright © 2018年 IMAC. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-typedef void(^NSObjectBlock)(NSDictionary *object);
-
 @interface NSObject (WRObject)
 
-// 获取系统时制信息.
-+ (BOOL)isHasAM_PMTime;
+// get unique identifier for Verdor of phone and applications
+-(NSString *)getIDFA;
 
-
+-(NSString*)formatDataSize:(float)size;
 
 @end

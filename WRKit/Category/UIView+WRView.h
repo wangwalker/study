@@ -1,15 +1,15 @@
 //
 //  UIView+WRView.h
-//  WRKit
+//  tCCSC
 //
-//  Created by jfy on 16/10/25.
-//  Copyright © 2016年 jfy. All rights reserved.
+//  Created by IMAC on 2018/4/23.
+//  Copyright © 2018年 IMAC. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+typedef void(^UIViewSimpleBlock)(UIView *aView, id object);
 
 @interface UIView (WRView)
-
 /**
  *  长度和位置属性的便捷获取
  */
@@ -29,7 +29,6 @@
 @property (nonatomic, assign, readonly) CGFloat halfWidth;
 @property (nonatomic, assign, readonly) CGFloat halfHeight;
 
-#pragma mark - about UI
 /**
  *  添加圆角
  *
@@ -39,19 +38,21 @@
 - (void)addRectCorner:(UIRectCorner)rectCorner withSize:(CGSize)size;
 
 /**
- *  添加圆角, 半径默认为边长的一半.
+ *  添加圆角, 是四周的 color  width .
  *
  *  @param color 为边框颜色
  *  @param width 为边框的宽度
  */
-
 - (void)addCorner:(UIColor *)color withWidth:(CGFloat)width;
 
 /**
- *  添加圆角，可以设置半径大小，颜色和宽度
+ *  只添加圆角
+ *
  */
-- (void)addCornerRadius:(CGFloat)radius color:(UIColor *)color lineWidth:(CGFloat)width;
+-(void)addCornerRadius:(CGFloat)radius;
 
+// 指定角度
+- (void)addCornerRadius:(CGFloat)radius color:(UIColor *)color lineWidth:(CGFloat)width;
 /**
  *  添加边框
  *
@@ -61,16 +62,10 @@
 -(void)addBorderWithColor:(UIColor *)color withWidth:(CGFloat)width;
 
 /**
- *  为视图添加渐变色（对称渐变）
+ *  为视图切换添加动画效果
  *
- *  @param fcolor 渐变起始色
- *  @param tColor 渐变结束色
+ *  @param animationBlock 动作描述
  */
--(void)addGradientLayerFromColor:(UIColor *)fColor toColor:(UIColor *)tColor;
-
-
-#pragma mark - animation
--(void)startRotate;
-
+- (void)animationWithViewTransition:(UIViewSimpleBlock)animationBlock;
 
 @end

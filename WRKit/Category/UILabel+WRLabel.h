@@ -11,15 +11,11 @@
 @interface UILabel (WRLabel)
 
 /**
- *  工厂方法
- *
  *  @param rect      、
  *  @param alignment 、
  *  @param size      、
  *  @param text      、
  *  @param textColor 、
- *
- *  @return 、
  */
 + (UILabel *)labelWithRect:(CGRect)rect
              textAlignment:(NSTextAlignment)alignment
@@ -35,5 +31,11 @@
                       textColor:(UIColor *)textColor;
 
 - (CGSize)estimateUISizeByHeight:(CGFloat)height;
+
+/*
+ * get width or height of label' size by given a fixed height or width and font size;
+ */
+- (CGFloat)getWidthReferToHeight:(CGFloat)height fontSize:(CGFloat)fontSize;
+- (CGFloat)getHeightReferToWidth:(CGFloat)width fontSize:(CGFloat)fontSize;
 
 @end

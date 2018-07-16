@@ -1,9 +1,9 @@
 //
 //  UIImage+WRImage.h
-//  WRKit
+//  tCCSC
 //
-//  Created by jfy on 16/10/25.
-//  Copyright © 2016年 jfy. All rights reserved.
+//  Created by IMAC on 2018/4/20.
+//  Copyright © 2018年 IMAC. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -15,6 +15,10 @@
 
 // 将图片进行缩放
 - (UIImage *)imageScaleToSize:(CGSize)size;
+
+-(UIImage *)uniformScaleToWidth:(CGFloat)width;
+
+-(UIImage *)uniformScaleWithRatio:(CGFloat)ratio;
 
 // 将图片拉伸 imageName 将要拉伸的图片名字
 + (UIImage *)imageStretch:(NSString *)imageName;
@@ -31,32 +35,31 @@
 // 根据颜色绘制图片
 + (UIImage *)imageWithColor:(UIColor *)color;
 
-/**
- *  条形码生成器
- *
- *  @param barString 字符
- *  @param width     条形码宽度
- *  @param height    条形码高度
- *
- *  @return
- */
-+(UIImage *)generateBarCode:(NSString *)barString withWidth:(CGFloat)width height:(CGFloat)height;
-
-/**
- *  二维码生成器
- *
- *  @param string         字符
- *  @param Imagesize      二维码宽度和高度【正方形】
- *  @param waterImagesize
- *
- *  @return 
- */
+//生成一个二维码
 + (UIImage *)qrImageForString:(NSString *)string imageSize:(CGFloat)Imagesize logoImageSize:(CGFloat)waterImagesize;
 
-//根据view转换image
-+ (UIImage*)imageFromView:(UIView*)view;
+//生成条形码
++(UIImage *)generateBarCode:(NSString *)barString withWidth:(CGFloat)width height:(CGFloat)height;
 
-//将图片转换成字符串，方便保存
--(NSString *)imageBase64String;
+//根据view转换image
++ (UIImage*) imageWithUIView:(UIView*) view;
+
+/**
+ * get the image data size with a formated(KB, MB, GB ...) string,
+ */
+-(NSString *)getSizeWithCompressRatio:(CGFloat)ratio;
+
+
+/**
+ * return if a image is landscape and portraits
+ */
+-(Boolean)isLandscape;
+
+
+/**
+ * 获取图片的Exif信息
+ */
++(NSDictionary *)getImageExifWithMediaURL:(NSURL *)mediaURL;
+
 
 @end
