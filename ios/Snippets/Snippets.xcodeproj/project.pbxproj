@@ -15,6 +15,7 @@
 		0BC78B2D248F77E90037F815 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC78B2C248F77E90037F815 /* main.m */; };
 		0BC78B37248F77EA0037F815 /* SnippetsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC78B36248F77EA0037F815 /* SnippetsTests.m */; };
 		0BC78B42248F77EA0037F815 /* SnippetsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC78B41248F77EA0037F815 /* SnippetsUITests.m */; };
+		0BE9413524E66C9E0064E662 /* GDCGroupExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE9413424E66C9E0064E662 /* GDCGroupExample.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,8 @@
 		0BC78B3D248F77EA0037F815 /* SnippetsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnippetsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BC78B41248F77EA0037F815 /* SnippetsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SnippetsUITests.m; sourceTree = "<group>"; };
 		0BC78B43248F77EA0037F815 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0BE9413324E66C9E0064E662 /* GDCGroupExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GDCGroupExample.h; sourceTree = "<group>"; };
+		0BE9413424E66C9E0064E662 /* GDCGroupExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GDCGroupExample.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +111,8 @@
 				0BC78B1E248F77E30037F815 /* SceneDelegate.m */,
 				0BC78B20248F77E30037F815 /* ViewController.h */,
 				0BC78B21248F77E30037F815 /* ViewController.m */,
+				0BE9413324E66C9E0064E662 /* GDCGroupExample.h */,
+				0BE9413424E66C9E0064E662 /* GDCGroupExample.m */,
 				0BC78B26248F77E90037F815 /* Assets.xcassets */,
 				0BC78B28248F77E90037F815 /* LaunchScreen.storyboard */,
 				0BC78B2B248F77E90037F815 /* Info.plist */,
@@ -265,6 +270,7 @@
 			files = (
 				0BC78B22248F77E30037F815 /* ViewController.m in Sources */,
 				0BC78B1C248F77E30037F815 /* AppDelegate.m in Sources */,
+				0BE9413524E66C9E0064E662 /* GDCGroupExample.m in Sources */,
 				0BC78B2D248F77E90037F815 /* main.m in Sources */,
 				0BC78B1F248F77E30037F815 /* SceneDelegate.m in Sources */,
 			);

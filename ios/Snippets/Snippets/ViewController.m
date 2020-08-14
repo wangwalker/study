@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "GDCGroupExample.h"
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 @property (nonatomic, assign) BOOL hasImmersed;
@@ -15,13 +16,46 @@
 @end
 
 @implementation ViewController
+{
+    dispatch_queue_t queue1, queue2;
+    NSArray<GDCTaskItem*> *tasks1, *tasks2;
+    GDCGroupTaskScheduler *scheduler1, *scheduler2;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setTitle:@"Snippets"];
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    
     [self.view addSubview:self.tableview];
+    [self initGroupTasks];
+}
+
+- (void)initGroupTasks{
+    queue1 = dispatch_get_global_queue(0, 0);
+    queue2 = dispatch_get_global_queue(0, 0);
+    
+    tasks1 = @[
+        [[GDCTaskItem alloc] initWithSleepSeconds:2 name:@"T11" queue:queue1],
+        [[GDCTaskItem alloc] initWithSleepSeconds:5 name:@"T12" queue:queue1]
+    ];
+    tasks2 = @[
+        [[GDCTaskItem alloc] initWithSleepSeconds:1 name:@"T21" queue:queue2],
+        [[GDCTaskItem alloc] initWithSleepSeconds:3 name:@"T22" queue:queue2]
+    ];
+    
+    scheduler1 = [[GDCGroupTaskScheduler alloc] initWithTasks:tasks1 name:@"S1"];
+    scheduler2 = [[GDCGroupTaskScheduler alloc] initWithTasks:tasks2 name:@"S2"];
+}
+
+- (void)performTasksWithWait{
+    [scheduler1 dispatchTasksWaitUntilDone];
+    [scheduler2 dispatchTasksWaitUntilDone];
+}
+
+- (void)performTasksWithNofity{
+    [scheduler1 dispatchTasksUntilDonwNofityQueue:queue2 nextTask:^{
+        [self->scheduler2 dispatchTasksWaitUntilDone];
+    }];
 }
 
 - (void)hideNavBar:(BOOL)hidden{
@@ -50,6 +84,7 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self performTasksWithNofity];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
