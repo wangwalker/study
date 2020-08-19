@@ -224,12 +224,12 @@ Browser Object Model (BOM)是Web的重要组成部分，里面包含众多对象
 - Window
 - Location
 - Navigator
-- Scree
+- Screen
 - History
 
 ### DOM
 JavaScript Document Object Model (DOM)提供了众多API用于操作DOM元素。包括：
-- 选择元素，`getElementBy`*；
+- 选择元素，`getElementBy*`；
 - 遍历元素，`parentNode`、`firstChild`等；
 - 操作元素，`createElement`、`innerHTML`、`append`、`insertBefore`、`replaceChild`等；
 - 操作属性，`setAttribute`、`getAttribute`、`hasAttribute`等；
