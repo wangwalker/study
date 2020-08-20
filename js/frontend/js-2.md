@@ -260,3 +260,71 @@ ECMAScript给出的定义：
 
 这些对象可以用`new`运算符创建新对象，但是却无法用`extends`继承。可以这么认为：这些对象都是为了特定能力或者性能，而设计出来的特权对象。
 
+# 原型链
+
+JavaScript的每个对象都有一个指向其原型对象的链，当试图访问一个属性时，它不仅仅在对象上搜寻，而且还会在它的原型上搜寻，以及原型的原型上搜寻，直到找到属性或者达到此链条的顶端，这就是JavaScript的原型链，用来实现**继承**的核心逻辑。
+
+## 函数对象和构造器对象
+
+除过上面对于JavaScript对象的的一般分类方法，还有另一个角度，就是用对象来模拟函数和构造器。
+
+JavaScript中函数对象的定义是：具有[[call]]私有字段的对象；构造器对象的定义是：具有私有字段[[construct]]的对象。
+
+>JavaScript用对象模拟函数的设计代替了一般编程语言中的函数，它们可以像其它语言的函数一样被调用、传参。任何宿主只要提供了“具有[[call]]私有字段的对象”，就可以被 JavaScript 函数调用语法支持。
+
+所以在JavaScript中，任何对象只要实现了[[call]]，它就是一个函数对象，可以去作为函数被调用。而如果它能实现[[construct]]，它就是一个构造器对象，可以作为构造器被调用。
+
+另外，还有非常重要的一点：用`function`关键字创建的函数，既是函数（对象），又是构造器（对象）。
+
+但是，对于宿主和内置对象来说，[[call]]（作为函数被调用）的行为和[[construct]]（作为构造器被调用）的行为可能存在些许差异。而且，在ES6之后 `=>` 语法创建的函数仅仅是函数，它们无法被当作构造器使用。
+
+然而，用户使用 `function` 语法或者`Function`构造器创建的对象来说，[[call]]和[[construct]]行为总是一致的。
+
+```js
+function f(){
+    return 1;
+}
+var v = f(); //把f作为函数调用
+var o = new f(); //把f作为构造器调用
+```
+上面这段代码，它的[[construct]]的执行过程如下：
+
+1. 以 `Object.protoype` 为原型创建一个新对象；
+2. 以新对象为 `this`，执行函数的[[call]]；
+3. 如果[[call]]的返回值是对象，那么，返回这个对象，否则返回第一步创建的新对象。
+
+## prototype(显式原型)和__proto__(隐式原型)
+
+### prototype
+
+每一个函数在创建之后都会拥有一个名为`prototype`的属性，这个属性指向函数的原型对象。
+Note：通过Function.prototype.bind方法构造出来的函数是个例外，它没有prototype属性。
+
+那么，prototype的作用是什么呢？
+
+>ECMAScript does not use classes such as those in C++, Smalltalk, or Java. Instead objects may be created in various ways including via a literal notation or via constructors which create objects and then execute code that initialises all or part of them by assigning initial values to their properties. **Each constructor is a function that has a property named “prototype” that is used to implement prototype-based inheritance and shared properties.**Objects are created by using constructors in new expressions; for example, new Date(2009,11) creates a new Date object. ----[ECMAScript Language Specification](https://link.zhihu.com/?target=http%3A//www.ecma-international.org/ecma-262/5.1/%23sec-4.2.1)
+
+一句话，prototype用来实现基于原型的继承与属性的共享。prototype属性只有Function对象有。
+
+### `__proto__`
+
+> 遵循ECMAScript标准，someObject.[[Prototype]] 符号是用于指向 someObject 的原型。从 ECMAScript 6 开始，[[Prototype]] 可以通过 Object.getPrototypeOf() 和 Object.setPrototypeOf() 访问器来访问。这个等同于 JavaScript 的非标准但许多浏览器实现的属性 `__proto__`。
+
+每个实例对象（ object ）都有一个私有属性（称之为 `__proto__` ）指向它的构造函数的原型对象（ `prototype` ）。该原型对象也有一个自己的原型对象( `__proto__` ) ，层层向上直到一个对象的原型对象为 `null`。根据定义，`null` 没有原型，并作为这个原型链中的最后一个环节。
+
+也就是说：对每一个对象，`__proto__`是构成JavaScript对象基于原型链的继承关系的具体实现细节。
+
+需要注意的是，**JavaScript的函数function也是对象（Function的实例，也就是函数对象）。所以，function也有了`__proto__`属性**，指向Function.prototype。
+
+用下面两张图演直观感受一下原型链的真实样子：
+
+![原型链1](./images/js-prototype-chain.jpg)
+
+![原型2](./images/js-prototype-chain.png)
+
+### 总结
+- 我们需要牢记两点：
+  - `__proto__`属性是对象所独有的；
+  - `prototype`属性是函数所独有的，因为函数也是一种对象，所以函数也拥有`__proto__`属性。
+- `__proto__`属性的作用就是当访问一个对象的属性时，如果该对象内部不存在这个属性，那么就会去它的_`_proto__`属性所指向的那个对象里找，一直找，直到`__proto__`属性的终点null，再往上找就相当于在null上取值，会报错。通过`__proto__`属性将对象的继承关系连接起来的这条链路即原型链。
+- `prototype`属性的作用就是让该函数所实例化的对象们都可以找到公用的属性和方法，即`f1.__proto__ === Foo.prototype`。
