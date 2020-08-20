@@ -229,11 +229,11 @@ Browser Object Model (BOM)是Web的重要组成部分，里面包含众多对象
 
 ### DOM
 JavaScript Document Object Model (DOM)提供了众多API用于操作DOM元素。包括：
-- 选择元素，`getElementBy`*；
+- 选择元素，`getElementBy*`；
 - 遍历元素，`parentNode`、`firstChild`等；
 - 操作元素，`createElement`、`innerHTML`、`append`、`insertBefore`、`replaceChild`等；
 - 操作属性，`setAttribute`、`getAttribute`、`hasAttribute`等；
-- 操作CSS样式，`style`、`getComputedStyle`、  、`height`等；
+- 操作CSS样式，`style`、`getComputedStyle`  、`height`等；
 - 事件处理，`onclick`、`onscroll`、`load`、`addEventListener`、`mouseover`、`keyup`等；
 - 表单处理。
 
@@ -258,5 +258,5 @@ ECMAScript给出的定义：
 
 ![原生对象](./images/js-native-objects.png)
 
-这些对象可以用`new`运算符创建新对象，但是却无法用extends进行继承。可以这么认为：这些对象都是为了特定能力或者性能，而设计出来的特权对象。
+这些对象可以用`new`运算符创建新对象，但是却无法用`extends`继承。可以这么认为：这些对象都是为了特定能力或者性能，而设计出来的特权对象。
 
