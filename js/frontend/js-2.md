@@ -224,7 +224,7 @@ Browser Object Model (BOM)是Web的重要组成部分，里面包含众多对象
 - Window
 - Location
 - Navigator
-- Scree
+- Screen
 - History
 
 ### DOM

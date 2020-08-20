@@ -116,40 +116,50 @@ function findObjects() {
         }
     }
 
-    var htmlString1 = '<div>',
-        htmlString2 = '<div>';
+    console.log('scope at "findObjects()":', this)
 
-    htmlString1 += "Objects Defined by JavaScript: <hr>";
+    var string1 = '<div>',
+        string2 = '<div>';
+    var errs = '';
+
+    string1 += "Objects Defined by JavaScript: <hr>";
     rowObjects.forEach(function (o) {
         if (o instanceof Function) {
-            htmlString1 += o.name;
-            htmlString1 += ", "
+            string1 += o.name;
+            string1 += ", "
         } else {
-            htmlString1 += o + ", ";
+            string1 += o + ", ";
         }
     })
-    htmlString1 += '</div>'
-    document.getElementById("defined-objects").innerHTML = htmlString1;
+    string1 += '</div>'
+    document.getElementById("defined-objects").innerHTML = string1;
 
-    console.log('built-in')
-    htmlString2 += "All Built-in Objects: <hr>";
+    string2 += "All Built-in Objects: <hr>";
     set.forEach(function (o) {
         if (o instanceof Function) {
-            htmlString2 += o.name;
-            htmlString2 += ", "
+            string2 += o.name;
+            string2 += ", "
         } else if (o instanceof Object) {
-            htmlString2 += ', '
-            console.log('object:', o)
+            try {
+                string2 += o+', '
+            } catch (e) {
+                errs += e+''
+                errs += '<hr>'
+                console.log("object error:", e)
+            }
         } else {
             console.log(o)
         }
     })
 
-    htmlString2 += '</div>'
-    document.getElementById("found-objects").innerHTML = htmlString2;
+    string2 += '<hr>'
+    string2 += errs
+    string2 += '</div>'
+    document.getElementById("found-objects").innerHTML = string2;
 }
 
 window.onload = function () {
+    console.log('scope at "window.onload()"', this)
     let btn = document.getElementById("btn");
-    btn.addEventListener('click', findObjects);
+    btn.addEventListener('click', findObjects.bind(this));
 }
