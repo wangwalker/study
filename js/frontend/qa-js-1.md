@@ -31,7 +31,7 @@ var person = {
 }
 ```
 ```js
-// 1
+// 1 函数的AST
 {
   "type": "Program",
   "body": [
@@ -107,5 +107,61 @@ var person = {
   ],
   "sourceType": "script"
 }
-
+// 2 字面量AST
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "VariableDeclaration",
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "id": {
+            "type": "Identifier",
+            "name": "person"
+          },
+          "init": {
+            "type": "ObjectExpression",
+            "properties": [
+              {
+                "type": "Property",
+                "key": {
+                  "type": "Identifier",
+                  "name": "name"
+                },
+                "computed": false,
+                "value": {
+                  "type": "Literal",
+                  "value": "walker",
+                  "raw": "\"walker\""
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false
+              },
+              {
+                "type": "Property",
+                "key": {
+                  "type": "Identifier",
+                  "name": "gender"
+                },
+                "computed": false,
+                "value": {
+                  "type": "Literal",
+                  "value": "male",
+                  "raw": "\"male\""
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false
+              }
+            ]
+          }
+        }
+      ],
+      "kind": "var"
+    }
+  ],
+  "sourceType": "script"
+}
 ```
