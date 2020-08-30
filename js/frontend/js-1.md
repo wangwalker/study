@@ -156,42 +156,46 @@ parseInt("010");		// 未定：10 或 8
 
 ### 拆箱操作
 
-和装箱操作的是“拆箱”操作，也就是说把对象转变为基本类型。在JavaScript标准中，规定了 `ToPrimitive` 函数，用于实现拆箱。
+和装箱操作对应的是“拆箱”操作，也就是说把对象转变为基本类型，比如Number和String之间的转换，都要先进行拆箱操作，取出基本类型，然后再把基本类型转换为对应地String或者Number。
 
-类型转换，比如Number和String之间的转换，都要先进行拆箱操作，取出基本类型，然后再把基本类型转换为对应地String或者Number。
-
-拆箱转换会尝试调用 `valueOf` 和 `toString` 来获得拆箱后的基本类型。如果 `valueOf` 和 `toString` 都不存在，或者没有返回基本类型，则会产生类型错误 `TypeError`。
+在JavaScript标准中，规定了 `ToPrimitive` 内置函数，用于实现拆箱，它有一个参数`hint`，用来表示要转换的类型，有三个取值：`number`、`string`、`default`。但是如果没有实现`ToPrimitive`，则会尝试调用 `valueOf` 和 `toString` 来获得拆箱后的基本类型。如果 `valueOf` 和 `toString` 都不存在，或者没有返回基本类型，则会产生类型错误 `TypeError`。
 
 ```js
-var o1 = {
-    valueOf : () => {console.log("valueOf"); return {}},
-    toString : () => {console.log("toString"); return {}}
-}
+let user = {
+  name: "John",
+  money: 1000,
 
-o1 * 2
-// valueOf
-// toString
-// TypeError
+  [Symbol.toPrimitive](hint) {
+    alert(`hint: ${hint}`);
+    return hint == "string" ? `{name: "${this.name}"}` : this.money;
+  }
+};
 
-var o2 = {
-    valueOf : () => {console.log("valueOf"); return {}},
-    toString : () => {console.log("toString"); return {}}
-}
+alert(user);        // hint: string -> {name: "John"}
+alert(+user);       // hint: number -> 1000
+alert(user + 500);  // hint: default -> 1500
 
-String(o2)
-// toString
-// valueOf
-// TypeError
-```
-在 ES6 之后，还允许对象通过显式指定 `Symbol.toPrimitive` 来覆盖原有的行为。
-```js
-var o = {
-    valueOf : () => {console.log("valueOf"); return {}},
-    toString : () => {console.log("toString"); return {}}
-}
+let user = {
+  name: "John",
+  money: 1000,
 
-o[Symbol.toPrimitive] = () => {console.log("toPrimitive"); return "hello"}
+  // for hint="string"
+  toString() {
+    return `{name: "${this.name}"}`;
+  },
 
+  // for hint="number" or "default"
+  valueOf() {
+    return this.money;
+  }
+
+};
+
+alert(user);        // toString -> {name: "John"}
+alert(+user);       // valueOf -> 1000
+alert(user + 500);  // valueOf -> 1500
+
+详细解说可以参考[这里](https://javascript.info/object-toprimitive)
 ```
 
 # 对象
