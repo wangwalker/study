@@ -194,9 +194,8 @@ let user = {
 alert(user);        // toString -> {name: "John"}
 alert(+user);       // valueOf -> 1000
 alert(user + 500);  // valueOf -> 1500
-
-详细解说可以参考[这里](https://javascript.info/object-toprimitive)
 ```
+详细解说可以参考[这里](https://javascript.info/object-toprimitive)。
 
 # 对象
 
