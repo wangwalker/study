@@ -102,7 +102,7 @@ console.log(o + "");
 // [object MyObject]
 ```
 
-`new`运算符是JavaScript面向对象体系中非常重要的一部分，在ES6之前，`new`和函基本上撑起了JavaScript的对象系统。`new` 运算接受一个构造器和一组参数，实际上做了以下这些事：
+`new`运算符是JavaScript面向对象体系中非常重要的一员，在ES6之前，`new`和函数基本上撑起了JavaScript的对象系统。`new` 运算接受一个构造器和一组参数，实际上做了以下这些事：
 
 - 以构造器的 `prototype` 属性（注意与私有字段[[prototype]]的区分）为原型，创建新对象；
 - 将 `this` 和调用参数传给构造器，执行；
@@ -132,7 +132,7 @@ var o2 = new c2;
 o2.p2();
 ```
 
-在没有`Object.create`、 `Object.setPrototypeOf` 的早期版本中，`new` 运算是唯一一个可以指定[[prototype]]的方法（当时的mozilla提供了私有属性__proto__，但是多数环境并不支持），所以，当时已经有人试图用它来代替后来的 Object.create，我们甚至可以用它来实现一个Object.create的不完整的polyfill，见以下代码：
+在没有`Object.create`、 `Object.setPrototypeOf` 的早期版本中，`new` 运算是唯一一个可以指定[[prototype]]的方法（当时的mozilla提供了私有属性__proto__；但在目前，大多数浏览器已经支持这一私有属性__proto__），所以，当时已经有人试图用它来代替后来的 Object.create，我们甚至可以用它来实现一个Object.create的不完整的polyfill，见以下代码：
 ```js
 Object.create = function(prototype) {
     var cls = function(){}
@@ -203,10 +203,10 @@ d.speak(); // Mitzie barks.
 可以把JavaScript对象分为以下几类：
 
 - 宿主对象（host Objects）：由JavaScript宿主环境提供的对象，它们的行为完全由宿主环境决定。
-- 内置对象（Built-in Objects）：由JavaScript语言提供的对象。
-    - 固有对象（Intrinsic Objects ）：由标准规定，随着JavaScript运行时创建而自动创建的对象实例。
-    - 原生对象（Native Objects）：可以由用户通过Array、RegExp等内置构造器或者特殊语法创建的对象。
-    - 普通对象（Ordinary Objects）：由{}语法、Object构造器或者class关键字定义类创建的对象，它能够被原型继承。
+- 内置对象（Built-in Objects）：由JavaScript语言提供的对象，也就是除过宿主对象之外的所有对象。
+    - 固有对象（Intrinsic Objects ）：由标准规定，随着JavaScript运行时被创建而自动创建的对象。
+    - 原生对象（Native Objects）：用户可以通过Array、RegExp等内置构造器或者特殊语法创建的对象。
+    - 普通对象（Ordinary Objects）：用户通过{}语法、Object构造器或者class关键字定义类创建的对象，它能够被原型继承。
 
 ## 宿主对象
 
@@ -323,6 +323,7 @@ Note：通过Function.prototype.bind方法构造出来的函数是个例外，�
 ### 总结
 - 牢记两点：
   - `__proto__`属性是对象所独有的；
-  - `prototype`属性是函数所独有的，因为函数也是一种对象，所以函数也拥有`__proto__`属性。
+  - `prototype`属性是函数所独有的；
+  - 因为函数也是一种对象，所以同时拥有`__proto__`属性和`prototype`属性。
 - `__proto__`属性的作用就是当访问一个对象的属性时，如果该对象内部不存在这个属性，那么就会去它的`__proto__`所指向的那个对象里找，一直找，直到`__proto__`属性为null，再往上找就相当于在null上取值，会报错。通过`__proto__`属性将对象的继承关系连接起来的这条链路即原型链。
 - `prototype`属性的作用就是让该函数所实例化的对象们都可以找到公用的属性和方法，即`f1.__proto__ === Foo.prototype`。
