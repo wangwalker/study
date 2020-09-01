@@ -1,0 +1,123 @@
+<html>
+<head>
+    <meta name="title" content="traffic light">
+    <style type="text/css">
+        #main-area {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .light {
+            width: 100px;
+            height: 100px;
+            border-radius: 50px;
+            border: solid lightgray 1px;
+        }
+    </style>
+    <script type="text/javascript">
+        function sleep(duration) {
+            return new Promise(function (duration, resolve) {
+                setTimeout(resolve, duration);
+            })
+        }
+
+        class TrafficLight {
+            constructor(name, color, greenSeconds, redSeconds, seconds) {
+                this.name = name;
+                this.color = color;
+                this.greenSeconds = greenSeconds;
+                this.redSeconds = greenSeconds;
+                this.seconds = seconds;
+                this.yellowSeconds = 3;
+            }
+
+            changeSeconds() {
+                this.seconds--;
+                document.getElementById(this.name).innerText = this.seconds;
+            }
+
+            changeStatus() {
+                if (this.color === "green") {
+                    this.color = "yellow";
+                    this.seconds = this.yellowSeconds;
+                } else if (this.color === "yellow") {
+                    this.color = "red";
+                    this.seconds = this.redSeconds;
+                } else if (this.color === "red") {
+                    this.color = "green";
+                    this.seconds = this.greenSeconds;
+                }
+            }
+
+            changeColor() {
+                document.getElementById(this.name).style.backgroundColor = this.color;
+            }
+
+            flash() {
+                
+                this.changeSeconds();
+
+                if (this.seconds > 0) return;
+
+                this.changeStatus();
+
+                this.changeStatus();
+
+                this.log();
+            }
+
+            log() {
+                console.log("light " + this.name + " is " + this.color + ", current seconds: " + this.seconds);
+            }
+        }
+
+        class TrafficLightManager {
+            constructor(name) {
+                this.name = name;
+                this.lights = [];
+            }
+
+            addTrafficLight(light) {
+                this.lights.push(light);
+            }
+
+            dispatch() {
+                console.log("manage", this.lights)
+                const lights = this.lights;
+                setInterval(function () {
+                    lights.forEach(light => {
+                        light.flash();
+                    });
+                }, 1000)
+            }
+        }
+
+        function dispatchTraffic() {
+            var tm = new TrafficLightManager("tm");
+
+            tm.addTrafficLight(new TrafficLight("l1", "red", 6, 3, 3));
+            tm.addTrafficLight(new TrafficLight("l2", "yellow", 5, 2, 2));
+            tm.addTrafficLight(new TrafficLight("l3", "green", 10, 5, 2));
+
+            tm.dispatch();
+        }
+
+        window.onload = function () {
+            console.log("window.onload()")
+            dispatchTraffic()
+        }
+
+    </script>
+</head>
+
+<body>
+    <div style="height: 20vh;"></div>
+    <div id="main-area">
+        <div class="light" id="l1" style="background-color: red;"></div>
+        <div class="light" id="l2" style="background-color: yellow;"></div>
+        <div class="light" id="l3" style="background-color: green;"></div>
+    </div>
+</body>
+
+</html>

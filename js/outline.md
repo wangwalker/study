@@ -1,5 +1,5 @@
-这部分内容来自Winter老师在[极客时间](https://time.geekbang.org/)上的[《重学前端》](https://time.geekbang.org/column/intro/100023201)课程。
 
+这部分内容来自Winter老师在[极客时间](https://time.geekbang.org/)上的[《重学前端》](https://time.geekbang.org/column/intro/100023201)课程。
 # 课程目标
 
 - 带你摸索出适合自己的前端学习方法；
