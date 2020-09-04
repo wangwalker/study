@@ -91,7 +91,7 @@ JavaScript中的作用域无非两种：全局变量和局部变量，函数内�
 
 # 执行上下文
 
-执行一段JavaScript代码，不光需要全局变量和局部变量，还需要处理`this`、`with`等特殊语法，这些信息让JavaScript代码的执行变得更加复杂。JavaScript标准把一段代码，执行所需要的一切信息定义为“执行上下文”。
+执行一段JavaScript代码，不光需要全局变量和局部变量，还需要处理`this`、`with`等特殊语法，这些信息让JavaScript代码的执行变得更加复杂。**JavaScript标准把一段代码，执行所需要的一切信息定义为“执行上下文”。**
 
 这一部分内容经历了多个版本的演变，下面来梳理一下。
 
@@ -167,7 +167,7 @@ JavaScript中的作用域无非两种：全局变量和局部变量，函数内�
     alert(phrase); // Error: phrase is not defined
 ```
 
-针对`var`的这种问题，在没有`let`的时代，有个可以修复方案：立即执行的函数表达式（IIFE），通过创建一个函数，并立即执行，就像上面的例子一样，可以完美解决变量提升的缺陷。
+针对`var`的这种问题，在没有`let`的时代，有个修复方案叫做**立即执行的函数表达式（IIFE）**，通过创建一个函数，并立即执行，就像上面的例子一样，可以完美解决变量提升的缺陷。
 ```js
     (function() {
         var message = "Hello";
@@ -192,3 +192,137 @@ let user; // Uncaught SyntaxError: Identifier 'user' has already been declared
 ```
 
 为了减少不必要的麻烦，建议使用多使用let，甚至全用let声明变量。
+
+# 函数function
+
+**执行上下文**是JavaScript代码执行所需要的一切信息。也就是说，一段代码的执行结果依赖于执行上下文的内容，如果执行上下文不一样了，相同的代码很可能产生不同的结果。在JavaScript中，切换执行上下文最重要的场景就在函数调用。下面，我们先来认识一下，JavaScript中一共有多少种函数。
+
+## 普通函数
+普通函数是用`function`关键字定义的函数。
+```js
+    function foo() {
+        // code
+    }
+```
+
+## 箭头函数
+箭头函数使用 `=>` 运算符定义的函数。
+```js
+const foo = () => {
+    // code
+}
+```
+
+## class中定义的函数
+`class`中定义的函数，也就是类的访问器属性。
+```js
+    class C {
+        foo(){
+            // code
+        }
+    }
+```
+
+## 生成器函数
+用 `function *` 定义的函数。
+```js
+    function foo*(){
+        // code
+    }
+```
+
+## 类
+用`class`定义的类，实际上也是函数。
+```js
+    class Foo {
+        constructor(){
+            // code
+        }
+    }
+```
+
+## 异步函数
+普通函数、箭头函数、生成器函数加上`async`关键字。
+```js
+    async function foo(){
+        // code
+    }
+    const foo = async () => {
+        // code
+    }
+    async function foo*(){
+        // code
+    }
+```
+
+总共8中函数类型，它们的执行上下文中，对于普通变量没有什么特殊之处，都是遵循了“继承定义时环境”的规则，主要差异来自 `this` 关键字。
+
+# `this`
+
+## 普通函数的`this`
+ `this` 关键字是JavaScript执行上下文中非常重要的一个组成部分，同一个函数调用方式不同，得到的this值也不同。例如下面这段代码：
+ ```js
+    function showThis(){
+        console.log(this);
+    }
+
+    var o = {
+        showThis: showThis
+    }
+
+    showThis();     // global
+    o.showThis();   // o
+ ```
+
+ 对此现象，一般认为是普通函数的 `this` 指向函数运行所在的环境。例如在上面的例子中，`showThis()`运行在全局环境中，而 `o.showThis()` 运行在 `o` 这一对象中，因此才得出这样的结果。
+
+ 更准确的理解是，`this` 是由调用它所使用的引用决定的。我们获取函数的表达式，实际上返回的并非函数本身，而是一个Reference类型（JavaScript七种标准类型之一）。
+
+ Reference类型由两部分组成：一个对象和一个属性值。在上面的例子中，`showThis()` 产生的Reference类型便是全局对象`global` 或者 `window`，和属性showThis构成；`o.showThis()` 产生的Reference类型又是对象o和属性 `showThis` 构成。
+
+至此，我们便理解了 `this` 的真正含义：调用函数时使用的引用Reference，决定了函数执行时刻的 `this` 值。
+
+## 箭头函数的`this`
+
+把上面的函数改成箭头函数，执行之后发现不管用什么调用，它的值都不变。
+ ```js
+    var showThis = () => {
+        console.log(this);
+    }
+
+    var o = {
+        showThis: showThis
+    }
+
+    showThis();     // global
+    o.showThis();   // global
+
+    var o = {}
+    o.foo = function foo(){
+        console.log(this);
+        return () => {
+            console.log(this);
+            return () => console.log(this);
+        }
+    }
+
+    o.foo()()();    // o, o, o
+ ```
+
+## 访问器属性的this
+
+```js
+    class C {
+        showThis() {
+            console.log(this);
+        }
+    }
+    var o = new C();
+    var showThis = o.showThis;
+
+    showThis();     // undefined
+    o.showThis();   // o
+```
+在类中的“方法”，结果又不太一样，使用showThis这个引用去调用方法时，得到了undefined，在对象上调用得到对象本身。
+
+按照上面的方法，不难验证出：生成器函数、异步生成器函数和异步普通函数跟普通函数行为是一致的，异步箭头函数与箭头函数行为是一致的。
