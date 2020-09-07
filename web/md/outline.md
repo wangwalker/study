@@ -58,7 +58,7 @@
 
 ## JavaScript语言
 
-![JavaScript语言](./images/arch-javascript.png)
+![JavaScript语言](../images/arch-javascript.png)
 
 前面已经说了，任何一门编程语言都是用一定的文法表达特定的语义，从而操作运行时，JavaScript也不例外。
 
@@ -70,7 +70,7 @@
 
 ## HTML和CSS
 
-![HTML和CSS](./images/arch-html-css.png)
+![HTML和CSS](../images/arch-html-css.png)
 
 #### HTML部分
 
@@ -89,7 +89,7 @@ HTML主要是由各种标签构成的，对它们按照功能进行分类可以�
 
 ## 浏览器实现原理和API
 
-![浏览器](./images/arch-brower.png)
+![浏览器](../images/arch-brower.png)
 
 在前端知识架构中，对浏览器的认识必不可少。有些人认为只要会写程序就可以了，干嘛要去学习浏览器的实现原理，我又不用去实现浏览器。其实不然，明白浏览器的实现原理有助于我们更加深刻的理解知识的来龙去脉，还可帮助我们写出更加优雅高效的程序，这应该是每个技术人的追求。
 

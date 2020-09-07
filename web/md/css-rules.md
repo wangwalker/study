@@ -167,7 +167,7 @@ media query能够对设备的类型进行一些判断。在media的区块内，�
         - pseudo-class
     - pseudo-element
 
-![复合选择器](./images/css-compound-selector.png)
+![复合选择器](../images/css-compound-selector.png)
 
 ### 声明：属性和值
 声明部分是一个由“属性:值”组成的序列。

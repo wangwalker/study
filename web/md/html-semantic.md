@@ -34,9 +34,9 @@ HTML标签可以分为很多种，比如：
 
 看这两张图片：
 
-![语义1](./images/html-ruby-1.png)
+![语义1](../images/html-ruby-1.png)
 
-![语义2](./images/html-ruby-2.jpg)
+![语义2](../images/html-ruby-2.jpg)
 
 面对这种场景，用各种注释都达不到目的。因此在HTML5中，加入了`ruby`这样的标签，它由ruby、rt、rp三个标签来实现。
 
@@ -174,7 +174,7 @@ In contrast, the <dfn>World Wide Web</dfn> is a global collection of documents a
 ```
 其真实的显示效果如下：
 
-![caption](./images/caption.png)
+![caption](../images/caption.png)
 
 ### blockquote q cite
 
