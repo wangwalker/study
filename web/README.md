@@ -9,7 +9,8 @@
 
 # HTML和CSS
 1. [语义类标签有哪些，它们的作用是什么？](https://github.com/Walkerant/Study/tree/master/web/md/html-semantic.md)
-2. [CSS语法由哪些规则组成？](https://github.com/Walkerant/Study/tree/master/web/md/css-rules.md)
+2. [CSS语法是由哪两种规则组成的？](https://github.com/Walkerant/Study/tree/master/web/md/css-rules.md)
+3. [你知道的CSS选择器都有哪些？](https://github.com/Walkerant/Study/tree/master/web/md/css-selectors.md)
 
 # 浏览器实现原理及API
 1. [浏览器实现原理一：如何通过HTTP获取数据？](https://github.com/Walkerant/Study/tree/master/web/md/brower-http.md)
