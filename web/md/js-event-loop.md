@@ -28,7 +28,7 @@
 ### 堆
 对象被分配在堆中，是用来表示一大块内存区域的计算机术语。
 
-![事件循环](../images/js-runtime-model.svg)
+![事件循环](../images/js-runtime-model.png)
 
 ## 机制
 ### 任务队列
