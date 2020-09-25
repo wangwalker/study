@@ -6,6 +6,7 @@
 3. [JavaScript代码为何单线程运行还能永不阻塞？](https://github.com/Walkerant/Study/tree/master/web/md/js-event-loop.md)
 4. [JavaScript的函数共有几种？闭包、执行上下文都是什么？](https://github.com/Walkerant/Study/tree/master/web/md/js-function.md)
 5. [为什么在try中有了return语句，finally还会执行？](https://github.com/Walkerant/Study/tree/master/web/md/js-statement.md)
+6. [JavaScript词法:为何12.toString()会报错？](https://github.com/Walkerant/Study/tree/master/web/md/js-lexical.md)
 
 # HTML和CSS
 1. [语义类标签有哪些，它们的作用是什么？](https://github.com/Walkerant/Study/tree/master/web/md/html-semantic.md)
