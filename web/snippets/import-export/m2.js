@@ -1,4 +1,4 @@
-export default class User{
+class User{
     constructor(name){
         this.name = name
     }
@@ -7,3 +7,5 @@ export default class User{
         console.log(`${this.name} say ${words} to you.`)
     }
 }
+
+export {User as default};   

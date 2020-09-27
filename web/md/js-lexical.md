@@ -55,7 +55,7 @@ JavaScript只提供了四种换行符：
 - `<LF>`[U+000A]，最正常的换行符，字符串中的` \n `;
 - `<CR>`[U+000D]，真正意义上的回车，字符串中的` \r `，在一些Windows编辑器中为` \r\n `;
 - `<LS>`[U+2028]，Unicode中的行分隔符；
-- `<PS>[`U+2029]，Unicode中的段分隔符；
+- `<PS>`[U+2029]，Unicode中的段分隔符；
 
 大部分LineTerminator在被词法分析器扫码出来之后，会被语法分析器抛弃，但是换行符会影响JavaScript的两个重要语法特性：**自动加入分号“；”和“NO Line Terminator”规则**。
 

@@ -1,10 +1,10 @@
 import {num, increaseNum} from "./m1.js"
-import User from "./m2.js"
+import MyUser from "./m2.js"
 
 window.onload = function(){
     console.log("window loaded.")
 
-    let user = new User("Walker")
+    let user = new MyUser("Walker")
     user.greet("Hi")
 
     console.log(num)
