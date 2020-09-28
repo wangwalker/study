@@ -7,6 +7,7 @@
 4. [JavaScript的函数共有几种？闭包、执行上下文都是什么？](https://github.com/Walkerant/Study/tree/master/web/md/js-function.md)
 5. [为什么在try中有了return语句，finally还会执行？](https://github.com/Walkerant/Study/tree/master/web/md/js-statement.md)
 6. [JavaScript词法:为何12.toString()会报错？](https://github.com/Walkerant/Study/tree/master/web/md/js-lexical.md)
+7. [JavaScript语法:模块、预处理和指令序言是什么？](https://github.com/Walkerant/Study/tree/master/web/md/js-grammar.md)
 
 # HTML和CSS
 1. [语义类标签有哪些，它们的作用是什么？](https://github.com/Walkerant/Study/tree/master/web/md/html-semantic.md)
@@ -17,3 +18,6 @@
 1. [浏览器实现原理一：如何通过HTTP获取数据？](https://github.com/Walkerant/Study/tree/master/web/md/brower-http.md)
 2. [浏览器DOM API可分为哪四类？](https://github.com/Walkerant/Study/tree/master/web/md/brower-dom-api.md)
 3. [浏览器CSSOM API都有哪些？](https://github.com/Walkerant/Study/tree/master/web/md/cssom-api.md)
+
+# Q&A
+1. [JS1:`{}`、JavaScript单线程、`==` VS `===` 等问题](https://github.com/Walkerant/Study/tree/master/web/md/qa-js-1.md)
