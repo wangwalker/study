@@ -13,14 +13,14 @@
     - StringLiteral，字符直接量
     - Template，字符串模板
 
-这些是所有编程语言汇总比较通用的部分。不过，JavaScript还有一些比较特殊的地方。
+这些是所有编程语言比较通用的部分。不过，JavaScript还有一些比较特殊之处。
 
 # 特殊规则
 ## 除法和正则表达式
 
-我们都知道，JavaScript不但支持除法运算符“` / `”和“` /= `”，还支持用斜杠括起来的正则表达式“` /abc/ `”。这就出现了冲突。
+我们都知道，JavaScript不但支持除法运算符“` / `”和“` /= `”，还支持用斜杠括起来的正则表达式“` /abc/ `”。这就发生了冲突。
 
-另外，JavaScript词法的另一个特别设计是字符串模板，模板语法大概是这样的：
+另外，JavaScript词法的另一个特别之处是字符串模板，模板语法大概是这样的：
 
 ```js
 `Hello, ${name}`
@@ -28,24 +28,24 @@
 
 理论上，` ${} `内部可以放任何JavaScript代码，而这些代码是以` } `结尾的，也就是说，这部分词法不允许出现` } `运算符。
 
-这些问题都是编译器无法处理的情况。为了解决这些问题，JavaScript又规定了四种定义，来分辨不同语境下的词法。
+这些都是编译器无法处理的情况。为了解决这些问题，JavaScript又定义了四种规则，来分辨不同语境下的词法。
 
 |Context|除法|正则表达式|
 |-|-|-|
 |允许 "`}`"|InputElementDiv|InputElementRegExp|
 |不允许 "`}`"|InputElementTemplateTail|InputElementRegExpOrTemplateTail|
 
-更进一步，为了解决这些问题，标准还不得不把除法、正则表达式直接量和”` } `”从经过词法分析之后得来的Token序列中抽出来。同时，把原本的Token改为Common Token。
+更进一步，标准还不得不把除法、正则表达式直接量和”` } `”从经过词法分析之后得来的Token序列中抽出来。同时，把原本的Token改为Common Token。
 
 ## 空白符 WhiteSpace
 
-在JavaScript中，支持的空白符有这些：
+在JavaScript中，支持的空白符有：
 
 - `<HT>`[U+0009]，也叫TAB，是字符串中的` \t `;
 - `<VT>`[U+000B]，垂直方向上的TAB键` \v `，很少用到；
 - `<FF>`[U+000C]，Form Feed，分页符，是字符串中的` \f `；
 - `<SP>`[U+0020]，最普通的空格；
-- `<NBSP>`[U+00A0]，非断行空格（NO-Break Space），是<SP>的变体，HTML中常用的` nbsp `就是它；
+- `<NBSP>`[U+00A0]，非断行空格（NO-Break Space），是`<SP>`的变体，HTML中常用的` nbsp `就是它；
 - `<ZWNBSP>`[U+FEFF]，ES5新加入的空白符，是Unicode中的零宽非断行空格；
 
 ## 换行符 LineTerminator
@@ -69,10 +69,7 @@ IdentifierName可以是Identifier、NullLiteral、BooleanLiteral或者keyword，
 JavaScript中的关键字有：
 
 ```js
-await break case catch class const continue debugger default 
-delete do else export extends finally for function if import 
-ininstance of new return super switch this throw try typeof 
-var void while with yield
+await break case catch class const continue debugger default delete do else export extends finally for function if import ininstance of new return super switch this throw try typeof var void while with yield
 ```
 
 除此之外，还有1个为未来使用而保留的关键字：` enum `。
@@ -87,8 +84,7 @@ implements package protected interface private public
 
 所有符号包含：
 ```js
-{ ( ) [ ] . ... ; , < > <= >= == != === !== + - * % ** ++ -- << >> >>> 
-& | ^ ! ~ && || ? : = += -= *= %= **= <<= >>= >>>= &= |= ^= => / /= }
+{ ( ) [ ] . ... ; , < > <= >= == != === !== + - * % ** ++ -- << >> >>> & | ^ ! ~ && || ? : = += -= *= %= **= <<= >>= >>>= &= |= ^= => / /= }
 ```
 
 ## 数字直接量 NumericLiteral
@@ -109,7 +105,7 @@ avaScript规范中规定的数字直接量可以支持四种写法：十进制�
 12.toString()
 ```
 
-这时候，12之后的“ `.` ”就有了歧义，编译器不知道到底该如何处理。因为“ `.` ”既可以作为数字直接量的小数点，也可以作为装箱造作的点运算符。于是，为了编译器能够识别这种写法，就需要加入一个空格或者再加一个“` . `":
+12之后的“ `.` ”就有了歧义，编译器不知道到底该如何处理。因为“ `.` ”既可以作为数字直接量的小数点，也可以作为装箱造作的点运算符。于是，为了编译器能够识别这种写法，就需要加入一个空格或者再加一个“` . `":
 
 ```js
 12 .toString()
@@ -170,4 +166,3 @@ d
 了解词法规则是学习一门语言的第一步。JavaScript的词法规则有和其他语言相似的部分，也有和其他语言不同的部分。
 
 具体而言，JavaScript的词法规则包括了空白符号、换行符、注释、标识符名称、符号、数字直接量、字符串直接量、正则表达式直接量、字符串模板。
-

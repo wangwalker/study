@@ -10,7 +10,8 @@
 7. [JavaScript语法:模块、预处理和指令序言是什么？](https://github.com/Walkerant/Study/tree/master/web/md/js-grammar.md)
 
 # HTML和CSS
-1. [语义类标签有哪些，它们的作用是什么？](https://github.com/Walkerant/Study/tree/master/web/md/html-semantic.md)
+1. [元信息类、语义类、媒体替换类标签有哪些？](https://github.com/Walkerant/Study/tree/master/web/md/html-semantic.md)
+2. [HTML中的两类链接:link和a的区别是什么？](https://github.com/Walkerant/Study/tree/master/web/md/html-links.md)
 2. [CSS语法是由哪两种规则组成的？](https://github.com/Walkerant/Study/tree/master/web/md/css-rules.md)
 3. [你知道的CSS选择器都有哪些？](https://github.com/Walkerant/Study/tree/master/web/md/css-selectors.md)
 
