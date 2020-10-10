@@ -17,8 +17,9 @@
 ## HTML和CSS
 1. [元信息类、语义类、媒体替换类标签有哪些？](https://github.com/Walkerant/Study/tree/master/web/md/html-semantic.md)
 2. [HTML中的两类链接:link和a的区别是什么？](https://github.com/Walkerant/Study/tree/master/web/md/html-links.md)
-2. [CSS语法是由哪两种规则组成的？](https://github.com/Walkerant/Study/tree/master/web/md/css-rules.md)
-3. [你知道的CSS选择器都有哪些？](https://github.com/Walkerant/Study/tree/master/web/md/css-selectors.md)
+3. [CSS语法是由哪两种规则组成的？](https://github.com/Walkerant/Study/tree/master/web/md/css-rules.md)
+4. [你知道的CSS选择器都有哪些？](https://github.com/Walkerant/Study/tree/master/web/md/css-selectors.md)
+5. [Flex弹性布局是如何实现的？](https://github.com/Walkerant/Study/tree/master/web/md/css-flex.md)
 
 ## 浏览器实现原理及API
 1. [浏览器实现原理一：如何通过HTTP获取数据？](https://github.com/Walkerant/Study/tree/master/web/md/brower-http.md)
