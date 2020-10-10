@@ -87,10 +87,10 @@ flex-direction决定了主轴方向。可以取的值有：
 
 |flex-direction|图示|
 |-|-|
-|`row`|![row](https://walker-files.oss-cn-beijing.aliyuncs.com/images/study/flex/flex-direction-row.png)|
-|`row-reverse`|![row-reverse](https://walker-files.oss-cn-beijing.aliyuncs.com/images/study/flex/flex-direction-row-reverse.png) 
-|`column`|![column](https://walker-files.oss-cn-beijing.aliyuncs.com/images/study/flex/flex-direction-column.png) 
-|`column-reverse`|![column-reveres](https://walker-files.oss-cn-beijing.aliyuncs.com/images/study/flex/flex-direction-column-reverse.png) 
+|`row`|![flex-row](../images/css-flex-row.png)|
+|`row-reverse`|![row-reverse](../images/css-flex-row-reverse.png) 
+|`column`|![column](../images/css-flex-column.png) 
+|`column-reverse`|![column-reveres](../images/css-flex-column-reverse.png) 
 
 #### flex-wrap 
 
@@ -104,6 +104,12 @@ flex-direction决定了主轴方向。可以取的值有：
 * `nowrap`; 不换行，默认值，这就意味着会有一些项目会被隐藏掉
 * `wrap`; 换行，将超出部分项目显示在下一行
 * `wrap-reverse`; 换行，但是将前面的放在下面，后面的放在上面
+
+|flex-wrap|图示|
+|-|-|
+|`nowrap`|![nowrap](../images/css-flex-nowrap.png)|
+|`wrap`|![wrap](../images/css-flex-wrap.png) 
+|`wrap-reverse`|![wrap-reverse](../images/css-flex-wrap-reverse.png) 
 
 #### flex-flow 
 
@@ -124,6 +130,13 @@ justify-content决定了flex项在主轴上的对齐方式。取值有：
 * `space-around`：容器内每个项目两边的间隔都相同
 * `space-between`：容器内两侧的项目和容器对齐，其他项目与项目之间的间隔相同
 
+|justify-content|图示|
+|-|-|
+|`flex-start`|![flex-start](../images/css-flex-start.png)|
+|`center`|![center](../images/css-flex-content-center.png) 
+|`flex-end`|![flex-end](../images/css-flex-content-end.png) 
+|`space-around`|![space-around](../images/css-flex-space-around.png) 
+|`space-between`|![space-between](../images/css-flex-space-between.png) 
 ```css
 .box {
   justify-content: flex-start | center | flex-end | space-around | space-between;
