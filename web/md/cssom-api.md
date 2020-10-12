@@ -18,7 +18,6 @@ CSSOM，即CSS Object Model，CSS对象模型，是对CSS样式表的对象化�
 Model部分是CSSOM的本体，通常都是用HTML标签`style`或者`link`标签即可创建：
 
 ```html
-
 <style title="cssom">
 a {
   color:#233;
@@ -26,7 +25,6 @@ a {
 </style>
 
 <link rel="stylesheet" title="x" href="somestyle.css">
-
 ```
 
 比如，对于[这段代码](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model?hl=zh-cn)：
@@ -238,7 +236,7 @@ element.addEventListener("scroll", function(event){
 
 - `window.innerHeight`, `window.innerWidth`：表示视口的高度和宽度。
 - `window.outerWidth`, `window.outerHeight`：表示浏览器窗口占据的大小，很多浏览器没有实现，一般来说这两个属性无关紧要。
-- `window.devicePixelRatio`：表示物理像素和CSS像素单位的倍率关系，Retina屏这个值是2，后来也出现了一些3倍的Android屏。
+- `window.devicePixelRatio`：表示物理像素和CSS像素单位的倍率关系，Retina屏是2，后来也出现了一些3倍的Android屏。
 - `window.screen`：屏幕尺寸信息
     - `window.screen.width`, `window.screen.height`：设备屏幕宽高尺寸。
     - `window.screen.availWidth`, `window.screen.availHeight`：设备屏幕的可渲染区域尺寸，一些Android机器会把屏幕的一部分预留做固定按钮，所以有这两个属性，实际上一般浏览器不会实现的这么细致。
@@ -281,6 +279,11 @@ var offsetX = document.documentElement.getBoundingClientRect().x - element.getBo
 
 正如在网页中，HTML承担了语义职能，CSS承担了表现职能一样；在计算机中，DOM承担了语义职能，而CSSOM承担了表现职能。
 
-模型部分是CSSOM的本体，是将所有样式表对象化表示，有助于开发者读取和修改，可以用`document.styleSheets`获取所有样式表，是一个只读列表，但可以通过下标运算修改。实际上，通过这种方式修改样式信息并不多见，更多的是通过`element.style`直接修改内联样式，有多种方式可选。
+模型部分是CSSOM的本体，是所有样式表对象化表示，有助于开发者读取和修改。通过`document.styleSheets`可获取所有样式表，结果是一个只读列表，但可以通过下标运算修改。
 
-View部分是CSSOM的核心，可分为三类：窗口、滚动和布局相关API。窗口API用于操作浏览器窗口的位置、尺寸等，但是出于安全考虑，这些API并不总起实际作用；滚动可分为视口滚动和元素滚动，它们之间既有相同，也有不同之处，监听滚动事件是一个常见的操作；布局API总体上使用的最多，借助它们可以轻松获特定元素的位置和尺寸信息，为进一步操作提供可能性。
+实际上，通过这种方式修改样式信息并不多见，更多的是通过`element.style`直接修改内联样式，有多种方式可选。
+
+View部分是CSSOM的核心，可分为三类：窗口、滚动和布局相关API。
+- 窗口API用于操作浏览器窗口的位置、尺寸等，但是出于安全考虑，这些API并不总起实际作用；
+- 滚动可分为视口滚动和元素滚动，它们之间既有相同，也有不同之处，监听滚动事件是一个常见的操作；
+- 布局API总体上使用的最多，借助它们可以轻松获特定元素的位置和尺寸信息，为进一步操作提供可能性。

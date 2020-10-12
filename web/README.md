@@ -19,7 +19,7 @@
 # 浏览器实现原理及API
 1. [浏览器实现原理一：如何通过HTTP获取数据？](https://github.com/Walkerant/Study/tree/master/web/md/brower-http.md)
 2. [浏览器DOM API可分为哪四类？](https://github.com/Walkerant/Study/tree/master/web/md/brower-dom-api.md)
-3. [浏览器CSSOM API都有哪些？](https://github.com/Walkerant/Study/tree/master/web/md/cssom-api.md)
+3. [CSS对象模型CSSOM是什么？](https://github.com/Walkerant/Study/tree/master/web/md/cssom-api.md)
 
 # Q&A
 1. [JS1:`{}`、JavaScript单线程、`==` VS `===` 等问题](https://github.com/Walkerant/Study/tree/master/web/md/qa-js-1.md)
