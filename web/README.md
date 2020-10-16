@@ -8,6 +8,7 @@
 5. [语句：Completion Record类型](https://github.com/Walkerant/Study/tree/master/web/md/js-statement.md)
 6. [词法：一些特殊情况](https://github.com/Walkerant/Study/tree/master/web/md/js-lexical.md)
 7. [语法:模块、预处理和指令序言](https://github.com/Walkerant/Study/tree/master/web/md/js-grammar.md)
+8. [再谈函数](https://github.com/Walkerant/Study/tree/master/web/md/js-function.md)
 
 # HTML和CSS
 1. [元信息类、语义类和媒体替换类标签](https://github.com/Walkerant/Study/tree/master/web/md/html-semantic.md)
