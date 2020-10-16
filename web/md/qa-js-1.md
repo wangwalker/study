@@ -1,9 +1,11 @@
 # Index
 
-1. `{ }`在JavaScript中的用法;
+1. `{}`在JavaScript中有哪些用法？
 2. 为什么JavaScript是单线程的？
-3. `==` 和 `===` 的区别在哪里？
-4. `typeof` 和 `instanceof`的区别是什么？
+3. `==` VS `===`
+4. `typeof` VS `instanceof`
+5. `??` VS `||`
+6. `for ... in` VS `for ... of`
 
 # 1.`{ }`在JavaScript中的用法
 ## Q：
@@ -88,7 +90,7 @@ var person = {
 # 4. `typeof` VS `instanceof`
 ## Q:
 
-typeof和instanceof有哪些区别，分别适用于哪些场景？
+`typeof`和`instanceof`有哪些区别，分别适用于哪些场景？
 
 ## A:
 ### typeof
@@ -150,4 +152,105 @@ now instanceof Object // true
 obj.__proto__ === Class.prototype?
 obj.__proto__.__proto__ === Class.prototype?
 obj.__proto__.__proto__.__proto__ === Class.prototype?
+```
+
+# 5. `??` VS `||`
+## Q:
+`??`和`||`都可以进行非空检测，它们的区别是什么？
+
+## A:
+### `??`
+`??`是语言标准定义的新语法，只有一部分浏览器支持，它表示返回第一个非`undefined`或者非`null`值。实际上，`??`也并不是什么新玩意，完全可以用三元运算符替代它。除此之外，它的优先级比较低，建议一般加上括号。
+
+```js
+let result = a ?? b
+// ==
+let result = (a != null && a != undefined) ? a : b;
+```
+
+### `||`
+`||`是逻辑或运算，用来获取第一个真值。因为在JavaScript中，`false`、`0`、`""`、`null`和`undefined`都是非真值，而且在所有环境下都支持，所以`||`的使用范围更广，比如，经常可以看见通过`||`设置默认值的案例。
+
+```js
+let height = 0;
+
+alert(height || 100); // 100
+alert(height ?? 100); // 0
+```
+
+因此可以看出，在特定场景下`??`是更好的选择，但需要运行环境的支持；而`||`是普遍支持的写法，使用的较多，但对非空和非真的检测不那么精确。
+
+# 6. `for ... in` VS `for ... of`
+## Q:
+`for ... in` 和 `for ... of`都可以用来遍历，它们的区别是什么？
+
+### `for ... in`
+
+来自MDN的定义是：
+> `for ... in` 语句以任意顺序遍历除Symbol以外的可枚举属性。
+
+实际上，`for ... in`是为遍历对象属性而构建的，得到的是String类型的key，主要用于调试。对于数组遍历，更应该用Array.protoptype.forEach和for ... of。
+
+### `for ... of`
+`for ... of`只能用在可迭代对象上，包括 Array，Map，Set，String，TypedArray，arguments对象等，或者如果其他对象实现了[[Symbol.iterator]]，也可以使用。和`for ... in`不一样，`for ... of`遍历得到的是value。
+
+```js
+let arr = [3, 5, 7];
+arr.foo = "hello";
+
+for (var i in arr) {
+  console.log(i); 
+}
+// "0","1","2","foo"
+for (var i of arr) {
+  console.log(i); 
+}
+// "3","5","7"
+
+let pets = new Set(["Cat", "Dog", "Hamster"]);
+pets["species"] = "mammals";
+
+for (let pet in pets) {
+   console.log(pet);
+}
+// "species"
+for (let pet of pets) {
+   console.log(pet);
+}
+// "Cat","Dog","Hamster"
+
+let tom = {
+    'name': 'Tom',
+    'gender': 'male',
+    sayHi(){
+        console.log('Hello')
+    }
+}
+for (let p in tom) {
+   console.log(p);
+}
+// 'name','gender','sayHi'
+for (let p of tom) {
+   console.log(p);
+}
+
+let tomPlus = {
+    'name': 'Tom',
+    'gender': 'male',
+    [Symbol.iterator]() {
+    return {
+      i: 0,
+      next() {
+        if (this.i < 3) {
+          return { value: this.i++, done: false };
+        }
+        return { value: undefined, done: true };
+      }
+    };
+  }
+}
+for (let p of tomPlus) {
+   console.log(p);
+}
+// 0,1,2
 ```
