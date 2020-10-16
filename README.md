@@ -9,7 +9,7 @@
 1. [基础：七种基本类型](https://github.com/Walkerant/Study/tree/master/web/md/js-types.md)
 2. [对象：原型和原型链](https://github.com/Walkerant/Study/tree/master/web/md/js-prototype.md)
 3. [执行机制：事件循环](https://github.com/Walkerant/Study/tree/master/web/md/js-event-loop.md)
-4. [执行机制：函数、闭包和执行上下文](https://github.com/Walkerant/Study/tree/master/web/md/js-function.md)
+4. [执行机制：函数、闭包和执行上下文](https://github.com/Walkerant/Study/tree/master/web/md/js-execution.md)
 5. [语句：Completion Record类型](https://github.com/Walkerant/Study/tree/master/web/md/js-statement.md)
 6. [词法：一些特殊情况](https://github.com/Walkerant/Study/tree/master/web/md/js-lexical.md)
 7. [语法:模块、预处理和指令序言](https://github.com/Walkerant/Study/tree/master/web/md/js-grammar.md)
