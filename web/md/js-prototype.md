@@ -72,7 +72,7 @@ anotherCat.say();
 var anotherTiger = Object.create(tiger);
 
 anotherTiger.say();
-// jump
+// roar!
 ```
 
 ## 早期版本中的原型
@@ -154,14 +154,15 @@ class Rectangle {
     this.height = height;
     this.width = width;
   }
-  // Getter
+  // getter
   get area() {
     return this.calcArea();
   }
+  // setter
   set area(area) {
       this.area = area;
   }
-  // Method
+  // method
   calcArea() {
     return this.height * this.width;
   }
@@ -220,13 +221,13 @@ function f(){
 var v = f(); //把f作为函数调用
 var o = new f(); //把f作为构造器调用
 ```
-上面这段代码，它的[[construct]]的执行过程如下：
+上面这段代码的最后一行，它的执行过程如下：
 
-1. 以 `Object.protoype` 为原型创建一个新对象；
-2. 以新对象为 `this`，执行函数的[[call]]；
-3. 如果[[call]]的返回值是对象，那么，返回这个对象；否则返回第一步创建的新对象。
+1. 以 `f.prototype` 为原型创建一个新对象；
+2. 以新对象`o`为 `this`，执行函数的[[call]]；
+3. 如果[[call]]的返回值是对象，那么返回此对象；否则返回第一步创建的新对象。
 
-## prototype(显式原型)和__proto__(隐式原型)
+## 显式原型`prototype` VS 隐式原型`__proto__`
 
 ### prototype
 
@@ -237,17 +238,17 @@ Note：通过Function.prototype.bind方法构造出来的函数是个例外，�
 
 >ECMAScript does not use classes such as those in C++, Smalltalk, or Java. Instead objects may be created in various ways including via a literal notation or via constructors which create objects and then execute code that initialises all or part of them by assigning initial values to their properties. Each constructor is a function that has a property named “prototype” that is used to implement prototype-based inheritance and shared properties.Objects are created by using constructors in new expressions; for example, new Date(2009,11) creates a new Date object. ----[ECMAScript Language Specification](https://link.zhihu.com/?target=http%3A//www.ecma-international.org/ecma-262/5.1/%23sec-4.2.1)
 
-一句话，prototype用来实现基于原型的继承与属性的共享。prototype属性只有Function对象有。
+一句话，**`prototype`用来实现基于原型的继承与属性的共享**。`prototype`属性只有Function对象有。
 
 ### `__proto__`
 
 > 遵循ECMAScript标准，someObject.[[Prototype]] 符号是用于指向 someObject 的原型。从 ECMAScript 6 开始，[[Prototype]] 可以通过 Object.getPrototypeOf() 和 Object.setPrototypeOf() 访问器来访问。这个等同于 JavaScript 的非标准但许多浏览器实现的属性 `__proto__`。
 
-每个实例对象（ object ）都有一个私有属性（称之为 `__proto__` ）指向它的构造函数的原型对象（ `prototype` ）。该原型对象也有一个自己的原型对象( `__proto__` ) ，层层向上直到一个对象的原型对象为 `null`。根据定义，`null` 没有原型，并作为这个原型链中的最后一个环节。
+每个实例对象object都有一个私有属性[[Prototype]]（很多浏览器用 `__proto__`表示 ），指向它的构造函数的原型对象（ `prototype` ）。该原型对象也有一个自己的原型对象( `__proto__` ) ，层层向上直到一个对象的原型对象为 `null`。根据定义，`null` 没有原型，并作为这个原型链中的最后一个环节。
 
-也就是说：对每一个对象，`__proto__`是构成JavaScript对象基于原型链的继承关系的具体实现细节。
+也就是说：**对每一个对象object，`__proto__`是构成JavaScript对象基于原型链的继承关系的具体实现细节。**
 
-需要注意的是，**JavaScript的函数function也是对象（Function的实例，也就是函数对象）。所以，function也有了`__proto__`属性**，指向Function.prototype。
+需要注意的是，**JavaScript的函数function也是对象（Function的实例，也就是函数对象）。所以，function也有了`__proto__`属性**，指向`Function.prototype`。
 
 用下面两张图演直观感受一下原型链的真实样子：
 
