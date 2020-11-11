@@ -7,7 +7,7 @@
 //
 
 #import "SceneDelegate.h"
-#import "ViewController.h"
+#import "HomeViewController.h"
 @interface SceneDelegate ()
 
 @end
@@ -22,7 +22,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.windowScene = (UIWindowScene *)scene;
     
-    UIViewController *viewcontroller = [[ViewController alloc] init];
+    UIViewController *viewcontroller = [[HomeViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewcontroller];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];

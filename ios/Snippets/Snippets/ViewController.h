@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class WRSnippetGroup;
+
 @interface ViewController : UIViewController
 
+@property (nonatomic, strong) NSArray<WRSnippetGroup*>* snippetGroups;
 
 @end
 

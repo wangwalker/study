@@ -15,7 +15,18 @@
 		0BC78B2D248F77E90037F815 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC78B2C248F77E90037F815 /* main.m */; };
 		0BC78B37248F77EA0037F815 /* SnippetsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC78B36248F77EA0037F815 /* SnippetsTests.m */; };
 		0BC78B42248F77EA0037F815 /* SnippetsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC78B41248F77EA0037F815 /* SnippetsUITests.m */; };
-		0BE9413524E66C9E0064E662 /* GDCGroupExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE9413424E66C9E0064E662 /* GDCGroupExample.m */; };
+		0BE6E961255A21F300118E14 /* NSThreadViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E960255A21F300118E14 /* NSThreadViewController1.m */; };
+		0BE6E970255A24D400118E14 /* WRGithubUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E96F255A24D400118E14 /* WRGithubUser.m */; };
+		0BE6E976255A3B4800118E14 /* WRSnippetItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E975255A3B4800118E14 /* WRSnippetItem.m */; };
+		0BE6E97C255A3B5F00118E14 /* WRSnippetGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E97B255A3B5F00118E14 /* WRSnippetGroup.m */; };
+		0BE6E982255A3DBE00118E14 /* WRSnippetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E981255A3DBE00118E14 /* WRSnippetManager.m */; };
+		0BE6E988255A640700118E14 /* WRGCDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E987255A640700118E14 /* WRGCDViewController.m */; };
+		0BE6E994255B6C0A00118E14 /* WRGithubUserThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E993255B6C0A00118E14 /* WRGithubUserThread.m */; };
+		0BE6E99A255B70D200118E14 /* NSThreadViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E999255B70D200118E14 /* NSThreadViewController2.m */; };
+		0BE6E9A3255BB2CE00118E14 /* NSOperationExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E9A2255BB2CE00118E14 /* NSOperationExample.m */; };
+		0BE6E9AF255BCD6100118E14 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E9AE255BCD6100118E14 /* HomeViewController.m */; };
+		0BE6E9B5255BD10C00118E14 /* ConcurrViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E9B4255BD10C00118E14 /* ConcurrViewController.m */; };
+		0BE9413524E66C9E0064E662 /* GCDGroupExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE9413424E66C9E0064E662 /* GCDGroupExample.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,8 +64,30 @@
 		0BC78B3D248F77EA0037F815 /* SnippetsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnippetsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BC78B41248F77EA0037F815 /* SnippetsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SnippetsUITests.m; sourceTree = "<group>"; };
 		0BC78B43248F77EA0037F815 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0BE9413324E66C9E0064E662 /* GDCGroupExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GDCGroupExample.h; sourceTree = "<group>"; };
-		0BE9413424E66C9E0064E662 /* GDCGroupExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GDCGroupExample.m; sourceTree = "<group>"; };
+		0BE6E95F255A21F300118E14 /* NSThreadViewController1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSThreadViewController1.h; sourceTree = "<group>"; };
+		0BE6E960255A21F300118E14 /* NSThreadViewController1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSThreadViewController1.m; sourceTree = "<group>"; };
+		0BE6E96E255A24D400118E14 /* WRGithubUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WRGithubUser.h; sourceTree = "<group>"; };
+		0BE6E96F255A24D400118E14 /* WRGithubUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WRGithubUser.m; sourceTree = "<group>"; };
+		0BE6E974255A3B4800118E14 /* WRSnippetItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WRSnippetItem.h; sourceTree = "<group>"; };
+		0BE6E975255A3B4800118E14 /* WRSnippetItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WRSnippetItem.m; sourceTree = "<group>"; };
+		0BE6E97A255A3B5E00118E14 /* WRSnippetGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WRSnippetGroup.h; sourceTree = "<group>"; };
+		0BE6E97B255A3B5F00118E14 /* WRSnippetGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WRSnippetGroup.m; sourceTree = "<group>"; };
+		0BE6E980255A3DBE00118E14 /* WRSnippetManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WRSnippetManager.h; sourceTree = "<group>"; };
+		0BE6E981255A3DBE00118E14 /* WRSnippetManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WRSnippetManager.m; sourceTree = "<group>"; };
+		0BE6E986255A640700118E14 /* WRGCDViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WRGCDViewController.h; sourceTree = "<group>"; };
+		0BE6E987255A640700118E14 /* WRGCDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WRGCDViewController.m; sourceTree = "<group>"; };
+		0BE6E992255B6C0A00118E14 /* WRGithubUserThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WRGithubUserThread.h; sourceTree = "<group>"; };
+		0BE6E993255B6C0A00118E14 /* WRGithubUserThread.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WRGithubUserThread.m; sourceTree = "<group>"; };
+		0BE6E998255B70D200118E14 /* NSThreadViewController2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSThreadViewController2.h; sourceTree = "<group>"; };
+		0BE6E999255B70D200118E14 /* NSThreadViewController2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSThreadViewController2.m; sourceTree = "<group>"; };
+		0BE6E9A1255BB2CE00118E14 /* NSOperationExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSOperationExample.h; sourceTree = "<group>"; };
+		0BE6E9A2255BB2CE00118E14 /* NSOperationExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSOperationExample.m; sourceTree = "<group>"; };
+		0BE6E9AD255BCD6100118E14 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		0BE6E9AE255BCD6100118E14 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		0BE6E9B3255BD10C00118E14 /* ConcurrViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConcurrViewController.h; sourceTree = "<group>"; };
+		0BE6E9B4255BD10C00118E14 /* ConcurrViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConcurrViewController.m; sourceTree = "<group>"; };
+		0BE9413324E66C9E0064E662 /* GCDGroupExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDGroupExample.h; sourceTree = "<group>"; };
+		0BE9413424E66C9E0064E662 /* GCDGroupExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDGroupExample.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,8 +144,15 @@
 				0BC78B1E248F77E30037F815 /* SceneDelegate.m */,
 				0BC78B20248F77E30037F815 /* ViewController.h */,
 				0BC78B21248F77E30037F815 /* ViewController.m */,
-				0BE9413324E66C9E0064E662 /* GDCGroupExample.h */,
-				0BE9413424E66C9E0064E662 /* GDCGroupExample.m */,
+				0BE6E9AD255BCD6100118E14 /* HomeViewController.h */,
+				0BE6E9AE255BCD6100118E14 /* HomeViewController.m */,
+				0BE6E974255A3B4800118E14 /* WRSnippetItem.h */,
+				0BE6E975255A3B4800118E14 /* WRSnippetItem.m */,
+				0BE6E97A255A3B5E00118E14 /* WRSnippetGroup.h */,
+				0BE6E97B255A3B5F00118E14 /* WRSnippetGroup.m */,
+				0BE6E980255A3DBE00118E14 /* WRSnippetManager.h */,
+				0BE6E981255A3DBE00118E14 /* WRSnippetManager.m */,
+				0BE6E965255A223100118E14 /* Concurrent */,
 				0BC78B26248F77E90037F815 /* Assets.xcassets */,
 				0BC78B28248F77E90037F815 /* LaunchScreen.storyboard */,
 				0BC78B2B248F77E90037F815 /* Info.plist */,
@@ -137,6 +177,45 @@
 				0BC78B43248F77EA0037F815 /* Info.plist */,
 			);
 			path = SnippetsUITests;
+			sourceTree = "<group>";
+		};
+		0BE6E965255A223100118E14 /* Concurrent */ = {
+			isa = PBXGroup;
+			children = (
+				0BE6E966255A226900118E14 /* Model */,
+				0BE6E96A255A227400118E14 /* Controller */,
+			);
+			path = Concurrent;
+			sourceTree = "<group>";
+		};
+		0BE6E966255A226900118E14 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0BE9413324E66C9E0064E662 /* GCDGroupExample.h */,
+				0BE9413424E66C9E0064E662 /* GCDGroupExample.m */,
+				0BE6E9A1255BB2CE00118E14 /* NSOperationExample.h */,
+				0BE6E9A2255BB2CE00118E14 /* NSOperationExample.m */,
+				0BE6E96E255A24D400118E14 /* WRGithubUser.h */,
+				0BE6E96F255A24D400118E14 /* WRGithubUser.m */,
+				0BE6E992255B6C0A00118E14 /* WRGithubUserThread.h */,
+				0BE6E993255B6C0A00118E14 /* WRGithubUserThread.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0BE6E96A255A227400118E14 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0BE6E9B3255BD10C00118E14 /* ConcurrViewController.h */,
+				0BE6E9B4255BD10C00118E14 /* ConcurrViewController.m */,
+				0BE6E986255A640700118E14 /* WRGCDViewController.h */,
+				0BE6E987255A640700118E14 /* WRGCDViewController.m */,
+				0BE6E95F255A21F300118E14 /* NSThreadViewController1.h */,
+				0BE6E960255A21F300118E14 /* NSThreadViewController1.m */,
+				0BE6E998255B70D200118E14 /* NSThreadViewController2.h */,
+				0BE6E999255B70D200118E14 /* NSThreadViewController2.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,11 +347,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BE6E97C255A3B5F00118E14 /* WRSnippetGroup.m in Sources */,
+				0BE6E976255A3B4800118E14 /* WRSnippetItem.m in Sources */,
 				0BC78B22248F77E30037F815 /* ViewController.m in Sources */,
+				0BE6E961255A21F300118E14 /* NSThreadViewController1.m in Sources */,
 				0BC78B1C248F77E30037F815 /* AppDelegate.m in Sources */,
-				0BE9413524E66C9E0064E662 /* GDCGroupExample.m in Sources */,
+				0BE9413524E66C9E0064E662 /* GCDGroupExample.m in Sources */,
+				0BE6E994255B6C0A00118E14 /* WRGithubUserThread.m in Sources */,
+				0BE6E970255A24D400118E14 /* WRGithubUser.m in Sources */,
+				0BE6E9AF255BCD6100118E14 /* HomeViewController.m in Sources */,
 				0BC78B2D248F77E90037F815 /* main.m in Sources */,
+				0BE6E9A3255BB2CE00118E14 /* NSOperationExample.m in Sources */,
 				0BC78B1F248F77E30037F815 /* SceneDelegate.m in Sources */,
+				0BE6E99A255B70D200118E14 /* NSThreadViewController2.m in Sources */,
+				0BE6E9B5255BD10C00118E14 /* ConcurrViewController.m in Sources */,
+				0BE6E988255A640700118E14 /* WRGCDViewController.m in Sources */,
+				0BE6E982255A3DBE00118E14 /* WRSnippetManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,14 +6,14 @@
 //  Copyright © 2020 Walker. All rights reserved.
 //
 
-#import "GDCGroupExample.h"
+#import "GCDGroupExample.h"
 
-@implementation GDCGroupExample
+@implementation GCDGroupExample
 
 @end
 
 
-@implementation GDCTaskItem
+@implementation GCDTaskItem
 
 - (instancetype)initWithSleepSeconds:(NSInteger)seconds name:(nonnull NSString *)name queue:(nonnull dispatch_queue_t)queue{
     if (self = [super init]) {
@@ -47,7 +47,7 @@
 
 @implementation GDCGroupTaskScheduler
 
-- (instancetype)initWithTasks:(NSArray<GDCTaskItem *> *)tasks name:(nonnull NSString *)name{
+- (instancetype)initWithTasks:(NSArray<GCDTaskItem *> *)tasks name:(nonnull NSString *)name{
     if (self = [super init]) {
         self.tasks = tasks;
         self.name = name;
@@ -62,12 +62,11 @@
     NSLog(@"=========================");
     NSLog(@"group-%@ start dispatch tasks",_name);
     
-    for (GDCTaskItem *task in _tasks) {
+    for (GCDTaskItem *task in _tasks) {
         dispatch_group_async(_group, task.queue, ^{
-            [task asyncStart];
+            [task start];
         });
     }
-    dispatch_barrier_sync(<#dispatch_queue_t  _Nonnull queue#>, <#^(void)block#>)
     // 同步【synchronously】等待当前组中的所有队列中的任务完成，会阻塞主线程
     dispatch_group_wait(_group, DISPATCH_TIME_FOREVER);
     
@@ -75,13 +74,13 @@
     NSLog(@"=========================");
 }
 
-- (void)dispatchTasksUntilDonwNofityQueue:(dispatch_queue_t)queue nextTask:(GDCGroupTasksCompletionHandler)next{
+- (void)dispatchTasksUntilDoneNofityQueue:(dispatch_queue_t)queue nextTask:(GDCGroupTasksCompletionHandler)next{
     NSDate *start = [NSDate date];
     
     NSLog(@"=========================");
     NSLog(@"group-%@ start dispatch tasks",_name);
     
-    for (GDCTaskItem *task in _tasks) {
+    for (GCDTaskItem *task in _tasks) {
         dispatch_group_async(_group, task.queue, ^{
             [task start];
         });

@@ -7,7 +7,9 @@
 //
 
 #import "ViewController.h"
-#import "GDCGroupExample.h"
+#import "WRSnippetManager.h"
+#import "WRSnippetGroup.h"
+#import "WRSnippetItem.h"
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 @property (nonatomic, assign) BOOL hasImmersed;
@@ -16,46 +18,11 @@
 @end
 
 @implementation ViewController
-{
-    dispatch_queue_t queue1, queue2;
-    NSArray<GDCTaskItem*> *tasks1, *tasks2;
-    GDCGroupTaskScheduler *scheduler1, *scheduler2;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setTitle:@"Snippets"];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:self.tableview];
-    [self initGroupTasks];
-}
-
-- (void)initGroupTasks{
-    queue1 = dispatch_get_global_queue(0, 0);
-    queue2 = dispatch_get_global_queue(0, 0);
-    
-    tasks1 = @[
-        [[GDCTaskItem alloc] initWithSleepSeconds:2 name:@"T11" queue:queue1],
-        [[GDCTaskItem alloc] initWithSleepSeconds:5 name:@"T12" queue:queue1]
-    ];
-    tasks2 = @[
-        [[GDCTaskItem alloc] initWithSleepSeconds:1 name:@"T21" queue:queue2],
-        [[GDCTaskItem alloc] initWithSleepSeconds:3 name:@"T22" queue:queue2]
-    ];
-    
-    scheduler1 = [[GDCGroupTaskScheduler alloc] initWithTasks:tasks1 name:@"S1"];
-    scheduler2 = [[GDCGroupTaskScheduler alloc] initWithTasks:tasks2 name:@"S2"];
-}
-
-- (void)performTasksWithWait{
-    [scheduler1 dispatchTasksWaitUntilDone];
-    [scheduler2 dispatchTasksWaitUntilDone];
-}
-
-- (void)performTasksWithNofity{
-    [scheduler1 dispatchTasksUntilDonwNofityQueue:queue2 nextTask:^{
-        [self->scheduler2 dispatchTasksWaitUntilDone];
-    }];
 }
 
 - (void)hideNavBar:(BOOL)hidden{
@@ -67,24 +34,37 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 10;
+    return self.snippetGroups.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return self.snippetGroups[section].snippets.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    WRSnippetItem *item = [self.snippetGroups[indexPath.section].snippets objectAtIndex:indexPath.row];
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%zd-%zd", indexPath.section+1, indexPath.row+1];
+    cell.textLabel.text = item.name;
+    cell.detailTextLabel.text = item.detailedDescription;
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return [NSString stringWithFormat:@"%ld-%@", section+1, self.snippetGroups[section].name];
 }
 
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self performTasksWithNofity];
+    WRSnippetItem *item = [self.snippetGroups[indexPath.section].snippets objectAtIndex:indexPath.row];
+    
+    if (item.relatedViewController) {
+        [self.navigationController pushViewController:item.relatedViewController animated:YES];
+    } else {
+        [item start];
+    }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

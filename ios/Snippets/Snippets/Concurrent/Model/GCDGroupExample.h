@@ -12,12 +12,12 @@ typedef void (^GDCGroupTasksCompletionHandler) (void);
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GDCGroupExample : NSObject
+@interface GCDGroupExample : NSObject
 
 @end
 
 
-@interface GDCTaskItem : NSObject
+@interface GCDTaskItem : NSObject
 
 - (instancetype)initWithSleepSeconds:(NSInteger)seconds name:(NSString *)name queue:(dispatch_queue_t)queue;
 
@@ -33,13 +33,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GDCGroupTaskScheduler : NSObject
 
-- (instancetype)initWithTasks:(NSArray <GDCTaskItem*>*)tasks name:(NSString *)name;
+- (instancetype)initWithTasks:(NSArray <GCDTaskItem*>*)tasks name:(NSString *)name;
 
 - (void)dispatchTasksWaitUntilDone;
 
-- (void)dispatchTasksUntilDonwNofityQueue:(dispatch_queue_t)queue nextTask:(GDCGroupTasksCompletionHandler)next;
+- (void)dispatchTasksUntilDoneNofityQueue:(dispatch_queue_t)queue nextTask:(GDCGroupTasksCompletionHandler)next;
 
-@property (nonatomic, strong) NSArray<GDCTaskItem*>* tasks;
+@property (nonatomic, strong) NSArray<GCDTaskItem*>* tasks;
 @property (nonatomic, copy) NSString *name;
 
 @property (nonatomic) dispatch_group_t group;
