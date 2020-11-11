@@ -37,7 +37,7 @@ NSThread* myThread = [[NSThread alloc] initWithTarget:self selector:@selecto (do
 [self performSelectorInBackground:@selector(doSomething) withObject:nil];
 ```
 
-完整示例见: [直接通过创建NSThread加载用户头像列表]()
+完整示例见: [直接通过创建NSThread加载用户头像列表](https://github.com/Walkerant/Study/blob/master/ios/Snippets/Snippets/Concurrent/Controller/NSThreadViewController1.m)
 
 ### 继承
 
@@ -79,7 +79,7 @@ NSThread* myThread = [[NSThread alloc] initWithTarget:self selector:@selecto (do
 }
 ```
 
-完整示例见: [通过继承NSThread加载用户头像列表]()
+完整示例见: [通过继承NSThread加载用户头像列表](https://github.com/Walkerant/Study/blob/master/ios/Snippets/Snippets/Concurrent/Controller/NSThreadViewController2.m)
 
 # NSOperation
 NSOperation是一个抽象类，不可直接调用，要么使用系统定义好的两个子类NSInvocationOperation和NSBlockOperation，要么继承自定义实现。
@@ -139,5 +139,5 @@ NSOperationQueue用来维护一组NSOperation对象的执行顺序和流程。�
 }
 ```
 
-完整代码见：[NSOperation实践]()
+完整代码见：[NSOperation实践](https://github.com/Walkerant/Study/blob/master/ios/Snippets/Snippets/Concurrent/Model/NSOperationExample.m)
 
