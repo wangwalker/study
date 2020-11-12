@@ -27,6 +27,7 @@
 		0BE6E9AF255BCD6100118E14 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E9AE255BCD6100118E14 /* HomeViewController.m */; };
 		0BE6E9B5255BD10C00118E14 /* ConcurrViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E9B4255BD10C00118E14 /* ConcurrViewController.m */; };
 		0BE9413524E66C9E0064E662 /* GCDGroupExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE9413424E66C9E0064E662 /* GCDGroupExample.m */; };
+		0BFE29A7255CD65E00F7CB96 /* GCDQueueExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE29A6255CD65E00F7CB96 /* GCDQueueExample.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,8 @@
 		0BE6E9B4255BD10C00118E14 /* ConcurrViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConcurrViewController.m; sourceTree = "<group>"; };
 		0BE9413324E66C9E0064E662 /* GCDGroupExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDGroupExample.h; sourceTree = "<group>"; };
 		0BE9413424E66C9E0064E662 /* GCDGroupExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDGroupExample.m; sourceTree = "<group>"; };
+		0BFE29A5255CD65E00F7CB96 /* GCDQueueExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDQueueExample.h; sourceTree = "<group>"; };
+		0BFE29A6255CD65E00F7CB96 /* GCDQueueExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDQueueExample.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +194,8 @@
 		0BE6E966255A226900118E14 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0BFE29A5255CD65E00F7CB96 /* GCDQueueExample.h */,
+				0BFE29A6255CD65E00F7CB96 /* GCDQueueExample.m */,
 				0BE9413324E66C9E0064E662 /* GCDGroupExample.h */,
 				0BE9413424E66C9E0064E662 /* GCDGroupExample.m */,
 				0BE6E9A1255BB2CE00118E14 /* NSOperationExample.h */,
@@ -351,6 +356,7 @@
 				0BE6E976255A3B4800118E14 /* WRSnippetItem.m in Sources */,
 				0BC78B22248F77E30037F815 /* ViewController.m in Sources */,
 				0BE6E961255A21F300118E14 /* NSThreadViewController1.m in Sources */,
+				0BFE29A7255CD65E00F7CB96 /* GCDQueueExample.m in Sources */,
 				0BC78B1C248F77E30037F815 /* AppDelegate.m in Sources */,
 				0BE9413524E66C9E0064E662 /* GCDGroupExample.m in Sources */,
 				0BE6E994255B6C0A00118E14 /* WRGithubUserThread.m in Sources */,

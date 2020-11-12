@@ -10,6 +10,7 @@
 #import "GCDGroupExample.h"
 #import "WRSnippetGroup.h"
 #import "WRSnippetItem.h"
+#import "GCDQueueExample.h"
 
 @interface WRGCDViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableview;
@@ -92,10 +93,16 @@
 - (NSArray<WRSnippetGroup *> *)groups{
     if (!_groups) {
         WRSnippetGroup *GCDGroup = [WRSnippetGroup groupWithName:@"dispatch_group"];
+        
         // dispatch_group_wait
         [GCDGroup addSnippetItem:[WRSnippetItem itemWithName:@"wait" detail:@"用dispatch_group_wait同步队列" selector:@selector(performTasksWithWait) target:self object:@0]];
+        
         // dispatch_group_notify
         [GCDGroup addSnippetItem:[WRSnippetItem itemWithName:@"notify" detail:@"用dispatch_group_notify同步队列" selector:@selector(performTasksWithNofity) target:self object:@0]];
+        
+        // 比较dispatch apply 和 for loop
+        [GCDGroup addSnippetItem:[WRSnippetItem itemWithName:@"apply" detail:@"比较dispatch_apply和for循环快慢" selector:@selector(doDispatchApply) target:[GCDQueueExample new] object:@0]];
+        
         _groups = @[GCDGroup, GCDGroup];
     }
     return _groups;

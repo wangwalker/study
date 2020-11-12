@@ -29,7 +29,6 @@
     NSLog(@"task-%@ start do task.", _name);
     
     [NSThread sleepForTimeInterval:_sleepSeconds];
-    
     NSLog(@"---task-%@ using %.3f seconds finishing task ---", _name, [[NSDate date] timeIntervalSinceDate:start]);
 }
 
