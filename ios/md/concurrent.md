@@ -319,5 +319,301 @@ dispatch_apply(1e6, DISPATCH_APPLY_AUTO, ^(size_t x) {
 });
 ```
 
-但是呢🤔，经过测试发现：*在一般任务上dispatch_apply比for循环还慢。*
+但是呢🤔，经过测试发现：*在一般任务上dispatch_apply比for循环要慢。*
+
+### 任务组`dispatch_group`
+任务组`dispatch_group`和任务队列`dispatch_queue`的道理一样，都用来对任务进行约束，但任务组除过约束单个任务之后，还可以约束队列。也就是说，任务组dispatch_group的约束维度更高。
+
+在复杂问题中，任务组dispatch_group是非常必要的，比如监视一组由不同队列组成的任务，在适当时机进行适当处理。
+
+常用的方法有：
+- `dispatch_group_create`，创建任务组；
+- `dispatch_group_async`，提交任务到特定队列和组；
+- `dispatch_group_notify`，在组内任务执行完成之后，通知调用者，以便执行特定任务；
+- `dispatch_group_wait`，同步等待已加入组内的所有任务直到完成或者超时，会阻塞当前线程；
+- `dispatch_group_enter`，进入任务组，相当于添加任务到特定任务组，一直到`dispatch_group_leave`为止；
+- `dispatch_group_leave`，离开任务组，和`dispatch_group_enter`配合使用，表示任务结束。
+
+下面这个例子，通过两个类GCDTaskItem、GCDTaskScheduler来模拟任务组的使用方法。
+
+```objc
+@implementation GCDTaskItem
+
+- (instancetype)initWithSleepSeconds:(NSInteger)seconds name:(nonnull NSString *)name queue:(nonnull dispatch_queue_t)queue{
+    if (self = [super init]) {
+        self.sleepSeconds = seconds;
+        self.name = name;
+        self.queue = queue;
+    }
+    return self;
+}
+
+- (void)start{
+    NSDate *start = [NSDate date];
+    NSLog(@"task-%@ start do task.", _name);
+    
+    [NSThread sleepForTimeInterval:_sleepSeconds];
+    NSLog(@"---task-%@ using %.3f seconds finishing task ---", _name, [[NSDate date] timeIntervalSinceDate:start]);
+}
+
+- (void)asyncStart{
+    NSDate *start = [NSDate date];
+    NSLog(@"task-%@ start do task.", _name);
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(_sleepSeconds * NSEC_PER_SEC)), _queue, ^{
+        NSLog(@"---task-%@ using %.3f seconds finishing task ---", self.name, [[NSDate date] timeIntervalSinceDate:start]);
+    });
+}
+
+@end
+
+
+@implementation GDCGroupTaskScheduler
+
+- (instancetype)initWithTasks:(NSArray<GCDTaskItem *> *)tasks name:(nonnull NSString *)name{
+    if (self = [super init]) {
+        self.tasks = tasks;
+        self.name = name;
+        self.group = dispatch_group_create();
+    }
+    return self;
+}
+
+- (void)dispatchTasksWaitUntilDone{
+    NSDate *start = [NSDate date];
+    
+    NSLog(@"group-%@ start dispatch tasks",_name);
+    
+    for (GCDTaskItem *task in _tasks) {
+        dispatch_group_async(_group, task.queue, ^{
+            [task start];
+        });
+    }
+    // 同步【synchronously】等待当前组中的所有队列中的任务完成，会阻塞当前线程
+    dispatch_group_wait(_group, DISPATCH_TIME_FOREVER);
+    
+    NSLog(@"group-task-%@ using %.3f seconds finishing task", _name, [[NSDate date] timeIntervalSinceDate:start]);
+    NSLog(@"=========================");
+}
+
+- (void)dispatchTasksUntilDoneNofityQueue:(dispatch_queue_t)queue nextTask:(GDCGroupTasksCompletionHandler)next{
+    NSDate *start = [NSDate date];
+    
+    NSLog(@"group-%@ start dispatch tasks",_name);
+    
+    for (GCDTaskItem *task in _tasks) {
+        dispatch_group_async(_group, task.queue, ^{
+            [task start];
+        });
+    }
+    
+    dispatch_group_notify(_group, queue, ^{
+        NSLog(@"group-task-%@ using %.3f seconds finishing task", self.name, [[NSDate date] timeIntervalSinceDate:start]);
+        NSLog(@"=========================");
+        
+        if (next) {
+            next();
+        }
+    });
+}
+
+@end
+```
+
+初始化任务：
+
+```objc
+- (void)initGroupTasks{
+    queue1 = dispatch_get_global_queue(0, 0);
+    queue2 = dispatch_get_global_queue(0, 0);
+    
+    tasks1 = @[
+        [[GCDTaskItem alloc] initWithSleepSeconds:2 name:@"T11" queue:queue1],
+        [[GCDTaskItem alloc] initWithSleepSeconds:5 name:@"T12" queue:queue2]
+    ];
+    tasks2 = @[
+        [[GCDTaskItem alloc] initWithSleepSeconds:1 name:@"T21" queue:queue1],
+        [[GCDTaskItem alloc] initWithSleepSeconds:3 name:@"T22" queue:queue2]
+    ];
+    
+    scheduler1 = [[GDCGroupTaskScheduler alloc] initWithTasks:tasks1 name:@"S1"];
+    scheduler2 = [[GDCGroupTaskScheduler alloc] initWithTasks:tasks2 name:@"S2"];
+}
+```
+
+使用dispatch_group_wait同步等待任务完成：
+
+```objc
+- (void)performTasksWithWait{
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), ^{
+        [self->scheduler1 dispatchTasksWaitUntilDone];
+        [self->scheduler2 dispatchTasksWaitUntilDone];
+    });
+}
+
+// 结果：
+/**
+2020-11-13 09:27:18.443424+0800 Snippets[16360:1149514] group-S1 start dispatch tasks
+2020-11-13 09:27:18.445682+0800 Snippets[16360:1149517] task-T11 start do task.
+2020-11-13 09:27:18.447914+0800 Snippets[16360:1149516] task-T12 start do task.
+2020-11-13 09:27:20.452293+0800 Snippets[16360:1149517] ---task-T11 using 2.007 seconds finishing task ---
+2020-11-13 09:27:23.452638+0800 Snippets[16360:1149516] ---task-T12 using 5.005 seconds finishing task ---
+2020-11-13 09:27:23.453117+0800 Snippets[16360:1149514] group-task-S1 using 5.010 seconds finishing task
+2020-11-13 09:27:23.453377+0800 Snippets[16360:1149514] =========================
+2020-11-13 09:27:23.454756+0800 Snippets[16360:1149514] group-S2 start dispatch tasks
+2020-11-13 09:27:23.454999+0800 Snippets[16360:1149516] task-T21 start do task.
+2020-11-13 09:27:23.455093+0800 Snippets[16360:1149517] task-T22 start do task.
+2020-11-13 09:27:24.457332+0800 Snippets[16360:1149516] ---task-T21 using 1.002 seconds finishing task ---
+2020-11-13 09:27:26.457219+0800 Snippets[16360:1149517] ---task-T22 using 3.002 seconds finishing task ---
+2020-11-13 09:27:26.457524+0800 Snippets[16360:1149514] group-task-S2 using 3.003 seconds finishing task
+2020-11-13 09:27:26.457746+0800 Snippets[16360:1149514] =========================
+*/
+```
+
+使用dispatch_group_notify异步等待完成通知：
+
+```objc
+- (void)performTasksWithNofity{
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), ^{
+        [self->scheduler1 dispatchTasksUntilDoneAndNofity];
+        [self->scheduler2 dispatchTasksUntilDoneAndNofity];
+    });
+}
+
+// 结果：
+/**
+2020-11-13 09:41:58.804265+0800 Snippets[16462:1157254] group-S1 start dispatch tasks
+2020-11-13 09:41:58.805894+0800 Snippets[16462:1157254] group-S2 start dispatch tasks
+2020-11-13 09:41:58.806184+0800 Snippets[16462:1157255] task-T11 start do task.
+2020-11-13 09:41:58.806658+0800 Snippets[16462:1157532] task-T12 start do task.
+2020-11-13 09:41:58.807275+0800 Snippets[16462:1157254] task-T21 start do task.
+2020-11-13 09:41:58.808840+0800 Snippets[16462:1157533] task-T22 start do task.
+2020-11-13 09:41:59.815052+0800 Snippets[16462:1157254] ---task-T21 using 1.008 seconds finishing task ---
+2020-11-13 09:42:00.812159+0800 Snippets[16462:1157255] ---task-T11 using 2.006 seconds finishing task ---
+2020-11-13 09:42:01.816091+0800 Snippets[16462:1157533] ---task-T22 using 3.007 seconds finishing task ---
+2020-11-13 09:42:01.816527+0800 Snippets[16462:1157182] group-task-S2 using 3.011 seconds finishing task
+2020-11-13 09:42:01.816773+0800 Snippets[16462:1157182] =========================
+2020-11-13 09:42:03.813934+0800 Snippets[16462:1157532] ---task-T12 using 5.007 seconds finishing task ---
+2020-11-13 09:42:03.814274+0800 Snippets[16462:1157182] group-task-S1 using 5.010 seconds finishing task
+2020-11-13 09:42:03.814508+0800 Snippets[16462:1157182] =========================
+*/
+```
+
+可以看见，用任务组`dispatch_group`约束来自不同队列的任务之后，程序依然可按照预期的流程执行。
+
+详细示例见：[使用dispatch_group约束任务的执行流程](https://github.com/Walkerant/Study/blob/master/ios/Snippets/Snippets/Concurrent/Controller/WRGCDViewController.m)
+
+### 信号量`dispatch_semaphore`
+信号量适合控制一个（组）仅限于有限个用户访问的共享资源，信号量的初始值表示可同时访问的数量，或者共享资源的数量。
+
+信号量只有两种操作方式，`wait`和`signal`，前者表示信号量减一，后者表示信号量加一。如果信号量为0，则需要等待，直至信号量为正方可进行后续操作。
+
+在GCD中，信号量`dispatch_semaphore`的使用方法包括：
+- `dispatch_semaphore_create`，创建信号量，需要一个>=0的数初始化；
+- `dispatch_semaphore_wait`，信号量减一；
+- `dispatch_semaphore_signal`，信号量加一。
+
+下面这个例子演示了海底捞火锅店的营业活动。
+
+```objc
+@implementation GCDSemaphoreExample
+{
+    dispatch_semaphore_t chairs; // 表示海底捞的椅子数量
+}
+
+- (instancetype)init{
+    if ((self = [super init])) {
+        chairs = dispatch_semaphore_create(10);
+    }
+    return self;
+}
+
+- (void)startOperation{
+    NSLog(@"HiHotPot start operation");
+        
+    __block NSTimer *timer = [NSTimer timerWithTimeInterval:2 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        [self consumeHiHotPot];
+    }];
+    
+    [NSRunLoop.mainRunLoop addTimer:timer forMode:NSDefaultRunLoopMode];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(20 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [timer invalidate];
+        NSLog(@"HiHotPot end operation");
+    });
+}
+
+- (void)consumeHiHotPot{
+    NSLog(@"start waiting for chair...");
+    dispatch_semaphore_wait(chairs, DISPATCH_TIME_FOREVER);
+    NSLog(@"starting eating... ");
+    
+    NSUInteger duration = arc4random()%5;
+    // 一定时间之后吃完，时间随机
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSLog(@"finish eating...");
+        dispatch_semaphore_signal(self->chairs);
+    });
+}
+
+@end
+```
+
+完整示例见：[用信号量模拟海底捞的营业活动](https://github.com/Walkerant/Study/blob/master/ios/Snippets/Snippets/Concurrent/Model/GCDSemaphoreExample.m)
+
+### 调度块dispatch_block
+调度块是根据现有的block对象，根据特定信息在堆上创建一个新的调度块对象。
+
+我们都知道，直接用GCD创建的任务一旦完成创建，就不能取消，只能等待执行。这在有些场景中就会出现问题，而调度块就能实现**取消**，但也有个条件：**此任务还没有被执行**。
+
+而且，它也可以结合任务组一起使用。
+
+常用方法有：
+- `dispatch_block_create`，创建，需要制定flag；
+- `dispatch_block_perform`，同步执行，完成之后释放资源；
+- `dispatch_block_wait`，等待直到block完成，或者超时；如果已完成则直接返回；
+- `dispatch_block_notify`，提交一个完成通知；
+- `dispatch_block_cancel`，取消一个调度块对象，只能在未执行之前被调用。
+
+### dispatch_source
+Dispatch Source API是一组对低层次系统对象进行监控的接口，比如监视其他进程变化、内存压力、文件修改等。
+
+需要注意的是，创建好特定类型的Dispatch Source之后，**要通过`dispatch_resume`或者`dispatch_activate`（更推荐）进行激活**，因为它们是以非活动状态创建的。
+
+#### 进程PROC
+用Dispatch Source监控进程状态的变化，比如退出、创建子进程等。
+
+#### 文件系统
+
+```objc
+int const fd = open([[dirUrl path] fileSystemRepresentation], O_EVTONLY);
+if (fd < 0) {
+        char buffer[80];
+        strerror_r(errno, buffer, sizeof(buffer));
+        NSLog(@"Unable to open \"%@\": %s (%d)", [dirUrl path], buffer, errno);
+        return;
+}
+
+dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_VNODE, fd,
+DISPATCH_VNODE_WRITE | DISPATCH_VNODE_DELETE, DISPATCH_TARGET_QUEUE_DEFAULT);
+dispatch_source_set_event_handler(source, ^(){
+        unsigned long const data = dispatch_source_get_data(source);
+        if (data & DISPATCH_VNODE_WRITE) {
+            NSLog(@"The directory changed.");
+        }
+        if (data & DISPATCH_VNODE_DELETE) {
+            NSLog(@"The directory has been deleted.");
+        }
+});
+
+dispatch_source_set_cancel_handler(source, ^(){
+        close(fd);
+});
+
+dirSource = source;
+
+dispatch_activate(dirSource);
+```
+
+完整示例见：[用Dispatch Source监控文件系统](https://github.com/Walkerant/Study/blob/master/ios/Snippets/Snippets/Concurrent/Model/GCDSourceExample.m)
 

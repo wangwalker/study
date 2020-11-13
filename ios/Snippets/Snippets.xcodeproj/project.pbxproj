@@ -28,6 +28,8 @@
 		0BE6E9B5255BD10C00118E14 /* ConcurrViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E9B4255BD10C00118E14 /* ConcurrViewController.m */; };
 		0BE9413524E66C9E0064E662 /* GCDGroupExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE9413424E66C9E0064E662 /* GCDGroupExample.m */; };
 		0BFE29A7255CD65E00F7CB96 /* GCDQueueExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE29A6255CD65E00F7CB96 /* GCDQueueExample.m */; };
+		0BFE29B0255E28C400F7CB96 /* GCDSemaphoreExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE29AF255E28C400F7CB96 /* GCDSemaphoreExample.m */; };
+		0BFE29B6255E62E200F7CB96 /* GCDSourceExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE29B5255E62E200F7CB96 /* GCDSourceExample.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +93,10 @@
 		0BE9413424E66C9E0064E662 /* GCDGroupExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDGroupExample.m; sourceTree = "<group>"; };
 		0BFE29A5255CD65E00F7CB96 /* GCDQueueExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDQueueExample.h; sourceTree = "<group>"; };
 		0BFE29A6255CD65E00F7CB96 /* GCDQueueExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDQueueExample.m; sourceTree = "<group>"; };
+		0BFE29AE255E28C400F7CB96 /* GCDSemaphoreExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDSemaphoreExample.h; sourceTree = "<group>"; };
+		0BFE29AF255E28C400F7CB96 /* GCDSemaphoreExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDSemaphoreExample.m; sourceTree = "<group>"; };
+		0BFE29B4255E62E200F7CB96 /* GCDSourceExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDSourceExample.h; sourceTree = "<group>"; };
+		0BFE29B5255E62E200F7CB96 /* GCDSourceExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDSourceExample.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +204,10 @@
 				0BFE29A6255CD65E00F7CB96 /* GCDQueueExample.m */,
 				0BE9413324E66C9E0064E662 /* GCDGroupExample.h */,
 				0BE9413424E66C9E0064E662 /* GCDGroupExample.m */,
+				0BFE29AE255E28C400F7CB96 /* GCDSemaphoreExample.h */,
+				0BFE29AF255E28C400F7CB96 /* GCDSemaphoreExample.m */,
+				0BFE29B4255E62E200F7CB96 /* GCDSourceExample.h */,
+				0BFE29B5255E62E200F7CB96 /* GCDSourceExample.m */,
 				0BE6E9A1255BB2CE00118E14 /* NSOperationExample.h */,
 				0BE6E9A2255BB2CE00118E14 /* NSOperationExample.m */,
 				0BE6E96E255A24D400118E14 /* WRGithubUser.h */,
@@ -357,7 +367,9 @@
 				0BC78B22248F77E30037F815 /* ViewController.m in Sources */,
 				0BE6E961255A21F300118E14 /* NSThreadViewController1.m in Sources */,
 				0BFE29A7255CD65E00F7CB96 /* GCDQueueExample.m in Sources */,
+				0BFE29B6255E62E200F7CB96 /* GCDSourceExample.m in Sources */,
 				0BC78B1C248F77E30037F815 /* AppDelegate.m in Sources */,
+				0BFE29B0255E28C400F7CB96 /* GCDSemaphoreExample.m in Sources */,
 				0BE9413524E66C9E0064E662 /* GCDGroupExample.m in Sources */,
 				0BE6E994255B6C0A00118E14 /* WRGithubUserThread.m in Sources */,
 				0BE6E970255A24D400118E14 /* WRGithubUser.m in Sources */,

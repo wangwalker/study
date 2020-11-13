@@ -11,6 +11,7 @@
 #import "WRSnippetGroup.h"
 #import "WRSnippetItem.h"
 #import "GCDQueueExample.h"
+#import "GCDSemaphoreExample.h"
 
 @interface WRGCDViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableview;
@@ -36,10 +37,10 @@
     
     tasks1 = @[
         [[GCDTaskItem alloc] initWithSleepSeconds:2 name:@"T11" queue:queue1],
-        [[GCDTaskItem alloc] initWithSleepSeconds:5 name:@"T12" queue:queue1]
+        [[GCDTaskItem alloc] initWithSleepSeconds:5 name:@"T12" queue:queue2]
     ];
     tasks2 = @[
-        [[GCDTaskItem alloc] initWithSleepSeconds:1 name:@"T21" queue:queue2],
+        [[GCDTaskItem alloc] initWithSleepSeconds:1 name:@"T21" queue:queue1],
         [[GCDTaskItem alloc] initWithSleepSeconds:3 name:@"T22" queue:queue2]
     ];
     
@@ -48,14 +49,17 @@
 }
 
 - (void)performTasksWithWait{
-    [scheduler1 dispatchTasksWaitUntilDone];
-    [scheduler2 dispatchTasksWaitUntilDone];
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), ^{
+        [self->scheduler1 dispatchTasksWaitUntilDone];
+        [self->scheduler2 dispatchTasksWaitUntilDone];
+    });
 }
 
 - (void)performTasksWithNofity{
-    [scheduler1 dispatchTasksUntilDoneNofityQueue:queue2 nextTask:^{
-        [self->scheduler2 dispatchTasksWaitUntilDone];
-    }];
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), ^{
+        [self->scheduler1 dispatchTasksUntilDoneAndNofity];
+        [self->scheduler2 dispatchTasksUntilDoneAndNofity];
+    });
 }
 
 #pragma mark - UITableView
@@ -102,6 +106,9 @@
         
         // 比较dispatch apply 和 for loop
         [GCDGroup addSnippetItem:[WRSnippetItem itemWithName:@"apply" detail:@"比较dispatch_apply和for循环快慢" selector:@selector(doDispatchApply) target:[GCDQueueExample new] object:@0]];
+        
+        // 信号量
+        [GCDGroup addSnippetItem:[WRSnippetItem itemWithName:@"semaphore" detail:@"使用信号量模拟在海底捞🍲" selector:@selector(startOperation) target:[GCDSemaphoreExample new] object:@0]];
         
         _groups = @[GCDGroup, GCDGroup];
     }
