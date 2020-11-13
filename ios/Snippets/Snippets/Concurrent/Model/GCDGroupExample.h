@@ -36,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithTasks:(NSArray <GCDTaskItem*>*)tasks name:(NSString *)name;
 
 - (void)dispatchTasksWaitUntilDone;
+- (void)dispatchTasksUntilDoneAndNofity;
 
 - (void)dispatchTasksUntilDoneNofityQueue:(dispatch_queue_t)queue nextTask:(GDCGroupTasksCompletionHandler)next;
 
