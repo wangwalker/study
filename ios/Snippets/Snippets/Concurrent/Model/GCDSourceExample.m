@@ -10,44 +10,68 @@
 
 @implementation GCDSourceExample
 {
-    dispatch_source_t dirSource;
+    dispatch_source_t processSource, dirSource, timerSource;
 }
 
-- (void)monitorProcessWithIdentifier:(NSString *)appIdentifier{
+- (void)monitorProcess{
+    processSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_PROC, getpid(), DISPATCH_PROC_FORK, DISPATCH_TARGET_QUEUE_DEFAULT);
+    if (!processSource)
+        return;
     
+    NSLog(@"start monitor process...");
+    
+    dispatch_source_set_event_handler(processSource, ^{
+        NSLog(@"process forked, please check!");
+        dispatch_source_cancel(self->processSource);
+    });
+    
+    dispatch_activate(processSource);
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        fork();
+    });
 }
 
-- (void)monitorFileDirectoryWithUrl:(NSURL *)dirUrl{
-    int const fd = open([[dirUrl path] fileSystemRepresentation], O_EVTONLY);
+- (void)monitorAppDirectory{
+    // monitor
+    @try {
+        [self monitorFileDirectoryWithPath:[self docPath]];
+    } @catch (NSException *exception) {
+        NSLog(@"catch exception when monitor file system, exception:%@", exception.debugDescription);
+        [self cancelMonitorAppDirectory];
+    }
+    
+    // write file to doc path
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self writeDataToDocPath];
+    });
+}
+
+- (void)monitorFileDirectoryWithPath:(NSString *)path{
+    int const fd = open([path fileSystemRepresentation], O_EVTONLY);
     if (fd < 0) {
          char buffer[80];
          strerror_r(errno, buffer, sizeof(buffer));
-         NSLog(@"Unable to open \"%@\": %s (%d)", [dirUrl path], buffer, errno);
+         NSLog(@"Unable to open \"%@\": %s (%d)", path, buffer, errno);
          return;
     }
     
-    dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_VNODE, fd,
-    DISPATCH_VNODE_WRITE | DISPATCH_VNODE_DELETE, DISPATCH_TARGET_QUEUE_DEFAULT);
-    dispatch_source_set_event_handler(source, ^(){
-         unsigned long const data = dispatch_source_get_data(source);
-         if (data & DISPATCH_VNODE_WRITE) {
-              NSLog(@"The directory changed.");
-         }
-         if (data & DISPATCH_VNODE_DELETE) {
-              NSLog(@"The directory has been deleted.");
-         }
+    dirSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_VNODE, fd,
+    DISPATCH_VNODE_WRITE | DISPATCH_VNODE_DELETE | DISPATCH_VNODE_EXTEND, DISPATCH_TARGET_QUEUE_DEFAULT);
+    dispatch_source_set_event_handler(dirSource, ^(){
+        NSLog(@"The directory changed.");
     });
     
-    dispatch_source_set_cancel_handler(source, ^(){
+    dispatch_source_set_cancel_handler(dirSource, ^(){
          close(fd);
     });
-    
-    dirSource = source;
-    
+        
     dispatch_activate(dirSource);
+    
+    NSLog(@"start monitor file system at: %@", path);
 }
 
-- (void)cancelMonitorFileDirectory{
+- (void)cancelMonitorAppDirectory{
     if (!dirSource) {
         return;
     }
@@ -55,25 +79,41 @@
     dispatch_source_cancel(dirSource);
 }
 
-- (void)writeDataToFileDir:(NSURL *)dirUrl{
-    NSString *message = @"Start monitor ";
+- (void)writeDataToDocPath{
+    NSString *message = [NSString stringWithFormat:@"write something at %.g", [NSDate.now timeIntervalSince1970]];
     NSData *data = [message dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *filePath = [[self docPath] stringByAppendingPathComponent:@"monitor.txt"];
     
-    if (![[NSFileManager defaultManager] fileExistsAtPath:[dirUrl path]]) {
-        if ([[NSFileManager defaultManager] createFileAtPath:[dirUrl path] contents:data attributes:nil]) {
-            NSLog(@"Has created file at %@", dirUrl.path);
+    if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        if ([[NSFileManager defaultManager] createFileAtPath:filePath contents:data attributes:nil]) {
+            NSLog(@"Has created file at %@", filePath);
         } else {
             NSLog(@"Create file failed");
         }
     } else {
-        [data writeToFile:[dirUrl path] atomically:NO];
+        NSError *error;
+        [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
+        if (error) {
+            NSLog(@"Error occurs when delete file at %@", filePath);
+        }
     }
 }
 
-- (NSURL *)fileUrlToWrite{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-    NSString *docPath = paths.firstObject;
-    return [NSURL URLWithString:[docPath stringByAppendingPathComponent:@"string.txt"]];
+- (void)monitorTimer{
+    timerSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, DISPATCH_TARGET_QUEUE_DEFAULT);
+    dispatch_source_set_timer(timerSource, DISPATCH_TIME_NOW, 5ull * NSEC_PER_SEC, DISPATCH_TIMER_STRICT);
+    dispatch_source_set_event_handler(timerSource, ^{
+        NSLog(@"time elapses");
+    });
+    dispatch_activate(timerSource);
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(20 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_source_cancel(self->timerSource);
+    });
+}
+
+- (NSString *)docPath{
+    return [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) firstObject];
 }
 
 @end

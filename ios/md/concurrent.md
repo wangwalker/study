@@ -1,7 +1,7 @@
 在iOS开发中，多线程编程实践有多重途径，它们各有侧重。
 - NSThread
-- NSOperation
 - GCD
+- NSOperation
 - pthread
 
 # NSThread
@@ -80,66 +80,6 @@ NSThread* myThread = [[NSThread alloc] initWithTarget:self selector:@selecto (do
 ```
 
 完整示例见: [通过继承NSThread加载用户头像列表](https://github.com/Walkerant/Study/blob/master/ios/Snippets/Snippets/Concurrent/Controller/NSThreadViewController2.m)
-
-# NSOperation
-NSOperation是一个抽象类，不可直接调用，要么使用系统定义好的两个子类NSInvocationOperation和NSBlockOperation，要么继承自定义实现。
-
-实现逻辑和NSThread大体相同，`main`函数是最终执行单任务逻辑的地方，`start`用来控制何时以及在哪里开始执行任务，`cancel`用来取消任务。不同点在于NSOperation可以:
-- 设置任务之间的依赖关系，`addDependency:` `removeDependency:` ；
-- 不用管任务执行状态，当一个任务执行完成或被取消，则直接`return` ；
-- 配合NSOperationQueue，加入队列之后自动执行，使用起来会更方便。
-
-## NSOperationQueue
-NSOperationQueue用来维护一组NSOperation对象的执行顺序和流程。执行次序不但和加入的顺序相关，而且还和任务的优先级Priority有关，很明显高优先级的任务要先执行，低优先级的任务后执行。
-
-一旦加入进去，就不可移除，直到执行完成为止。执行完成之后，自动释放任务对象。
-
-重要的属性：
-- `maxConcurrentOperationCount`：设置最大并发数量；
-- `suspended`：控制该队列是否要挂起；
-- `currentQueue`：当前队列，属于类对象的静态属性；
-- `mainQueue`：和主线程相关的任务队列，处理事件循环相关任务。
-
-重要方法：
-- `addOperation:`：添加任务；
-- `addBarrierBlock:`：添加barrier任务，也就是说已**入队的所有任务完成之后，才能执行新入队的任务**；
-- `cancelAllOperations`：取消所有任务，但并没有移除，包括正在执行的任务；
-- `waitUntilAllOperationsAreFinished`：阻塞当前线程，等待所有任务执行完成，此时不可再添加任务。
-
-简单示例：
-```objc
-- (void)start{
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    
-    for (NSString *str in [self urlStrs]) {
-        NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(downloadImageWithUrlString:) object:str];
-        [queue addOperation:operation];
-    }
-    
-    [queue addBarrierBlock:^{
-        NSLog(@"all operations finished");
-    }];
-}
-
-- (void)downloadImageWithUrlString:(NSString*)urlStr{
-    NSURL *url = [NSURL URLWithString:urlStr];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    
-    NSLog(@"response data length:%zd from \nurl:%@", data.length, urlStr);
-    // ...
-}
-
-- (NSArray<NSString*>*)urlStrs{
-    return @[
-        @"https://avatar.csdnimg.cn/B/A/A/3_qq_25537177.jpg",
-        @"https://profile.csdnimg.cn/B/4/2/3_qq_41185868",
-        @"https://profile.csdnimg.cn/8/0/6/3_qq_35190492",
-        @"https://profile.csdnimg.cn/5/2/2/3_dataiyangu",
-    ];
-}
-```
-
-完整代码见：[NSOperation实践](https://github.com/Walkerant/Study/blob/master/ios/Snippets/Snippets/Concurrent/Model/NSOperationExample.m)
 
 # GCD
 Grand Central Dispatch简称GCD，是Apple为多核设备并发编程提供的一套综合性的解决方案，因为是在系统级别上实现的，所以更高效。
@@ -576,44 +516,281 @@ dispatch_apply(1e6, DISPATCH_APPLY_AUTO, ^(size_t x) {
 - `dispatch_block_cancel`，取消一个调度块对象，只能在未执行之前被调用。
 
 ### dispatch_source
-Dispatch Source API是一组对低层次系统对象进行监控的接口，比如监视其他进程变化、内存压力、文件修改等。
+Dispatch Source API是一组对低层次系统对象进行监控的接口，比如监视进程变化、内存压力、文件系统等。
 
 需要注意的是，创建好特定类型的Dispatch Source之后，**要通过`dispatch_resume`或者`dispatch_activate`（更推荐）进行激活**，因为它们是以非活动状态创建的。
 
 #### 进程PROC
-用Dispatch Source监控进程状态的变化，比如退出、创建子进程等。
+用Dispatch Source监控进程状态的变化，比如退出、fork子进程等。
+
+```objc
+processSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_PROC, getpid(), DISPATCH_PROC_FORK, DISPATCH_TARGET_QUEUE_DEFAULT);
+if (!processSource)
+    return;
+
+NSLog(@"start monitor process...");
+
+dispatch_source_set_event_handler(processSource, ^{
+    NSLog(@"process forked, please check!");
+    dispatch_source_cancel(self->processSource);
+});
+
+dispatch_activate(processSource);
+
+dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    fork();
+});
+```
 
 #### 文件系统
 
+监控文件系统的变化，比如读写文件，删除文件。
+
 ```objc
-int const fd = open([[dirUrl path] fileSystemRepresentation], O_EVTONLY);
-if (fd < 0) {
-        char buffer[80];
-        strerror_r(errno, buffer, sizeof(buffer));
-        NSLog(@"Unable to open \"%@\": %s (%d)", [dirUrl path], buffer, errno);
-        return;
+- (void)monitorFileDirectoryWithPath:(NSString *)path{
+    int const fd = open([path fileSystemRepresentation], O_EVTONLY);
+    if (fd < 0) {
+         char buffer[80];
+         strerror_r(errno, buffer, sizeof(buffer));
+         NSLog(@"Unable to open \"%@\": %s (%d)", path, buffer, errno);
+         return;
+    }
+    
+    dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_VNODE, fd,
+    DISPATCH_VNODE_WRITE | DISPATCH_VNODE_DELETE | DISPATCH_VNODE_EXTEND, DISPATCH_TARGET_QUEUE_DEFAULT);
+    dispatch_source_set_event_handler(source, ^(){
+        NSLog(@"The directory changed.");
+    });
+    
+    dispatch_source_set_cancel_handler(source, ^(){
+         close(fd);
+    });
+    
+    dirSource = source;
+    
+    dispatch_activate(dirSource);
+    
+    NSLog(@"start monitor file system at: %@", path);
 }
-
-dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_VNODE, fd,
-DISPATCH_VNODE_WRITE | DISPATCH_VNODE_DELETE, DISPATCH_TARGET_QUEUE_DEFAULT);
-dispatch_source_set_event_handler(source, ^(){
-        unsigned long const data = dispatch_source_get_data(source);
-        if (data & DISPATCH_VNODE_WRITE) {
-            NSLog(@"The directory changed.");
-        }
-        if (data & DISPATCH_VNODE_DELETE) {
-            NSLog(@"The directory has been deleted.");
-        }
-});
-
-dispatch_source_set_cancel_handler(source, ^(){
-        close(fd);
-});
-
-dirSource = source;
-
-dispatch_activate(dirSource);
 ```
 
 完整示例见：[用Dispatch Source监控文件系统](https://github.com/Walkerant/Study/blob/master/ios/Snippets/Snippets/Concurrent/Model/GCDSourceExample.m)
 
+#### 定时器
+
+在OC中，延迟任务的方法有：
+- `performSelector: withObject: afterDelay:`
+- `NSTimer timerWithTimeInterval: repeats: block:`
+- `NSTimer scheduledTimerWithTimeInterval: repeats: block:`
+
+但这些方法的执行严重依赖于RunLoop。也就是说，它们只有在RunLoop开启的情况下，才能起作用。而如果在非主线程中执行，RunLoop默认是关闭的，这就导致在这些线程中调用会失效的后果。另外，对于NSTimer的创建和销毁，必须在同一个线程内，并且还有内存泄漏的危险。
+
+对于这些问题，稍不注意就会出现。
+
+利用Dispatch Source API创建定时器的做法，可以解决这些问题，而且更加准确灵活。
+
+```objc
+timerSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, DISPATCH_TARGET_QUEUE_DEFAULT);
+dispatch_source_set_timer(timerSource, DISPATCH_TIME_NOW, 5ull * NSEC_PER_SEC,100ull * NSEC_PER_MSEC);
+dispatch_source_set_event_handler(timerSource, ^{
+    NSLog(@"time elapses");
+});
+dispatch_activate(timerSource);
+
+dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(20 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_source_cancel(self->timerSource);
+});
+```
+
+注意，`dispatch_source_set_timer(source, start, interval, leeway)`API的最后一个参数`leeway`用来控制延时误差，值越小，对系统性能要求越高，如果对性能要非常高，那么可以设置为`DISPATCH_TIMER_STRICT`。另外，interval设置为`DISPATCH_TIME_FOREVER`表示一次性任务。
+
+# NSOperation
+NSOperation是一个抽象类，不可直接调用，要么使用系统定义好的两个子类NSInvocationOperation和NSBlockOperation，要么继承自定义实现。
+
+实现逻辑和NSThread大体相同，`main`函数是最终执行单任务逻辑的地方，`start`用来控制何时以及在哪里开始执行任务，`cancel`用来取消任务。不同点在于NSOperation可以:
+- 设置任务之间的依赖关系，`addDependency:` `removeDependency:` ；
+- 不用管任务执行状态，当一个任务执行完成或被取消，则直接`return` ；
+- 配合NSOperationQueue，加入队列之后自动执行，使用起来会更方便。
+
+## NSOperationQueue
+NSOperationQueue用来维护一组NSOperation对象的执行顺序和流程。执行次序不但和加入的顺序相关，而且还和任务的优先级Priority有关，很明显高优先级的任务要先执行，低优先级的任务后执行。
+
+一旦加入进去，就不可移除，直到执行完成为止。执行完成之后，自动释放任务对象。
+
+重要的属性：
+- `maxConcurrentOperationCount`：设置最大并发数量；
+- `suspended`：控制该队列是否要挂起；
+- `currentQueue`：当前队列，属于类对象的静态属性；
+- `mainQueue`：和主线程相关的任务队列，处理事件循环相关任务。
+
+重要方法：
+- `addOperation:`：添加任务；
+- `addBarrierBlock:`：添加barrier任务，也就是说已**入队的所有任务完成之后，才能执行新入队的任务**；
+- `cancelAllOperations`：取消所有任务，但并没有移除，包括正在执行的任务；
+- `waitUntilAllOperationsAreFinished`：阻塞当前线程，等待所有任务执行完成，此时不可再添加任务。
+
+简单示例：
+```objc
+- (void)start{
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    
+    for (NSString *str in [self urlStrs]) {
+        NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(downloadImageWithUrlString:) object:str];
+        [queue addOperation:operation];
+    }
+    
+    [queue addBarrierBlock:^{
+        NSLog(@"all operations finished");
+    }];
+}
+
+- (void)downloadImageWithUrlString:(NSString*)urlStr{
+    NSURL *url = [NSURL URLWithString:urlStr];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    
+    NSLog(@"response data length:%zd from \nurl:%@", data.length, urlStr);
+    // ...
+}
+
+- (NSArray<NSString*>*)urlStrs{
+    return @[
+        @"https://avatar.csdnimg.cn/B/A/A/3_qq_25537177.jpg",
+        @"https://profile.csdnimg.cn/B/4/2/3_qq_41185868",
+        @"https://profile.csdnimg.cn/8/0/6/3_qq_35190492",
+        @"https://profile.csdnimg.cn/5/2/2/3_dataiyangu",
+    ];
+}
+```
+
+完整代码见：[NSOperation实践](https://github.com/Walkerant/Study/blob/master/ios/Snippets/Snippets/Concurrent/Model/NSOperationExample.m)
+
+# pthread
+
+pthread是POSIX线程（POSIX Threads，常被缩写为Pthreads）是POSIX的线程标准，定义了创建和操纵线程的一套基于C语言的API。
+
+所以，pthread几乎在所有计算平台都可使用，是跨平台编程的首选。不过比起上面这些方案，它涉及众多底层知识，这是很多开发者不具备的，而且使用起来也比较麻烦。
+
+具体可参考：[POSIX Threads Programming](https://computing.llnl.gov/tutorials/pthreads/)
+
+# 同步
+
+虽然多线程编程能够有效提高程序性能，但同时也带来了一些问题，比如程序运行逻辑不可控，结果不可预测，对特殊资源的争夺，严重时还有可能让程序奔溃退出。
+
+而同步就是用于解决这些问题的。具体而言，同步是指对一个系统中所发生的事进行协调，在时间上达到一致性与统一性的现象。简单来说，就是让程序按照一定顺序执行，从而产生可控、可预期的结果。
+
+## 原子操作atomic
+
+原子操作是最简单，粒度最小的同步单元。它经常用于在对象属性层面进行控制，不过为了性能考虑，通常使用非原子操作nonatomic。
+
+```objc
+@property (nonatomic, copy) NSString* name;
+@property (nonatomic, copy) NSString* viewControllerClassName;
+@property (nonatomic, copy) NSString* detailedDescription;
+```
+
+## @synchronized
+
+@synchronized是使用最简便、最多的同步机制，只需要在其后跟上同步对象即可实现同步。
+
+```objc
+- (void)synchronizeWithAtSync{
+    syncObject = [NSObject new];
+    
+    // 这里只是为了测试使用，真实代码中没人会这么用
+    [@[@1, @2, @3] enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        @synchronized (syncObject) {
+            syncObject = obj;
+            sleep((int)idx);
+            NSLog(@"synchronize object is %@", syncObject);
+        }
+    }];
+}
+```
+
+实际上，`@synchronized`是用互斥锁实现的，传入的对象作为唯一标识符来区分代码块是否获得了锁。显然，这个对象粒度越大，代码性能受到的影响越大，比如`@synchronized(self)`这种写法，性能差是在所难免的。
+
+## Lock🔐
+
+锁是最基本的同步机制，比如上面的`@synchronized`就是基于锁实现的。而它的种类也比较多，像互斥锁、递归锁、条件锁等。
+
+### NSLock
+
+NSLock是一中互斥锁，两种基本操作`lock`和`unlock`。
+
+```objc
+BOOL moreToDo = YES;
+NSLock *theLock = [[NSLock alloc] init];
+...
+while (moreToDo) {
+    /* Do another increment of calculation */
+    /* until there’s no more to do. */
+    if ([theLock tryLock]) {
+        /* Update display used by all threads. */
+        [theLock unlock];
+    }
+}
+
+```
+
+### NSRecursiveLock
+
+可以被一个线程多次获得，而不会引起死锁。NSRecursiveLock会记录上锁和解锁的次数，当二者平衡的时候，才会在此释放锁、上锁。
+
+```objc
+NSRecursiveLock *theLock = [[NSRecursiveLock alloc] init];
+[theLock lock];
+if (value != 0) {
+    --value;
+    MyRecursiveFunction(value);
+}
+[theLock unlock];
+```
+
+### NSConditionLock
+
+顾名思义，只有满足某个条件时才能获得锁，之后执行代码并释放所后，又可以重新设置条件，这一切都在于使用者。
+
+详细文档见：[Apple开发者文档](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/ThreadSafety/ThreadSafety.html#//apple_ref/doc/uid/10000057i-CH8-SW16).
+
+## 信号量
+
+信号量也是一个常用的同步机制，而且它的性能更高。信号量是一个整型变量，可以对其执行 down 和 up 操作，也就是常见的 P 和 V 操作。
+- **down** : 如果信号量大于 0 ，执行 -1 操作；如果信号量等于 0，进程睡眠，等待信号量大于 0；
+- **up** ：对信号量执行 +1 操作，唤醒睡眠的进程让其完成 down 操作。
+
+down 和 up 操作需要被设计成原语，不可分割，通常的做法是在执行这些操作的时候屏蔽中断。如果信号量的取值只能为 0 或者 1，那么就成为了 互斥量（Mutex） ，0 表示临界区已经加锁，1 表示临界区解锁。
+
+```c
+typedef int semaphore;
+semaphore mutex = 1;
+void P1() {
+    down(&mutex);
+    // 临界区
+    up(&mutex);
+}
+
+void P2() {
+    down(&mutex);
+    // 临界区
+    up(&mutex);
+}
+```
+
+在OC中，可以借助GCD的`dispatch_semaphore`使用信号量。使用案例见上面GCD部分。
+
+# 总结
+
+下面对上面提及的四种多线程编程进行比较，分析各自的优缺点。
+
+- NSThread
+    - 优点：支持面向对象，简单轻量；
+    - 缺点：需要自己管理线程的生命周期；
+- GCD
+    - 优点：高效灵活，功能最强大，自动管理生命周期；
+    - 缺点：比较复杂，深入理解不易；
+- NSOperation
+    - 优点：基于GCD，简单，可设置任务之间的依赖关系和并发数量；
+    - 缺点：一旦加入队列，就不能单独取消；
+- pthread
+    - 优点：轻量，跨平台；
+    - 缺点：不好使用。

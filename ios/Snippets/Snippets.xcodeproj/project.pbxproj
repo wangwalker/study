@@ -15,6 +15,7 @@
 		0BC78B2D248F77E90037F815 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC78B2C248F77E90037F815 /* main.m */; };
 		0BC78B37248F77EA0037F815 /* SnippetsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC78B36248F77EA0037F815 /* SnippetsTests.m */; };
 		0BC78B42248F77EA0037F815 /* SnippetsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC78B41248F77EA0037F815 /* SnippetsUITests.m */; };
+		0BD390D62562571F0050D5F8 /* WRSynchronizeExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD390D52562571F0050D5F8 /* WRSynchronizeExample.m */; };
 		0BE6E961255A21F300118E14 /* NSThreadViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E960255A21F300118E14 /* NSThreadViewController1.m */; };
 		0BE6E970255A24D400118E14 /* WRGithubUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E96F255A24D400118E14 /* WRGithubUser.m */; };
 		0BE6E976255A3B4800118E14 /* WRSnippetItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E975255A3B4800118E14 /* WRSnippetItem.m */; };
@@ -67,6 +68,8 @@
 		0BC78B3D248F77EA0037F815 /* SnippetsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnippetsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BC78B41248F77EA0037F815 /* SnippetsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SnippetsUITests.m; sourceTree = "<group>"; };
 		0BC78B43248F77EA0037F815 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0BD390D42562571F0050D5F8 /* WRSynchronizeExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WRSynchronizeExample.h; sourceTree = "<group>"; };
+		0BD390D52562571F0050D5F8 /* WRSynchronizeExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WRSynchronizeExample.m; sourceTree = "<group>"; };
 		0BE6E95F255A21F300118E14 /* NSThreadViewController1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSThreadViewController1.h; sourceTree = "<group>"; };
 		0BE6E960255A21F300118E14 /* NSThreadViewController1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSThreadViewController1.m; sourceTree = "<group>"; };
 		0BE6E96E255A24D400118E14 /* WRGithubUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WRGithubUser.h; sourceTree = "<group>"; };
@@ -208,6 +211,8 @@
 				0BFE29AF255E28C400F7CB96 /* GCDSemaphoreExample.m */,
 				0BFE29B4255E62E200F7CB96 /* GCDSourceExample.h */,
 				0BFE29B5255E62E200F7CB96 /* GCDSourceExample.m */,
+				0BD390D42562571F0050D5F8 /* WRSynchronizeExample.h */,
+				0BD390D52562571F0050D5F8 /* WRSynchronizeExample.m */,
 				0BE6E9A1255BB2CE00118E14 /* NSOperationExample.h */,
 				0BE6E9A2255BB2CE00118E14 /* NSOperationExample.m */,
 				0BE6E96E255A24D400118E14 /* WRGithubUser.h */,
@@ -376,6 +381,7 @@
 				0BE6E9AF255BCD6100118E14 /* HomeViewController.m in Sources */,
 				0BC78B2D248F77E90037F815 /* main.m in Sources */,
 				0BE6E9A3255BB2CE00118E14 /* NSOperationExample.m in Sources */,
+				0BD390D62562571F0050D5F8 /* WRSynchronizeExample.m in Sources */,
 				0BC78B1F248F77E30037F815 /* SceneDelegate.m in Sources */,
 				0BE6E99A255B70D200118E14 /* NSThreadViewController2.m in Sources */,
 				0BE6E9B5255BD10C00118E14 /* ConcurrViewController.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#include <libkern/OSAtomic.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

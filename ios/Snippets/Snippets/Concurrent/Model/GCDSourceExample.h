@@ -12,6 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GCDSourceExample : NSObject
 
+- (void)monitorProcess;
+
+- (void)monitorAppDirectory;
+
+- (void)monitorTimer;
+
 @end
 
 NS_ASSUME_NONNULL_END

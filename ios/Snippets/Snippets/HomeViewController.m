@@ -17,10 +17,11 @@
 @implementation HomeViewController
 
 - (void)viewDidLoad {
-    [self setSnippetGroups:[WRSnippetManager sharedManager].allSnippetGroups];
-
     [super viewDidLoad];
     [self setTitle:@"Snippets"];
+    
+    [self setSnippetGroups:[WRSnippetManager sharedManager].allSnippetGroups];
+
 }
 
 @end
