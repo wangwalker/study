@@ -46,6 +46,7 @@
 
 @implementation GDCGroupTaskScheduler
 
+
 - (instancetype)initWithTasks:(NSArray<GCDTaskItem *> *)tasks name:(nonnull NSString *)name{
     if (self = [super init]) {
         self.tasks = tasks;

@@ -25,7 +25,7 @@
         }
     }];
     
-    NSOperation *op;
-    NSConditionLock *lock;
+//    NSOperation *op;
+//    NSConditionLock *lock;
 }
 @end

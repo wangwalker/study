@@ -191,9 +191,14 @@ dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), ^{
 ```objc
 /**
 时间单位：
-    秒：NSEC_PER_SEC
-    毫秒：NSEC_PER_MSEC
-    纳秒：NSEC_PER_USEC
+    NSEC_PER_SEC：每秒的纳秒数
+    NSEC_PER_MSEC：每秒的纳秒数
+    NSEC_PER_USEC：每毫秒的纳秒数
+
+一秒的表示方法：
+    dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
+    dispatch_time(DISPATCH_TIME_NOW, 1000 * USEC_PER_SEC);
+    dispatch_time(DISPATCH_TIME_NOW, USEC_PER_SEC * NSEC_PER_USEC);
 */
 // 延迟2秒后执行
 dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC));

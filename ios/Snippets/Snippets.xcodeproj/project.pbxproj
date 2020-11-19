@@ -16,6 +16,8 @@
 		0BC78B37248F77EA0037F815 /* SnippetsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC78B36248F77EA0037F815 /* SnippetsTests.m */; };
 		0BC78B42248F77EA0037F815 /* SnippetsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC78B41248F77EA0037F815 /* SnippetsUITests.m */; };
 		0BD390D62562571F0050D5F8 /* WRSynchronizeExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD390D52562571F0050D5F8 /* WRSynchronizeExample.m */; };
+		0BD390E3256375020050D5F8 /* RunLoopExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD390E2256375020050D5F8 /* RunLoopExample.m */; };
+		0BD390F22564B1350050D5F8 /* NSRunLoopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD390F12564B1350050D5F8 /* NSRunLoopViewController.m */; };
 		0BE6E961255A21F300118E14 /* NSThreadViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E960255A21F300118E14 /* NSThreadViewController1.m */; };
 		0BE6E970255A24D400118E14 /* WRGithubUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E96F255A24D400118E14 /* WRGithubUser.m */; };
 		0BE6E976255A3B4800118E14 /* WRSnippetItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E975255A3B4800118E14 /* WRSnippetItem.m */; };
@@ -70,6 +72,10 @@
 		0BC78B43248F77EA0037F815 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0BD390D42562571F0050D5F8 /* WRSynchronizeExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WRSynchronizeExample.h; sourceTree = "<group>"; };
 		0BD390D52562571F0050D5F8 /* WRSynchronizeExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WRSynchronizeExample.m; sourceTree = "<group>"; };
+		0BD390E1256375020050D5F8 /* RunLoopExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RunLoopExample.h; sourceTree = "<group>"; };
+		0BD390E2256375020050D5F8 /* RunLoopExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RunLoopExample.m; sourceTree = "<group>"; };
+		0BD390F02564B1350050D5F8 /* NSRunLoopViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSRunLoopViewController.h; sourceTree = "<group>"; };
+		0BD390F12564B1350050D5F8 /* NSRunLoopViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSRunLoopViewController.m; sourceTree = "<group>"; };
 		0BE6E95F255A21F300118E14 /* NSThreadViewController1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSThreadViewController1.h; sourceTree = "<group>"; };
 		0BE6E960255A21F300118E14 /* NSThreadViewController1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSThreadViewController1.m; sourceTree = "<group>"; };
 		0BE6E96E255A24D400118E14 /* WRGithubUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WRGithubUser.h; sourceTree = "<group>"; };
@@ -150,25 +156,14 @@
 		0BC78B19248F77E30037F815 /* Snippets */ = {
 			isa = PBXGroup;
 			children = (
-				0BC78B1A248F77E30037F815 /* AppDelegate.h */,
-				0BC78B1B248F77E30037F815 /* AppDelegate.m */,
-				0BC78B1D248F77E30037F815 /* SceneDelegate.h */,
-				0BC78B1E248F77E30037F815 /* SceneDelegate.m */,
-				0BC78B20248F77E30037F815 /* ViewController.h */,
-				0BC78B21248F77E30037F815 /* ViewController.m */,
-				0BE6E9AD255BCD6100118E14 /* HomeViewController.h */,
-				0BE6E9AE255BCD6100118E14 /* HomeViewController.m */,
-				0BE6E974255A3B4800118E14 /* WRSnippetItem.h */,
-				0BE6E975255A3B4800118E14 /* WRSnippetItem.m */,
-				0BE6E97A255A3B5E00118E14 /* WRSnippetGroup.h */,
-				0BE6E97B255A3B5F00118E14 /* WRSnippetGroup.m */,
-				0BE6E980255A3DBE00118E14 /* WRSnippetManager.h */,
-				0BE6E981255A3DBE00118E14 /* WRSnippetManager.m */,
+				0BD390E7256375390050D5F8 /* Intrinsic */,
+				0BD390EC256375B80050D5F8 /* Scaffold */,
+				0BD390DA2563746F0050D5F8 /* Infrastructure */,
 				0BE6E965255A223100118E14 /* Concurrent */,
+				0BD390EB256375850050D5F8 /* Execution */,
 				0BC78B26248F77E90037F815 /* Assets.xcassets */,
 				0BC78B28248F77E90037F815 /* LaunchScreen.storyboard */,
 				0BC78B2B248F77E90037F815 /* Info.plist */,
-				0BC78B2C248F77E90037F815 /* main.m */,
 			);
 			path = Snippets;
 			sourceTree = "<group>";
@@ -189,6 +184,51 @@
 				0BC78B43248F77EA0037F815 /* Info.plist */,
 			);
 			path = SnippetsUITests;
+			sourceTree = "<group>";
+		};
+		0BD390DA2563746F0050D5F8 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				0BE6E974255A3B4800118E14 /* WRSnippetItem.h */,
+				0BE6E975255A3B4800118E14 /* WRSnippetItem.m */,
+				0BE6E97A255A3B5E00118E14 /* WRSnippetGroup.h */,
+				0BE6E97B255A3B5F00118E14 /* WRSnippetGroup.m */,
+				0BE6E980255A3DBE00118E14 /* WRSnippetManager.h */,
+				0BE6E981255A3DBE00118E14 /* WRSnippetManager.m */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		0BD390E7256375390050D5F8 /* Intrinsic */ = {
+			isa = PBXGroup;
+			children = (
+				0BC78B1A248F77E30037F815 /* AppDelegate.h */,
+				0BC78B1B248F77E30037F815 /* AppDelegate.m */,
+				0BC78B1D248F77E30037F815 /* SceneDelegate.h */,
+				0BC78B1E248F77E30037F815 /* SceneDelegate.m */,
+				0BC78B2C248F77E90037F815 /* main.m */,
+			);
+			path = Intrinsic;
+			sourceTree = "<group>";
+		};
+		0BD390EB256375850050D5F8 /* Execution */ = {
+			isa = PBXGroup;
+			children = (
+				0BE9F4B92565F88F00175FEA /* Model */,
+				0BE9F4BD2565F89D00175FEA /* Controller */,
+			);
+			path = Execution;
+			sourceTree = "<group>";
+		};
+		0BD390EC256375B80050D5F8 /* Scaffold */ = {
+			isa = PBXGroup;
+			children = (
+				0BC78B20248F77E30037F815 /* ViewController.h */,
+				0BC78B21248F77E30037F815 /* ViewController.m */,
+				0BE6E9AD255BCD6100118E14 /* HomeViewController.h */,
+				0BE6E9AE255BCD6100118E14 /* HomeViewController.m */,
+			);
+			path = Scaffold;
 			sourceTree = "<group>";
 		};
 		0BE6E965255A223100118E14 /* Concurrent */ = {
@@ -234,6 +274,24 @@
 				0BE6E960255A21F300118E14 /* NSThreadViewController1.m */,
 				0BE6E998255B70D200118E14 /* NSThreadViewController2.h */,
 				0BE6E999255B70D200118E14 /* NSThreadViewController2.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0BE9F4B92565F88F00175FEA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0BD390E1256375020050D5F8 /* RunLoopExample.h */,
+				0BD390E2256375020050D5F8 /* RunLoopExample.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0BE9F4BD2565F89D00175FEA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0BD390F02564B1350050D5F8 /* NSRunLoopViewController.h */,
+				0BD390F12564B1350050D5F8 /* NSRunLoopViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -380,8 +438,10 @@
 				0BE6E970255A24D400118E14 /* WRGithubUser.m in Sources */,
 				0BE6E9AF255BCD6100118E14 /* HomeViewController.m in Sources */,
 				0BC78B2D248F77E90037F815 /* main.m in Sources */,
+				0BD390F22564B1350050D5F8 /* NSRunLoopViewController.m in Sources */,
 				0BE6E9A3255BB2CE00118E14 /* NSOperationExample.m in Sources */,
 				0BD390D62562571F0050D5F8 /* WRSynchronizeExample.m in Sources */,
+				0BD390E3256375020050D5F8 /* RunLoopExample.m in Sources */,
 				0BC78B1F248F77E30037F815 /* SceneDelegate.m in Sources */,
 				0BE6E99A255B70D200118E14 /* NSThreadViewController2.m in Sources */,
 				0BE6E9B5255BD10C00118E14 /* ConcurrViewController.m in Sources */,

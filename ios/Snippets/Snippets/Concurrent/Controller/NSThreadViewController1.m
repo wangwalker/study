@@ -49,7 +49,8 @@
         };
         [self performSelectorOnMainThread:@selector(updateUI:)
                                withObject:obj
-                            waitUntilDone:YES];
+                            waitUntilDone:YES
+                                    modes:@[NSRunLoopCommonModes]];
         [_users[user.index.intValue] setAvatar:image];
     } else {
         NSLog(@"avatar is null at index:%@", user.index);

@@ -29,6 +29,7 @@
     [UIView animateWithDuration:0.6 animations:^{
         self.navigationController.navigationBar.hidden = hidden;
     }];
+    CADisplayLink *ca;
 }
 
 #pragma mark - UITableViewDataSource

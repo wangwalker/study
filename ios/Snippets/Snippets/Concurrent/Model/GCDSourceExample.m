@@ -65,9 +65,9 @@
     dispatch_source_set_cancel_handler(dirSource, ^(){
          close(fd);
     });
-        
-    dispatch_activate(dirSource);
     
+    dispatch_activate(dirSource);
+
     NSLog(@"start monitor file system at: %@", path);
 }
 

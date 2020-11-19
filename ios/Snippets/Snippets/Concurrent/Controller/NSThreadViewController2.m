@@ -48,7 +48,8 @@
         [obj setHandler:^(void) {
             [self performSelectorOnMainThread:@selector(updateUI:)
                                    withObject:weakUser
-                                waitUntilDone:NO];
+                                waitUntilDone:NO
+                                        modes:@[NSRunLoopCommonModes]];
         }];
     }];
 }
