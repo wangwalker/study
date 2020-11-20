@@ -8,6 +8,7 @@
 
 #import "NSRunLoopViewController.h"
 #import "RunLoopExample.h"
+#import "RuntimeExample.h"
 #import "WRSnippetItem.h"
 #import "WRSnippetGroup.h"
 
@@ -33,7 +34,14 @@
     
     [runLoop addSnippetItem:[WRSnippetItem itemWithName:@"CADisplayLink" detail:@"default mode" selector:@selector(addDislayLinkForDefaultMode) target:[RunLoopExample new] object:@0]];
     
-    [self setSnippetGroups:@[runLoop, runLoop, runLoop, runLoop, runLoop]];
+    
+    WRSnippetGroup *runtime = [WRSnippetGroup groupWithName:@"RunTime"];
+    
+    [runtime addSnippetItem:[WRSnippetItem itemWithName:@"Class" detail:@"Class的继承体系" selector:@selector(showInheritanceHierarchy) target:[RuntimeExample new] object:@0]];
+    
+    [runtime addSnippetItem:[WRSnippetItem itemWithName:@"关联对象" detail:@"objc_*AssociatedObject" selector:@selector(setAndGetDynamicObject) target:[RuntimeExample new] object:@0]];
+    
+    [self setSnippetGroups:@[runLoop, runtime]];
     
 }
 /*
