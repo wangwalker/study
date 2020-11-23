@@ -41,6 +41,15 @@
     
     [runtime addSnippetItem:[WRSnippetItem itemWithName:@"关联对象" detail:@"objc_*AssociatedObject" selector:@selector(setAndGetDynamicObject) target:[RuntimeExample new] object:@0]];
     
+    // 动态方法解析
+    [runtime addSnippetItem:[WRSnippetItem itemWithName:@"消息转发①" detail:@"动态方法解析" selector:NSSelectorFromString(@"someDynamicMethod") target:[RuntimeExample new] object:@0]];
+    // 重定向接收者
+    [runtime addSnippetItem:[WRSnippetItem itemWithName:@"消息转发②" detail:@"重定向接收者" selector:@selector(addTimerForCommonMode) target:[RuntimeExample new] object:@0]];
+    // 最后的转发
+    [runtime addSnippetItem:[WRSnippetItem itemWithName:@"消息转发③" detail:@"最后的消息转发步骤" selector:@selector(processUnrecognizedMessage) target:[RuntimeExample new] object:@0]];
+    
+    [runtime addSnippetItem:[WRSnippetItem itemWithName:@"Swizzling" detail:@"替换方法实现" selector:@selector(swizzlingMethod1) target:[RuntimeExample new] object:@0]];
+    
     [self setSnippetGroups:@[runLoop, runtime]];
     
 }

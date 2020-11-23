@@ -180,7 +180,7 @@ Class objc_getMetaClass ( const char *name );
 
 通过实例对象获取类的信息
 
-```obj
+```objc
 // 获取给定实例对象的类名
 const char * object_getClassName ( id obj );
 // 获取实例对象的类
@@ -255,23 +255,213 @@ static char dynamicKey;
 
 # 消息
 
-Objective-C把一切操作称之为发送消息，比如`[someone doSth]`表示给`someone`发送了一条名为`doSth`的消息。这是Objective-C和其他语言差异比较大的一件事。
+Objective-C把一切操作称之为发送消息，比如`[someone doSth]`表示给`someone`发送了一条名为`doSth`的消息。只有在运行时，消息才会和实现进行绑定。
 
 ## 发送消息
+### objc_msgSend
 
+所有的消息，最终都会被编译器用`objc_msgSend`发送给接收者，第一个参数是消息接受者receiver，第二个是一个Selector，如果有其他参数直接跟在后面。
 
+```objc
+objc_msgSend(receiver, selector)
+objc_msgSend(receiver, selector, arg1, arg2, ...)
+```
 
-## 动态解析
+`objc_msgSend`方通过前两个参数`receiver`和`selector`便可以容易的定位到具体的方法实现，然后将参数传递给具体的方法并执行，最后返回执行结果。
 
+这里的关键之处在于前面提到的对象和类的数据结构`objc_object`和`objc_class`。对于`objc_class`的数据结构，里面包含指向父类`superclass`的指针，以及一个方法分派表，将所有的方法selector和IMP对应起来。而对于`objc_object`的数据结构，里面的`isa`指针指向它所属的类，也就是指向一个`objc_class`。
 
-## 转发消息
+这样，对象和类的继承体系就被互相联系在一起了，如果某个对象在类的方法分派表中找不见对应的方法，则顺着它的继承关系以此在父类、父类的父类…中寻找，直到最顶层的根类NSObject，如果还没有找见，则给出异常信息。
 
+当然，在实现细节上还有其他要点，比如为了提高消息被处理的速度，运行时系统会缓存方法selector和IMP。
 
+另外，编译器会根据情况在`objc_msgSend`, `objc_msgSend_stret`, `objc_msgSendSuper`, 或 `objc_msgSendSuper_stret`四个方法中挑选一个来调用。如果消息是传递给超类，那么会调用名字带有`Super`的函数；如果消息返回值是数据结构而不是简单值时，那么会调用名字带有`stret`的函数。
+
+![对象继承关系](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Art/messaging1.gif)
+
+### self _cmd
+
+当objc_msgSend找到对应的方法，然后在传递参数的时候，还会附带传递两个隐藏参数self和_cmd，前者代表方法接收者，后者表示方法的selector。实际上，它们是在编译期自动被加入的。
+
+```objc
+- strange {
+    id  target = getTheReceiver();
+    SEL method = getTheMethod();
+ 
+    if ( target == self || method == _cmd )
+        return nil;
+    return [target performSelector:method];
+}
+```
+
+### methodForSelector:
+
+动态绑定方法的做法很灵活，但在某些特殊的场景中将受到性能影响，比如要短时间内给某个对象多次发送消息时。
+
+这时候，更加合理的做法是先通过NSObject定义的`methodForSelector:`获取方法的地址，然后直接调用，这将省去不少时间开销。
+
+```objc
+void (*setter)(id, SEL, BOOL);
+int i;
+ 
+setter = (void (*)(id, SEL, BOOL))[target
+    methodForSelector:@selector(setFilled:)];
+for ( i = 0 ; i < 1000 ; i++ )
+    setter(targetList[i], @selector(setFilled:), YES);
+```
+
+## 消息转发
+
+如果消息接收者不能响应某个消息，那么在运行时系统给出异常之前，还会通过消息转发机制寻求机会，具体会经过下面三个流程：
+- **动态方法解析**
+- **重定向接收者**
+- **最后的转发**
+
+### 动态方法解析
+
+可以先通过实现 `resolveInstanceMethod:` 和 `resolveClassMethod:`，然后通过`class_addMethod`动态添加一个方法的实现。
+
+```objc
+void dynamicMethodIMP(id self, SEL _cmd) {
+    NSLog(@"dynamic method implementation: %@", NSStringFromSelector(_cmd));
+}
+
+// 实例方法的动态解析
++ (BOOL)resolveInstanceMethod:(SEL)sel{
+    SEL aSel = NSSelectorFromString(@"someDynamicMethod");
+    if (sel == aSel) {
+        class_addMethod([self class], aSel, (IMP)dynamicMethodIMP, "v@:");
+    }
+    return [super resolveInstanceMethod:sel];
+}
+
+// 类方法的动态解析
++ (BOOL)resolveClassMethod:(SEL)sel{
+    SEL aSel = NSSelectorFromString(@"someDynamicMethod");
+    if (sel == aSel) {
+        class_addMethod([self class], aSel, (IMP)dynamicMethodIMP, "v@:");
+    }
+    return [super resolveClassMethod:sel];
+}
+```
+
+### 重定向接收者
+
+如果经过上面的**动态方法解析**之后，依然无法处理消息。这时候运行时系统就会通过 `forwardingTargetForSelector:` 提供一次替换消息接收者的机会。注意：新替换的对象一定不能为self，因为这样会进入死循环。
+
+```objc
+@implementation RuntimeExample{
+    RunLoopExample *runloop;
+}
+
+- (instancetype)init{
+    if ((self = [super init])) {
+        runloop = [[RunLoopExample alloc] init];
+    }
+    return self;
+}
+
+- (id)forwardingTargetForSelector:(SEL)aSelector{
+    NSLog(@"forwarding target");
+    if ([NSStringFromSelector(aSelector) isEqualToString:NSStringFromSelector(@selector(addTimerForCommonMode))]) {
+        NSLog(@"forwarding to 'runloop'");
+        return runloop;
+    }
+    return [super forwardingTargetForSelector:aSelector];
+}
+```
+
+### forwardInvocation
+
+如果经过上面两个途径依然无法处理某个消息，那么就会进入比较”沉重“的最后一个消息转发步骤了。
+
+通过重写`forwardInvocation:`这个在NSObject中定义的方法，根据它的唯一参数——一个封装了原始消息相关信息的NSInvocation对象，将其解构、分析之后给出对应的处理措施。
+
+要注意的是，重写`forwardInvocation:`时，还要重写另一个方法`methodSignatureForSelector:`，用来生成`forwardInvocation:`的唯一参数NSInvocation的方法签名。
+
+```objc
+@implementation RuntimeExample{
+    RuntimeHelper *anotherObject;
+}
+
+- (instancetype)init{
+    if ((self = [super init])) {
+        anotherObject = [[RuntimeHelper alloc] init];
+    }
+    return self;
+}
+
+- (void)forwardInvocation:(NSInvocation *)anInvocation{
+    SEL sel = [anInvocation selector];
+    if ([anotherObject respondsToSelector:sel]) {
+        [anInvocation invokeWithTarget:anotherObject];
+    } else {
+        [super forwardInvocation:anInvocation];
+    }
+}
+
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector{
+    NSMethodSignature *signature = [super methodSignatureForSelector:aSelector];
+    if (!signature && [anotherObject respondsToSelector:aSelector]) {
+        signature = [anotherObject methodSignatureForSelector:aSelector];
+    }
+    return signature;
+}
+```
+
+另外，基于消息转发机制，还能模拟继承和多继承。具体而言，就是在`forwardInvocation:`中将所有继承对象的方法按规则分派出去，就像是自己的方法一样。
+
+虽然OC的消息转发机制很强大也很灵活，但应该谨慎使用，因为它不但让程序的逻辑变得更加复杂，而且增加了程序的开销，使用过多必然会降低性能。
+
+# Method Swizzle
+
+通过上面这些方法已经灵活地实现多数功能，但还是有点限制——需要操纵源码，对于无法获取源码的，比如Apple官方提供的一些能力，显然无法直接修改。在这种情况下，可以用Method Swizzle进行“偷梁换柱”，用一个方法替换另一个方法就能实现直接无法实现的功能。
+
+比如下面的例子在运行时替换了两个方法的实现。
+
+```objc
++ (void)load{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        SEL sel1 = @selector(swizzlingMethod1);
+        SEL sel2 = @selector(swizzlingMethod2);
+        
+        Method m1 = class_getInstanceMethod([self class], sel1);
+        Method m2 = class_getInstanceMethod([self class], sel2);
+        
+        // 如果此类还没有对应的方法，先注册该方法
+        BOOL methodAdded = class_addMethod([self class], sel1, method_getImplementation(m2), method_getTypeEncoding(m2));
+        
+        if (methodAdded) {
+            NSLog(@"method add and add");
+            class_replaceMethod([self class], sel2, method_getImplementation(m1), method_getTypeEncoding(m1));
+        } else {
+            // 否则，直接交换
+            NSLog(@"methods exchange");
+            method_exchangeImplementations(m1, m2);
+        }
+    });
+}
+
+- (void)swizzlingMethod1{
+    NSLog(@"swizzling method: %s", __FUNCTION__);
+}
+
+- (void)swizzlingMethod2{
+    NSLog(@"swizzing method: %s", __FUNCTION__);
+}
+```
+
+经过实践发现，确实可以轻松的交换两个方法的实现。不过，这种做法会增加程序调试难度，应该尽可能减少使用。另外，也有一些注意事项：
+- Method Swizzling的合适时机是`+load`或者`+initialize`，前者表示第一次加载时，后者表示第一次使用时的初始化工作。
+- Method Swizzling应该总是在`dispatch_once`中执行，保证有且仅有一次运行机会。
+
+对于Method Swizzling最常见的使用场景大概就是替换某些系统方法的默认实现，以便自动化处理一些工作，比如实现一个可自动记录日志和埋点数据的`viewWillAppear:`，通过替换UIViewController的原有`viewWillAppear:`，就可以实现一个通用的日志收集方案。
 
 # 参考
 - [Apple官方文档](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008048-CH1-SW1)
 - [Apple开源代码](https://opensource.apple.com/source/objc4/objc4-646/runtime/)
 - [玉令天下的博文](http://yulingtianxia.com/blog/2014/11/05/objective-c-runtime/)
 - [戴铭的博文](https://github.com/ming1016/study/wiki/Objc-Runtime)
-- [Tushs's Blog](https://github.com/ming1016/study/wiki/Objc-Runtime)
+- [Tuski's Blog](https://perphet.com/2019/08/OC-Runtime/)
 - [veryitman的博文](http://www.veryitman.com/2018/04/05/OC-RunTime-%E6%80%BB%E7%BB%93%E6%B6%88%E6%81%AF%E8%BD%AC%E5%8F%91%E4%B8%AD%E7%94%A8%E5%88%B0%E7%9A%84%E7%9F%A5%E8%AF%86%E7%82%B9/)

@@ -63,12 +63,7 @@
 
 - (void)start{
     if (self.aSelector) {
-        if ([self.selectorObject boolValue]) {
-            [NSThread detachNewThreadSelector:self.aSelector toTarget:self.selectorTarget withObject:self.selectorObject];
-        } else {
-            [NSThread detachNewThreadSelector:self.aSelector toTarget:self.selectorTarget withObject:nil];
-        }
-        
+        [self.selectorTarget performSelector:self.aSelector withObject:self.selectorObject];
     } else if (self.handler) {
         [NSThread detachNewThreadWithBlock:^{
             self.handler();

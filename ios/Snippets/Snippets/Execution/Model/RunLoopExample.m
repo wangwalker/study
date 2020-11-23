@@ -56,11 +56,15 @@ void dislayLinkDefaultModeCallback() {
 - (void)addTimerForCommonMode{
     [self addObserverFor:[NSRunLoop currentRunLoop] mode:kCFRunLoopCommonModes callback:timerCommonModeCallback];
 
-    NSTimer *timer = [NSTimer timerWithTimeInterval:.2 repeats:YES block:^(NSTimer * _Nonnull timer) {
+    __block NSTimer *timer = [NSTimer timerWithTimeInterval:.2 repeats:YES block:^(NSTimer * _Nonnull timer) {
         NSLog(@"common mode, time elapse 0.2 second");
     }];
     [NSRunLoop.currentRunLoop addTimer:timer forMode:NSRunLoopCommonModes];
     [NSRunLoop.currentRunLoop runUntilDate:[NSDate dateWithTimeIntervalSinceNow:5]];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [timer invalidate];
+    });
 }
 
 - (void)addDislayLinkForDefaultMode{

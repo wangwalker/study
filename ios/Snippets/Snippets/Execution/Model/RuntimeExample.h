@@ -16,6 +16,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setAndGetDynamicObject;
 
+// 模拟Method Swizzling
+- (void)swizzlingMethod1;
+- (void)swizzlingMethod2;
+
+@end
+
+
+@interface RuntimeHelper : NSObject
+
+- (void)processUnrecognizedMessage;
+
 @end
 
 NS_ASSUME_NONNULL_END
