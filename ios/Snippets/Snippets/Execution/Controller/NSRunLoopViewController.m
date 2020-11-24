@@ -7,6 +7,7 @@
 //
 
 #import "NSRunLoopViewController.h"
+#import "BlockExample.h"
 #import "RunLoopExample.h"
 #import "RuntimeExample.h"
 #import "WRSnippetItem.h"
@@ -26,6 +27,14 @@
 }
 
 - (void)setupGroups{
+    [self setSnippetGroups:@[
+        [self runloop],
+        [self runtime],
+        [self block]
+    ]];
+}
+
+- (WRSnippetGroup *)runloop{
     WRSnippetGroup *runLoop = [WRSnippetGroup groupWithName:@"RunLoop"];
     
     [runLoop addSnippetItem:[WRSnippetItem itemWithName:@"NSTimer" detail:@"default mode" selector:@selector(addTimerForDefaultMode) target:[RunLoopExample new] object:@0]];
@@ -34,7 +43,10 @@
     
     [runLoop addSnippetItem:[WRSnippetItem itemWithName:@"CADisplayLink" detail:@"default mode" selector:@selector(addDislayLinkForDefaultMode) target:[RunLoopExample new] object:@0]];
     
-    
+    return runLoop;
+}
+
+- (WRSnippetGroup*)runtime{
     WRSnippetGroup *runtime = [WRSnippetGroup groupWithName:@"RunTime"];
     
     [runtime addSnippetItem:[WRSnippetItem itemWithName:@"Class" detail:@"Class的继承体系" selector:@selector(showInheritanceHierarchy) target:[RuntimeExample new] object:@0]];
@@ -50,8 +62,21 @@
     
     [runtime addSnippetItem:[WRSnippetItem itemWithName:@"Swizzling" detail:@"替换方法实现" selector:@selector(swizzlingMethod1) target:[RuntimeExample new] object:@0]];
     
-    [self setSnippetGroups:@[runLoop, runtime]];
+    return runtime;
+}
+
+- (WRSnippetGroup*)block{
+    WRSnippetGroup *block = [WRSnippetGroup groupWithName:@"Block"];
     
+    [block addSnippetItem:[WRSnippetItem itemWithName:@"类型"
+                                               detail:@"看全局、堆栈区Block区别"
+                                             selector:@selector(doubleInt:)
+                                               target:[BlockExample new]
+                                               object:@11]];
+    
+    [block addSnippetItem:[WRSnippetItem itemWithName:@"定义" detail:@"函数返回值为Block" block:[BlockExample new].defineSomeVoidBlock]];
+    
+    return block;
 }
 /*
 #pragma mark - Navigation

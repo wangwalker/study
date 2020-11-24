@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B656609256CA25300F09E60 /* BlockExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B656608256CA25300F09E60 /* BlockExample.m */; };
 		0BB749E725678E74004E1373 /* NSRunTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB749E625678E74004E1373 /* NSRunTimeViewController.m */; };
 		0BC78B1C248F77E30037F815 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC78B1B248F77E30037F815 /* AppDelegate.m */; };
 		0BC78B1F248F77E30037F815 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC78B1E248F77E30037F815 /* SceneDelegate.m */; };
@@ -55,6 +56,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B656607256CA25300F09E60 /* BlockExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockExample.h; sourceTree = "<group>"; };
+		0B656608256CA25300F09E60 /* BlockExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockExample.m; sourceTree = "<group>"; };
 		0BB749E525678E74004E1373 /* NSRunTimeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSRunTimeViewController.h; sourceTree = "<group>"; };
 		0BB749E625678E74004E1373 /* NSRunTimeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSRunTimeViewController.m; sourceTree = "<group>"; };
 		0BC78B17248F77E30037F815 /* Snippets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snippets.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -287,6 +290,8 @@
 		0BE9F4B92565F88F00175FEA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0B656607256CA25300F09E60 /* BlockExample.h */,
+				0B656608256CA25300F09E60 /* BlockExample.m */,
 				0BD390E1256375020050D5F8 /* RunLoopExample.h */,
 				0BD390E2256375020050D5F8 /* RunLoopExample.m */,
 				0BE9F4BE2565FF0500175FEA /* RuntimeExample.h */,
@@ -454,6 +459,7 @@
 				0BB749E725678E74004E1373 /* NSRunTimeViewController.m in Sources */,
 				0BD390D62562571F0050D5F8 /* WRSynchronizeExample.m in Sources */,
 				0BD390E3256375020050D5F8 /* RunLoopExample.m in Sources */,
+				0B656609256CA25300F09E60 /* BlockExample.m in Sources */,
 				0BC78B1F248F77E30037F815 /* SceneDelegate.m in Sources */,
 				0BE6E99A255B70D200118E14 /* NSThreadViewController2.m in Sources */,
 				0BE6E9B5255BD10C00118E14 /* ConcurrViewController.m in Sources */,

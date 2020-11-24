@@ -26,9 +26,9 @@
     
     WRSnippetGroup *cocoa = [WRSnippetGroup groupWithName:@"Cocoa"];
     
-    [cocoa addSnippetItem:[WRSnippetItem itemWithName:@"Concurrent" viewControllerClassName:@"ConcurrViewController" detail:@"并发实践"]];
+    [cocoa addSnippetItem:[WRSnippetItem itemWithName:@"并发编程" viewControllerClassName:@"ConcurrViewController" detail:@"线程、GCD相关"]];
     
-    [cocoa addSnippetItem:[WRSnippetItem itemWithName:@"RunLoop-Time" viewControllerClassName:@"NSRunLoopViewController" detail:@"执行机制相关"]];
+    [cocoa addSnippetItem:[WRSnippetItem itemWithName:@"运行时特性" viewControllerClassName:@"NSRunLoopViewController" detail:@"执行机制相关"]];
     
     groups = @[cocoa, cocoa, cocoa, cocoa, cocoa];
     
