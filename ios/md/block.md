@@ -43,9 +43,9 @@ struct Block_layout {
 
 在Objective-C中，一共有三种类型的Block：
 
-- `_NSConcreteGlobalBlock` 全局的静态Block，不会访问任何外部变量。
-- `_NSConcreteStackBlock` 保存在栈中的Block，当函数返回时会被销毁。
-- `_NSConcreteMallocBlock` 保存在堆中的Block，当引用计数为 0 时会被销毁。
+- `_NSConcreteGlobalBlock` 全局静态Block，保存在全局静态区，不会访问任何外部变量，释放由操作系统控制。
+- `_NSConcreteStackBlock` 栈区Block，保存在栈中，一般作为函数参数出现，当函数返回时会被销毁。
+- `_NSConcreteMallocBlock` 堆区Block，保存在堆中，作为对象属性使用较多，当引用计数为0️⃣时会被销毁。
 
 # 使用
 ## 声明
@@ -137,7 +137,7 @@ printXAndY(456); // prints: 579 456
 
 在Objective-C基于引用计数的内存管理方案中，当一个对象A持有另一个对象B时，而B同时也持有A时，就会造成循环引用的问题，导致A和B的引用计数一直大于0️⃣，因此A和B永远也释放不了，就会造成内存泄漏。当然有时候实际情况会非常复杂，经常是多个对象共同形成循环引用问题。
 
-对于Block，这类问题尤为明显，它通常是自身引用自身造成的。当一个对象强引用某个Block时，此Block又要捕捉自身时，也就是在Block的内部使用`self`时，就会造成此种问题。
+对于Block，这类问题尤为明显，它通常是自身引用自身造成的。当一个对象强引用某个Block时，此Block又要Capture自身时，也就是在Block的内部使用`self`时，就会造成此种问题。
 
 ```objc
 // 这些例子中，都是因为自身对自身的引用造成的
