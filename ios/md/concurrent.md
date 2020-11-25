@@ -81,10 +81,17 @@ NSThread* myThread = [[NSThread alloc] initWithTarget:self selector:@selecto (do
 
 完整示例见: [通过继承NSThread加载用户头像列表](https://github.com/Walkerant/Study/blob/master/ios/Snippets/Snippets/Concurrent/Controller/NSThreadViewController2.m)
 
+通过NSThread可以有效利用多核设备的性能，但同时也会引发一个问题——**如果所有线程都是自己创建，那么有可能活动的线程数会以指数级增长，而每个线程都会消耗一定量的内存和内核资源，这就会成为新问题。**
+
+下面的GCD和NSOperationQueue，会通过集中管理一个所有线程协同使用的**线程池**，解决上面遇到的问题。
+
 # GCD
+## 概况
+
 Grand Central Dispatch简称GCD，是Apple为多核设备并发编程提供的一套综合性的解决方案，因为是在系统级别上实现的，所以更高效。
 
-## 概况
+> 通过 GCD，开发者不用再直接跟线程打交道了，只需要向队列中添加代码块即可，GCD 在后端管理着一个线程池。GCD 不仅决定着你的代码块将在哪个线程被执行，它还根据可用的系统资源对这些线程进行管理。这样可以将开发者从线程管理的工作中解放出来，通过集中的管理线程，来缓解大量线程被创建的问题。
+
 ### 队列Queue
 在GCD中，一共有三种队列，分别是：
 - Serial：对应`DISPATCH_QUEUE_SERIAL`，同一时间只能执行一个任务。常用于访问一些特殊资源，尤其临界资源。
@@ -97,6 +104,8 @@ GCD中，所有任务都可以指定优先级，共分为四种：
 - `DISPATCH_QUEUE_PRIORITY_DEFAULT`：默认优先级；
 - `DISPATCH_QUEUE_PRIORITY_LOW`：较低优先级；
 - `DISPATCH_QUEUE_PRIORITY_BACKGROUND`：最低，常用于处理IO任务。
+
+![线程池及不同优先级队列](https://objccn.io/images/issues/issue-2/gcd-queues.png)
 
 不过，任务优先级现在被另一个特性**服务质量QOS**所取代，QOS即Quality of Service。它有五个值，和优先级有一定的对应关系。
 
@@ -609,8 +618,11 @@ dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(20 * NSEC_PER_SEC)), d
 
 注意，`dispatch_source_set_timer(source, start, interval, leeway)`API的最后一个参数`leeway`用来控制延时误差，值越小，对系统性能要求越高，如果对性能要非常高，那么可以设置为`DISPATCH_TIMER_STRICT`。另外，interval设置为`DISPATCH_TIME_FOREVER`表示一次性任务。
 
-# NSOperation
-NSOperation是一个抽象类，不可直接调用，要么使用系统定义好的两个子类NSInvocationOperation和NSBlockOperation，要么继承自定义实现。
+# NSOperationQueue
+NSOperationQueue是在GCD之上创建的一个基于队列模型的抽象，这让并发实践更加简单方便。
+
+## NSOperation
+NSOperation是一个抽象类，不可直接调用，要么使用系统定义好的两个子类NSInvocationOperation和NSBlockOperation，要么继承自定义实现子类。
 
 实现逻辑和NSThread大体相同，`main`函数是最终执行单任务逻辑的地方，`start`用来控制何时以及在哪里开始执行任务，`cancel`用来取消任务。不同点在于NSOperation可以:
 - 设置任务之间的依赖关系，`addDependency:` `removeDependency:` ；
@@ -799,3 +811,8 @@ void P2() {
 - pthread
     - 优点：轻量，跨平台；
     - 缺点：不好使用。
+
+# 参考
+- [Apple官方文档](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/AboutThreads/AboutThreads.html#//apple_ref/doc/uid/10000057i-CH6-SW2)
+- [ObjC中国期刊第二期](https://objccn.io/issues/)
+- [戴铭的博文](https://github.com/ming1016/study/wiki/iOS%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B)

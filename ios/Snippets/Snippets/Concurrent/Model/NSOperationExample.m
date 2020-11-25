@@ -17,7 +17,7 @@
         NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(downloadImageWithUrlString:) object:str];
         [queue addOperation:operation];
     }
-    
+    NSInputStream *inputs;
     [queue addBarrierBlock:^{
         NSLog(@"all operations finished");
     }];

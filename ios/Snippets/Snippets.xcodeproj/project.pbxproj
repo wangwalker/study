@@ -25,7 +25,6 @@
 		0BE6E976255A3B4800118E14 /* WRSnippetItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E975255A3B4800118E14 /* WRSnippetItem.m */; };
 		0BE6E97C255A3B5F00118E14 /* WRSnippetGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E97B255A3B5F00118E14 /* WRSnippetGroup.m */; };
 		0BE6E982255A3DBE00118E14 /* WRSnippetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E981255A3DBE00118E14 /* WRSnippetManager.m */; };
-		0BE6E988255A640700118E14 /* WRGCDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E987255A640700118E14 /* WRGCDViewController.m */; };
 		0BE6E994255B6C0A00118E14 /* WRGithubUserThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E993255B6C0A00118E14 /* WRGithubUserThread.m */; };
 		0BE6E99A255B70D200118E14 /* NSThreadViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E999255B70D200118E14 /* NSThreadViewController2.m */; };
 		0BE6E9A3255BB2CE00118E14 /* NSOperationExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6E9A2255BB2CE00118E14 /* NSOperationExample.m */; };
@@ -93,8 +92,6 @@
 		0BE6E97B255A3B5F00118E14 /* WRSnippetGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WRSnippetGroup.m; sourceTree = "<group>"; };
 		0BE6E980255A3DBE00118E14 /* WRSnippetManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WRSnippetManager.h; sourceTree = "<group>"; };
 		0BE6E981255A3DBE00118E14 /* WRSnippetManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WRSnippetManager.m; sourceTree = "<group>"; };
-		0BE6E986255A640700118E14 /* WRGCDViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WRGCDViewController.h; sourceTree = "<group>"; };
-		0BE6E987255A640700118E14 /* WRGCDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WRGCDViewController.m; sourceTree = "<group>"; };
 		0BE6E992255B6C0A00118E14 /* WRGithubUserThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WRGithubUserThread.h; sourceTree = "<group>"; };
 		0BE6E993255B6C0A00118E14 /* WRGithubUserThread.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WRGithubUserThread.m; sourceTree = "<group>"; };
 		0BE6E998255B70D200118E14 /* NSThreadViewController2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSThreadViewController2.h; sourceTree = "<group>"; };
@@ -277,8 +274,6 @@
 			children = (
 				0BE6E9B3255BD10C00118E14 /* ConcurrViewController.h */,
 				0BE6E9B4255BD10C00118E14 /* ConcurrViewController.m */,
-				0BE6E986255A640700118E14 /* WRGCDViewController.h */,
-				0BE6E987255A640700118E14 /* WRGCDViewController.m */,
 				0BE6E95F255A21F300118E14 /* NSThreadViewController1.h */,
 				0BE6E960255A21F300118E14 /* NSThreadViewController1.m */,
 				0BE6E998255B70D200118E14 /* NSThreadViewController2.h */,
@@ -463,7 +458,6 @@
 				0BC78B1F248F77E30037F815 /* SceneDelegate.m in Sources */,
 				0BE6E99A255B70D200118E14 /* NSThreadViewController2.m in Sources */,
 				0BE6E9B5255BD10C00118E14 /* ConcurrViewController.m in Sources */,
-				0BE6E988255A640700118E14 /* WRGCDViewController.m in Sources */,
 				0BE6E982255A3DBE00118E14 /* WRSnippetManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
