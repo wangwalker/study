@@ -14,7 +14,7 @@
 void timerDefaultModeCallback() {
     CFRunLoopRef runLoop = CFRunLoopGetCurrent();
     NSArray *allModes = CFBridgingRelease(CFRunLoopCopyAllModes(runLoop));
-    printf("timer on default mode\n");
+    printf("timer on default mode\nall modes: %s", [[allModes description] UTF8String]);
 }
 
 void timerCommonModeCallback() {

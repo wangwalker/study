@@ -19,7 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GCDTaskItem : NSObject
 
-- (instancetype)initWithSleepSeconds:(NSInteger)seconds name:(NSString *)name queue:(dispatch_queue_t)queue NS_DESIGNATED_INITIALIZER;
+- (instancetype)init NS_UNAVAILABLE;
+
+- (instancetype)initWithSleepSeconds:(NSInteger)seconds name:(NSString *)name queue:(dispatch_queue_t)queue;
 
 @property (nonatomic, assign) NSInteger sleepSeconds;
 @property (nonatomic, copy) NSString *name;
@@ -33,7 +35,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GDCGroupTaskScheduler : NSObject
 
-- (instancetype)initWithTasks:(NSArray <GCDTaskItem*>*)tasks name:(NSString *)name NS_DESIGNATED_INITIALIZER;
+- (instancetype)init NS_UNAVAILABLE;
+
+- (instancetype)initWithTasks:(NSArray <GCDTaskItem*>*)tasks name:(NSString *)name;
 
 - (void)dispatchTasksWaitUntilDone;
 - (void)dispatchTasksUntilDoneAndNofity;

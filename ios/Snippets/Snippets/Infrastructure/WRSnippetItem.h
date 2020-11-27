@@ -30,14 +30,14 @@ typedef void(^WRGCDHandler)(void);
 @property (nonatomic, copy) NSString* viewControllerClassName;
 @property (nonatomic, copy) NSString* detailedDescription;
 @property (nonatomic) SEL aSelector;
-@property (nonatomic, strong) id selectorTarget;
-@property (nonatomic, strong) id selectorObject;
+@property (nonatomic) id selectorTarget;
+@property (nonatomic) id selectorObject;
 
 @property (nonatomic) WRGCDHandler handler;
 
-@property (nonatomic, strong) id parameters;
+@property (nonatomic) id parameters;
 
-@property (nonatomic, strong, readonly) id relatedViewController;
+@property (nonatomic, readonly) id relatedViewController;
 
 @end
 

@@ -63,7 +63,10 @@
 
 - (void)start{
     if (self.aSelector) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         [self.selectorTarget performSelector:self.aSelector withObject:self.selectorObject];
+#pragma clang diagnostic pop
     } else if (self.handler) {
         [NSThread detachNewThreadWithBlock:^{
             self.handler();
@@ -78,5 +81,6 @@
     }
     return viewController;
 }
+
 
 @end

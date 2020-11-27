@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UITableView.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,9 +19,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)addSnippetItem:(WRSnippetItem*)item;
 
-@property (nonatomic, strong, readonly) NSArray<WRSnippetItem*>* snippets;
+@property (nonatomic, readonly) NSArray<WRSnippetItem*>* snippets;
 
 @property (nonatomic, copy) NSString* name;
+
+@end
+
+
+@interface WRSnippetGroupTableViewDataSource : NSObject<UITableViewDataSource>
+
++ (instancetype)dataSourceWithGroups:(NSArray<WRSnippetGroup*>*)groups;
+
+@property (nonatomic, readonly) NSArray<WRSnippetGroup*>* groups;
 
 @end
 

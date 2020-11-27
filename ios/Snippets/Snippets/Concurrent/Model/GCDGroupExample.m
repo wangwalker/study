@@ -46,7 +46,6 @@
 
 @implementation GDCGroupTaskScheduler
 
-
 - (instancetype)initWithTasks:(NSArray<GCDTaskItem *> *)tasks name:(nonnull NSString *)name{
     if (self = [super init]) {
         self.tasks = tasks;
@@ -83,9 +82,7 @@
             [task start];
         });
     }
-    dispatch_block_create(QOS_CLASS_DEFAULT, ^{
-        
-    });
+    
     dispatch_group_notify(_group, queue, ^{
         NSLog(@"group-task-%@ using %.3f seconds finishing task", self.name, [[NSDate date] timeIntervalSinceDate:start]);
         NSLog(@"=========================");
