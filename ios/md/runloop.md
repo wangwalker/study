@@ -25,7 +25,7 @@ while (appHasTasks) {
 
 ![iOS运行流程](../images/run-loop-flow.png)
 
-其中，涉及RunLoop的系统级服务：GCD、Block、Thread等，应用级服务包括：NSObj(NSDelayedPerforming)、NSObject(NSThreadPerformAddtion)、NSTimer、CADisplayLink、CATransition、NSPort、NSURLConnection等。
+其中，涉及RunLoop的系统级服务：GCD、Block、Thread等，应用级服务包括：NSObject(NSDelayedPerforming)、NSObject(NSThreadPerformAddtion)、NSTimer、CADisplayLink、CATransition、NSPort、NSURLConnection等。
 
 # 原理
 ## Run Loop Mode
@@ -36,10 +36,10 @@ while (appHasTasks) {
 
 - `NSDefaultRunLoopMode`：默认模式，大多数情况下适用；
 - `UITrackingRunLoopMode`：滑动ScrollView时使用；
-- `UIInitializationRunLoopMode`：启动时使用；
+- `UIInitializationRunLoopMode`：启动时首次使用的Mode；
 - `NSRunLoopCommonModes`：包含多种Mode的集合，包括Default、UITrack等模式。
 
-更多的Modes见：[iPhoneDevWIKI](http://iphonedevwiki.net/index.php/CFRunLoop)
+更多的Modes见：[iphonedevwiki](http://iphonedevwiki.net/index.php/CFRunLoop)
 
 有一个奇怪的现象：当滑动ScrollView时，NSTimer将不再执行。这就是因为Timer是在`NSDefaultRunLoopMode`下执行的，而滑动ScrollView时会切换到`UITrackingRunLoopMode`，而解决这一问题的方法就是通过将Timer添加到NSRunLoopCommonModes。
 
@@ -66,7 +66,7 @@ NSTimer *timer = [NSTimer timerWithTimeInterval:.2 repeats:YES block:^(NSTimer *
 为线程发送异步任务的一切来源都可称之为Input Source，有三个类型：基于端口的，自定义的，Selector相关的。
 
 - 基于端口：主要来自系统的内置服务，比如网络、Socket编程相关；
-- 自定义：需要配置回调函数和任务分发机制；
+- 自定义：需要配置回调函数和任务分发机制，很少使用；
 - Selector相关：会被序列化在对应线程上，执行完成之后会被移除。
 
 关于Selector Source，主要包括：

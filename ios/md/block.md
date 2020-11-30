@@ -110,7 +110,7 @@ void SomeFunctionThatTakesABlock(returnType (^blockName)(parameterTypes));
 ```
 ## __block
 
-在Block中，可捕获capture的词法环境变量一共有五种类型，它们分别是：
+在Block中，它会copy当前词法环境中的变量，这些变量一共分为五种类型，它们分别是：
 
 - 全局变量，包括静态变量；
 - 全局函数对象，主要是C函数；
@@ -118,7 +118,7 @@ void SomeFunctionThatTakesABlock(returnType (^blockName)(parameterTypes));
 - 从其他地方引入的const常量；
 - `__block`变量。
 
-一般情况下，Block中捕获的变量都是只读类型的，只能引用而不可修改。但是加上存储修饰符`__block`之后，则既可以读也可以写。
+一般情况下，Block中copy的变量都是只读类型的，只能引用而不可修改。但是加上**存储修饰符**`__block`之后，则既可以读也可以写。
 
 ```objc
 __block int x = 123; //  x lives in block storage
@@ -137,7 +137,7 @@ printXAndY(456); // prints: 579 456
 
 在Objective-C基于引用计数的内存管理方案中，当一个对象A持有另一个对象B时，而B同时也持有A时，就会造成循环引用的问题，导致A和B的引用计数一直大于0️⃣，因此A和B永远也释放不了，就会造成内存泄漏。当然有时候实际情况会非常复杂，经常是多个对象共同形成循环引用问题。
 
-对于Block，这类问题尤为明显，它通常是自身引用自身造成的。当一个对象强引用某个Block时，此Block又要Capture自身时，也就是在Block的内部使用`self`时，就会造成此种问题。
+对于Block，这类问题尤为明显，它通常是自身引用自身造成的。当一个对象强引用某个Block时，而此Block又要copy自身时，也就是在Block的内部使用`self`时，就会造成retain cycle循环引用的问题。
 
 ```objc
 // 这些例子中，都是因为自身对自身的引用造成的

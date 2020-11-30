@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^WRGCDHandler)(void);
 
-@interface WRSnippetItem : NSObject
+@interface WRSnippetItem : NSObject<NSCopying>
 
 // 需要push新页面
 + (instancetype)itemWithName:(NSString*)name viewControllerClassName:(NSString*)className detail:(NSString*)detailDesc;

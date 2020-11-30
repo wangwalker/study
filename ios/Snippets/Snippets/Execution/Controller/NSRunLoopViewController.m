@@ -30,7 +30,7 @@
     [self setSnippetGroups:@[
         [self runloop],
         [self runtime],
-        [self block]
+        [self block],
     ]];
 }
 
@@ -78,6 +78,7 @@
     
     return block;
 }
+
 /*
 #pragma mark - Navigation
 

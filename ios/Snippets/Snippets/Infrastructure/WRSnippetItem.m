@@ -7,6 +7,7 @@
 //
 
 #import "WRSnippetItem.h"
+#import <UIKit/UIViewController.h>
 
 @implementation WRSnippetItem{
     id viewController;
@@ -82,5 +83,27 @@
     return viewController;
 }
 
+- (BOOL)isEqual:(id)object{
+    if (![object isMemberOfClass:[WRSnippetItem class]]) {
+        return NO;
+    }
+    
+    WRSnippetItem *other = (WRSnippetItem*)object;
+    
+    BOOL nameIsEqual = self.name == other.name || [self.name isEqualToString:other.name];
+    BOOL classIsEqual = [self.relatedViewController isEqualToString:other.relatedViewController];
+    BOOL selIsEqual = self.aSelector == other.aSelector;
+    
+    return nameIsEqual && (classIsEqual || selIsEqual);
+}
+
+- (NSUInteger)hash{
+    return self.name.hash ^ self.detailedDescription.hash;
+}
+
+- (id)copyWithZone:(NSZone *)zone{
+    WRSnippetItem *item = [[WRSnippetItem alloc] initWithName:self.name viewControllerClassName:self.viewControllerClassName detailDesc:self.detailedDescription selector:self.aSelector selectorTarget:self.selectorTarget selectorObject:self.selectorObject handler:self.handler];
+    return item;
+}
 
 @end
