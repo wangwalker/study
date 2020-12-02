@@ -11,7 +11,11 @@
 		0B0CC0BB2574C69C00D54B6C /* ColorConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0CC0BA2574C69C00D54B6C /* ColorConvertor.m */; };
 		0B0CC0C22574CADB00D54B6C /* ColorConvertorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0CC0C02574CADB00D54B6C /* ColorConvertorViewController.m */; };
 		0B0CC0C32574CADB00D54B6C /* ColorConvertorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B0CC0C12574CADB00D54B6C /* ColorConvertorViewController.xib */; };
-		0B0CC0D82574E94000D54B6C /* KeyValueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0CC0D72574E94000D54B6C /* KeyValueViewController.m */; };
+		0B0CC0D82574E94000D54B6C /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0CC0D72574E94000D54B6C /* MessageViewController.m */; };
+		0B0CC0E42577306700D54B6C /* ClassmateContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0CC0E32577306700D54B6C /* ClassmateContact.m */; };
+		0B0CC0EE2577310100D54B6C /* ClassmateContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0CC0EC2577310100D54B6C /* ClassmateContactViewController.m */; };
+		0B0CC0EF2577310100D54B6C /* ClassmateContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B0CC0ED2577310100D54B6C /* ClassmateContactViewController.xib */; };
+		0B0CC0FB257772E500D54B6C /* KVCTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0CC0FA257772E500D54B6C /* KVCTransaction.m */; };
 		0B656609256CA25300F09E60 /* BlockExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B656608256CA25300F09E60 /* BlockExample.m */; };
 		0BB749E725678E74004E1373 /* NSRunTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB749E625678E74004E1373 /* NSRunTimeViewController.m */; };
 		0BC78B1C248F77E30037F815 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC78B1B248F77E30037F815 /* AppDelegate.m */; };
@@ -67,8 +71,15 @@
 		0B0CC0BF2574CADB00D54B6C /* ColorConvertorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorConvertorViewController.h; sourceTree = "<group>"; };
 		0B0CC0C02574CADB00D54B6C /* ColorConvertorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorConvertorViewController.m; sourceTree = "<group>"; };
 		0B0CC0C12574CADB00D54B6C /* ColorConvertorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorConvertorViewController.xib; sourceTree = "<group>"; };
-		0B0CC0D62574E94000D54B6C /* KeyValueViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyValueViewController.h; sourceTree = "<group>"; };
-		0B0CC0D72574E94000D54B6C /* KeyValueViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyValueViewController.m; sourceTree = "<group>"; };
+		0B0CC0D62574E94000D54B6C /* MessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
+		0B0CC0D72574E94000D54B6C /* MessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		0B0CC0E22577306700D54B6C /* ClassmateContact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassmateContact.h; sourceTree = "<group>"; };
+		0B0CC0E32577306700D54B6C /* ClassmateContact.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassmateContact.m; sourceTree = "<group>"; };
+		0B0CC0EB2577310100D54B6C /* ClassmateContactViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassmateContactViewController.h; sourceTree = "<group>"; };
+		0B0CC0EC2577310100D54B6C /* ClassmateContactViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassmateContactViewController.m; sourceTree = "<group>"; };
+		0B0CC0ED2577310100D54B6C /* ClassmateContactViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassmateContactViewController.xib; sourceTree = "<group>"; };
+		0B0CC0F9257772E500D54B6C /* KVCTransaction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVCTransaction.h; sourceTree = "<group>"; };
+		0B0CC0FA257772E500D54B6C /* KVCTransaction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVCTransaction.m; sourceTree = "<group>"; };
 		0B656607256CA25300F09E60 /* BlockExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockExample.h; sourceTree = "<group>"; };
 		0B656608256CA25300F09E60 /* BlockExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockExample.m; sourceTree = "<group>"; };
 		0BB749E525678E74004E1373 /* NSRunTimeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSRunTimeViewController.h; sourceTree = "<group>"; };
@@ -158,29 +169,36 @@
 			children = (
 				0B0CC0B92574C69C00D54B6C /* ColorConvertor.h */,
 				0B0CC0BA2574C69C00D54B6C /* ColorConvertor.m */,
+				0B0CC0E22577306700D54B6C /* ClassmateContact.h */,
+				0B0CC0E32577306700D54B6C /* ClassmateContact.m */,
 				0B0CC0B3257498D000D54B6C /* KeyValueObserver.h */,
 				0B0CC0B4257498D000D54B6C /* KeyValueObserver.m */,
+				0B0CC0F9257772E500D54B6C /* KVCTransaction.h */,
+				0B0CC0FA257772E500D54B6C /* KVCTransaction.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		0B0CC0D12574E8FB00D54B6C /* KeyValue */ = {
+		0B0CC0D12574E8FB00D54B6C /* Message */ = {
 			isa = PBXGroup;
 			children = (
 				0B0CC0D52574E91700D54B6C /* Controller */,
 				0B0CC0CD2574E8E700D54B6C /* Model */,
 			);
-			path = KeyValue;
+			path = Message;
 			sourceTree = "<group>";
 		};
 		0B0CC0D52574E91700D54B6C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0B0CC0D62574E94000D54B6C /* KeyValueViewController.h */,
-				0B0CC0D72574E94000D54B6C /* KeyValueViewController.m */,
+				0B0CC0D62574E94000D54B6C /* MessageViewController.h */,
+				0B0CC0D72574E94000D54B6C /* MessageViewController.m */,
 				0B0CC0BF2574CADB00D54B6C /* ColorConvertorViewController.h */,
 				0B0CC0C02574CADB00D54B6C /* ColorConvertorViewController.m */,
 				0B0CC0C12574CADB00D54B6C /* ColorConvertorViewController.xib */,
+				0B0CC0EB2577310100D54B6C /* ClassmateContactViewController.h */,
+				0B0CC0EC2577310100D54B6C /* ClassmateContactViewController.m */,
+				0B0CC0ED2577310100D54B6C /* ClassmateContactViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -213,7 +231,7 @@
 				0BD390DA2563746F0050D5F8 /* Infrastructure */,
 				0BE6E965255A223100118E14 /* Concurrent */,
 				0BD390EB256375850050D5F8 /* Execution */,
-				0B0CC0D12574E8FB00D54B6C /* KeyValue */,
+				0B0CC0D12574E8FB00D54B6C /* Message */,
 				0BC78B26248F77E90037F815 /* Assets.xcassets */,
 				0BC78B28248F77E90037F815 /* LaunchScreen.storyboard */,
 				0BC78B2B248F77E90037F815 /* Info.plist */,
@@ -456,6 +474,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B0CC0EF2577310100D54B6C /* ClassmateContactViewController.xib in Resources */,
 				0B0CC0C32574CADB00D54B6C /* ColorConvertorViewController.xib in Resources */,
 				0BC78B2A248F77E90037F815 /* LaunchScreen.storyboard in Resources */,
 				0BC78B27248F77E90037F815 /* Assets.xcassets in Resources */,
@@ -491,6 +510,8 @@
 				0BFE29B6255E62E200F7CB96 /* GCDSourceExample.m in Sources */,
 				0BC78B1C248F77E30037F815 /* AppDelegate.m in Sources */,
 				0BFE29B0255E28C400F7CB96 /* GCDSemaphoreExample.m in Sources */,
+				0B0CC0EE2577310100D54B6C /* ClassmateContactViewController.m in Sources */,
+				0B0CC0E42577306700D54B6C /* ClassmateContact.m in Sources */,
 				0BE9413524E66C9E0064E662 /* GCDGroupExample.m in Sources */,
 				0BE6E994255B6C0A00118E14 /* WRGithubUserThread.m in Sources */,
 				0B0CC0B5257498D000D54B6C /* KeyValueObserver.m in Sources */,
@@ -499,7 +520,7 @@
 				0BE6E9AF255BCD6100118E14 /* HomeViewController.m in Sources */,
 				0BC78B2D248F77E90037F815 /* main.m in Sources */,
 				0BD390F22564B1350050D5F8 /* NSRunLoopViewController.m in Sources */,
-				0B0CC0D82574E94000D54B6C /* KeyValueViewController.m in Sources */,
+				0B0CC0D82574E94000D54B6C /* MessageViewController.m in Sources */,
 				0BE6E9A3255BB2CE00118E14 /* NSOperationExample.m in Sources */,
 				0BB749E725678E74004E1373 /* NSRunTimeViewController.m in Sources */,
 				0BD390D62562571F0050D5F8 /* WRSynchronizeExample.m in Sources */,
@@ -507,6 +528,7 @@
 				0BD390E3256375020050D5F8 /* RunLoopExample.m in Sources */,
 				0B656609256CA25300F09E60 /* BlockExample.m in Sources */,
 				0BC78B1F248F77E30037F815 /* SceneDelegate.m in Sources */,
+				0B0CC0FB257772E500D54B6C /* KVCTransaction.m in Sources */,
 				0BE6E99A255B70D200118E14 /* NSThreadViewController2.m in Sources */,
 				0BE6E9B5255BD10C00118E14 /* ConcurrViewController.m in Sources */,
 				0B0CC0BB2574C69C00D54B6C /* ColorConvertor.m in Sources */,

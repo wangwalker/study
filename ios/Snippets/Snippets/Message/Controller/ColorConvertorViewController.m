@@ -19,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view setBackgroundColor:[UIColor lightTextColor]];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
 
 //    [self setConvertorNatively];
     
@@ -54,14 +54,28 @@
                                 context:NULL];
 }
 
+- (void)setConvertorObserverWithContext{
+    [self.labColorConverter addObserver:self
+                             forKeyPath:@"color"
+                                options:(NSKeyValueObservingOptionInitial|
+                                         NSKeyValueObservingOptionOld|
+                                         NSKeyValueObservingOptionNew)
+                                context:&kColorConvertorKVOContextSomeOne];
+}
+
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    if (context == &kColorConvertorKVOContextSomeOne) {
+        // 做相应的处理
+    }
     if ([keyPath isEqualToString:@"color"]) {
         [self performSelector:@selector(updateColor:) withObject:change];
     }
 }
 
 - (void)updateColor:(NSDictionary*)change {
-    NSLog(@"update bgcolor: %@", change);
+    id oldValue = change[NSKeyValueChangeOldKey];
+    id newValue = change[NSKeyValueChangeNewKey];
+    NSLog(@"update bgcolor, old: %@, new: %@", oldValue, newValue);
     self.view.backgroundColor = self.labColorConverter.color;
 }
 
@@ -77,5 +91,8 @@
     self.labColorConverter.bComponent = sender.value;
 }
 
+- (void)dealloc{
+    [self.labColorConverter removeObserver:self forKeyPath:@"color"];
+}
 
 @end

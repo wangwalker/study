@@ -30,7 +30,7 @@
     
     [cocoa addSnippetItem:[WRSnippetItem itemWithName:@"运行时特性" viewControllerClassName:@"NSRunLoopViewController" detail:@"执行机制相关"]];
     
-    [cocoa addSnippetItem:[WRSnippetItem itemWithName:@"Key-Value" viewControllerClassName:@"KeyValueViewController" detail:@"键值对特性"]];
+    [cocoa addSnippetItem:[WRSnippetItem itemWithName:@"消息机制" viewControllerClassName:@"MessageViewController" detail:@"KVO&C、通知机制等"]];
     
     groups = @[cocoa, cocoa, cocoa, cocoa, cocoa];
     

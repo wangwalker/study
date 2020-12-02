@@ -19,6 +19,19 @@
     return self;
 }
 
+#pragma mark - Settter
+
+- (void)setName:(NSString *)name{
+    if ([name isEqualToString:_name])
+        return;
+    
+    [self willChangeValueForKey:@"name"];
+    _name = name;
+    [self didChangeValueForKey:@"name"];
+}
+
+#pragma mark - Getter
+
 - (double)redComponent{
     float var_Y = ( self.lComponent + 16. ) / 116.;
     float var_X = self.aComponent / 500. + var_Y;
@@ -127,5 +140,15 @@
     return [NSSet setWithObjects:@"redComponent", @"greenComponent", @"blueComponent", nil];
 }
 
++ (BOOL)automaticallyNotifiesObserversOfName{
+    return NO;
+}
+
++ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)key{
+    if ([[NSArray arrayWithObjects:@"name", nil] containsObject:key]) {
+        return NO;
+    }
+    return YES;
+}
 
 @end

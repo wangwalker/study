@@ -11,11 +11,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+static int const kColorConvertorKVOContextSomeOne;
+
 @interface ColorConvertor : NSObject
 
 @property (nonatomic) double lComponent;
 @property (nonatomic) double aComponent;
 @property (nonatomic) double bComponent;
+
+@property (nonatomic, copy) NSString *name;
 
 @property (nonatomic, readonly) double redComponent;
 @property (nonatomic, readonly) double greenComponent;
