@@ -16,11 +16,16 @@
 		0B0CC0EE2577310100D54B6C /* ClassmateContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0CC0EC2577310100D54B6C /* ClassmateContactViewController.m */; };
 		0B0CC0EF2577310100D54B6C /* ClassmateContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B0CC0ED2577310100D54B6C /* ClassmateContactViewController.xib */; };
 		0B0CC0FB257772E500D54B6C /* KVCTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0CC0FA257772E500D54B6C /* KVCTransaction.m */; };
+		0B0CC107257868F200D54B6C /* BaseUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0CC106257868F200D54B6C /* BaseUIViewController.m */; };
+		0B0CC11525786EF500D54B6C /* NSArrayOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0CC11425786EF500D54B6C /* NSArrayOperation.m */; };
+		0B0CC11F25786F5F00D54B6C /* WRProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0CC11D25786F5F00D54B6C /* WRProduct.m */; };
+		0B0CC12525786FFD00D54B6C /* NSDictionaryOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0CC12425786FFD00D54B6C /* NSDictionaryOperation.m */; };
+		0B0CC12B2578707500D54B6C /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0CC12A2578707500D54B6C /* CollectionViewController.m */; };
 		0B656609256CA25300F09E60 /* BlockExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B656608256CA25300F09E60 /* BlockExample.m */; };
 		0BB749E725678E74004E1373 /* NSRunTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB749E625678E74004E1373 /* NSRunTimeViewController.m */; };
 		0BC78B1C248F77E30037F815 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC78B1B248F77E30037F815 /* AppDelegate.m */; };
 		0BC78B1F248F77E30037F815 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC78B1E248F77E30037F815 /* SceneDelegate.m */; };
-		0BC78B22248F77E30037F815 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC78B21248F77E30037F815 /* ViewController.m */; };
+		0BC78B22248F77E30037F815 /* BaseSnippetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC78B21248F77E30037F815 /* BaseSnippetViewController.m */; };
 		0BC78B27248F77E90037F815 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BC78B26248F77E90037F815 /* Assets.xcassets */; };
 		0BC78B2A248F77E90037F815 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BC78B28248F77E90037F815 /* LaunchScreen.storyboard */; };
 		0BC78B2D248F77E90037F815 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC78B2C248F77E90037F815 /* main.m */; };
@@ -80,6 +85,16 @@
 		0B0CC0ED2577310100D54B6C /* ClassmateContactViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassmateContactViewController.xib; sourceTree = "<group>"; };
 		0B0CC0F9257772E500D54B6C /* KVCTransaction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVCTransaction.h; sourceTree = "<group>"; };
 		0B0CC0FA257772E500D54B6C /* KVCTransaction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVCTransaction.m; sourceTree = "<group>"; };
+		0B0CC105257868F200D54B6C /* BaseUIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseUIViewController.h; sourceTree = "<group>"; };
+		0B0CC106257868F200D54B6C /* BaseUIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseUIViewController.m; sourceTree = "<group>"; };
+		0B0CC11325786EF500D54B6C /* NSArrayOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSArrayOperation.h; sourceTree = "<group>"; };
+		0B0CC11425786EF500D54B6C /* NSArrayOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSArrayOperation.m; sourceTree = "<group>"; };
+		0B0CC11D25786F5F00D54B6C /* WRProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRProduct.m; sourceTree = "<group>"; };
+		0B0CC11E25786F5F00D54B6C /* WRProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRProduct.h; sourceTree = "<group>"; };
+		0B0CC12325786FFD00D54B6C /* NSDictionaryOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSDictionaryOperation.h; sourceTree = "<group>"; };
+		0B0CC12425786FFD00D54B6C /* NSDictionaryOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSDictionaryOperation.m; sourceTree = "<group>"; };
+		0B0CC1292578707500D54B6C /* CollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
+		0B0CC12A2578707500D54B6C /* CollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
 		0B656607256CA25300F09E60 /* BlockExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockExample.h; sourceTree = "<group>"; };
 		0B656608256CA25300F09E60 /* BlockExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockExample.m; sourceTree = "<group>"; };
 		0BB749E525678E74004E1373 /* NSRunTimeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSRunTimeViewController.h; sourceTree = "<group>"; };
@@ -89,8 +104,8 @@
 		0BC78B1B248F77E30037F815 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0BC78B1D248F77E30037F815 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		0BC78B1E248F77E30037F815 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		0BC78B20248F77E30037F815 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		0BC78B21248F77E30037F815 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		0BC78B20248F77E30037F815 /* BaseSnippetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseSnippetViewController.h; sourceTree = "<group>"; };
+		0BC78B21248F77E30037F815 /* BaseSnippetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseSnippetViewController.m; sourceTree = "<group>"; };
 		0BC78B26248F77E90037F815 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BC78B29248F77E90037F815 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0BC78B2B248F77E90037F815 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -203,6 +218,32 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		0B0CC10F25786E2D00D54B6C /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				0B0CC11925786EFF00D54B6C /* Collection */,
+				0BE6E965255A223100118E14 /* Concurrent */,
+				0BD390EB256375850050D5F8 /* Execution */,
+				0B0CC0D12574E8FB00D54B6C /* Message */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		0B0CC11925786EFF00D54B6C /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				0B0CC11E25786F5F00D54B6C /* WRProduct.h */,
+				0B0CC11D25786F5F00D54B6C /* WRProduct.m */,
+				0B0CC11325786EF500D54B6C /* NSArrayOperation.h */,
+				0B0CC11425786EF500D54B6C /* NSArrayOperation.m */,
+				0B0CC12325786FFD00D54B6C /* NSDictionaryOperation.h */,
+				0B0CC12425786FFD00D54B6C /* NSDictionaryOperation.m */,
+				0B0CC1292578707500D54B6C /* CollectionViewController.h */,
+				0B0CC12A2578707500D54B6C /* CollectionViewController.m */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
 		0BC78B0E248F77E30037F815 = {
 			isa = PBXGroup;
 			children = (
@@ -229,9 +270,7 @@
 				0BD390E7256375390050D5F8 /* Intrinsic */,
 				0BD390EC256375B80050D5F8 /* Scaffold */,
 				0BD390DA2563746F0050D5F8 /* Infrastructure */,
-				0BE6E965255A223100118E14 /* Concurrent */,
-				0BD390EB256375850050D5F8 /* Execution */,
-				0B0CC0D12574E8FB00D54B6C /* Message */,
+				0B0CC10F25786E2D00D54B6C /* Foundation */,
 				0BC78B26248F77E90037F815 /* Assets.xcassets */,
 				0BC78B28248F77E90037F815 /* LaunchScreen.storyboard */,
 				0BC78B2B248F77E90037F815 /* Info.plist */,
@@ -294,8 +333,10 @@
 		0BD390EC256375B80050D5F8 /* Scaffold */ = {
 			isa = PBXGroup;
 			children = (
-				0BC78B20248F77E30037F815 /* ViewController.h */,
-				0BC78B21248F77E30037F815 /* ViewController.m */,
+				0B0CC105257868F200D54B6C /* BaseUIViewController.h */,
+				0B0CC106257868F200D54B6C /* BaseUIViewController.m */,
+				0BC78B20248F77E30037F815 /* BaseSnippetViewController.h */,
+				0BC78B21248F77E30037F815 /* BaseSnippetViewController.m */,
 				0BE6E9AD255BCD6100118E14 /* HomeViewController.h */,
 				0BE6E9AE255BCD6100118E14 /* HomeViewController.m */,
 			);
@@ -504,13 +545,16 @@
 			files = (
 				0BE6E97C255A3B5F00118E14 /* WRSnippetGroup.m in Sources */,
 				0BE6E976255A3B4800118E14 /* WRSnippetItem.m in Sources */,
-				0BC78B22248F77E30037F815 /* ViewController.m in Sources */,
+				0BC78B22248F77E30037F815 /* BaseSnippetViewController.m in Sources */,
 				0BE6E961255A21F300118E14 /* NSThreadViewController1.m in Sources */,
 				0BFE29A7255CD65E00F7CB96 /* GCDQueueExample.m in Sources */,
 				0BFE29B6255E62E200F7CB96 /* GCDSourceExample.m in Sources */,
 				0BC78B1C248F77E30037F815 /* AppDelegate.m in Sources */,
 				0BFE29B0255E28C400F7CB96 /* GCDSemaphoreExample.m in Sources */,
+				0B0CC12B2578707500D54B6C /* CollectionViewController.m in Sources */,
 				0B0CC0EE2577310100D54B6C /* ClassmateContactViewController.m in Sources */,
+				0B0CC107257868F200D54B6C /* BaseUIViewController.m in Sources */,
+				0B0CC11F25786F5F00D54B6C /* WRProduct.m in Sources */,
 				0B0CC0E42577306700D54B6C /* ClassmateContact.m in Sources */,
 				0BE9413524E66C9E0064E662 /* GCDGroupExample.m in Sources */,
 				0BE6E994255B6C0A00118E14 /* WRGithubUserThread.m in Sources */,
@@ -527,9 +571,11 @@
 				0B0CC0C22574CADB00D54B6C /* ColorConvertorViewController.m in Sources */,
 				0BD390E3256375020050D5F8 /* RunLoopExample.m in Sources */,
 				0B656609256CA25300F09E60 /* BlockExample.m in Sources */,
+				0B0CC11525786EF500D54B6C /* NSArrayOperation.m in Sources */,
 				0BC78B1F248F77E30037F815 /* SceneDelegate.m in Sources */,
 				0B0CC0FB257772E500D54B6C /* KVCTransaction.m in Sources */,
 				0BE6E99A255B70D200118E14 /* NSThreadViewController2.m in Sources */,
+				0B0CC12525786FFD00D54B6C /* NSDictionaryOperation.m in Sources */,
 				0BE6E9B5255BD10C00118E14 /* ConcurrViewController.m in Sources */,
 				0B0CC0BB2574C69C00D54B6C /* ColorConvertor.m in Sources */,
 				0BE6E982255A3DBE00118E14 /* WRSnippetManager.m in Sources */,

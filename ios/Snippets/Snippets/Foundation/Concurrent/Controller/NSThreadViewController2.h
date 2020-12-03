@@ -1,17 +1,16 @@
 //
-//  HomeViewController.h
+//  WRNSThreadViewController2.h
 //  Snippets
 //
 //  Created by Walker on 2020/11/11.
 //  Copyright © 2020 Walker. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "BaseSnippetViewController.h"
+#import "BaseUIViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HomeViewController : BaseSnippetViewController
+@interface NSThreadViewController2 : BaseUIViewController
 
 @end
 

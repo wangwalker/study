@@ -84,9 +84,8 @@
 }
 
 - (BOOL)isEqual:(id)object{
-    if (![object isMemberOfClass:[WRSnippetItem class]]) {
+    if (![object isMemberOfClass:[WRSnippetItem class]])
         return NO;
-    }
     
     WRSnippetItem *other = (WRSnippetItem*)object;
     
@@ -102,8 +101,13 @@
 }
 
 - (id)copyWithZone:(NSZone *)zone{
-    WRSnippetItem *item = [[WRSnippetItem alloc] initWithName:self.name viewControllerClassName:self.viewControllerClassName detailDesc:self.detailedDescription selector:self.aSelector selectorTarget:self.selectorTarget selectorObject:self.selectorObject handler:self.handler];
-    return item;
+    return [[WRSnippetItem alloc] initWithName:self.name
+                       viewControllerClassName:self.viewControllerClassName
+                                    detailDesc:self.detailedDescription
+                                      selector:self.aSelector
+                                selectorTarget:self.selectorTarget
+                                selectorObject:self.selectorObject
+                                       handler:self.handler];
 }
 
 @end

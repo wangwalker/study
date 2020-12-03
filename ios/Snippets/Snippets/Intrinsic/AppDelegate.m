@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
+#import "BaseSnippetViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -21,7 +21,7 @@
         
     } else {
         self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        UIViewController *viewcontroller = [[ViewController alloc] init];
+        UIViewController *viewcontroller = [[BaseSnippetViewController alloc] init];
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewcontroller];
         self.window.rootViewController = nav;
         [self.window makeKeyAndVisible];

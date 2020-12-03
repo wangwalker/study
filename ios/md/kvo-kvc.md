@@ -138,7 +138,8 @@ if ([change[NSKeyValueChangeNotificationIsPriorKey] boolValue]) {
 - 在合适的时机，移除观察者，否则容易发生内存泄漏；
 - 不要多次移除同一个观察者，否则应用将Crash掉。
 
-至于KVO的实现原理，是根据Runtime提供的态能力Method SWizzling动。先在运行期动态创建一个继承自被观察类的新类，其名为`NSKVONotifying_OriginalClassName`，里面会添加`willChangeValueForKey:`和`didChangeValueForKey:`。然后在注册KVO时，会将被观察者对象的isa指针指向新创建的类。最后在被观察者的属性被修改时，调用相关方法执行。
+至于KVO的实现原理，是根据Runtime提供的动态能力Method Swizzling
+。先在运行期动态创建一个继承自被观察类的新类，其名为`NSKVONotifying_OriginalClassName`，里面会添加`willChangeValueForKey:`和`didChangeValueForKey:`。然后在注册KVO时，会将被观察者对象的isa指针指向新创建的类。最后在被观察者的属性被修改时，调用相关方法执行。
 
 ## 手动发送
 

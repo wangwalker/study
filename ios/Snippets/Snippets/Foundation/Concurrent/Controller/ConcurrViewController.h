@@ -1,5 +1,5 @@
 //
-//  HomeViewController.h
+//  ConcurrViewController.h
 //  Snippets
 //
 //  Created by Walker on 2020/11/11.
@@ -8,10 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseSnippetViewController.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HomeViewController : BaseSnippetViewController
+@interface ConcurrViewController : BaseSnippetViewController
 
 @end
 

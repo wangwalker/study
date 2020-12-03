@@ -24,15 +24,17 @@
 - (NSArray<WRSnippetGroup *> *)allSnippetGroups{
     static NSArray<WRSnippetGroup*>* groups;
     
-    WRSnippetGroup *cocoa = [WRSnippetGroup groupWithName:@"Cocoa"];
+    WRSnippetGroup *foundation = [WRSnippetGroup groupWithName:@"Foundation"];
     
-    [cocoa addSnippetItem:[WRSnippetItem itemWithName:@"并发编程" viewControllerClassName:@"ConcurrViewController" detail:@"线程、GCD相关"]];
+    [foundation addSnippetItem:[WRSnippetItem itemWithName:@"集合类" viewControllerClassName:@"CollectionViewController" detail:@"排序、遍历、查找等操作"]];
     
-    [cocoa addSnippetItem:[WRSnippetItem itemWithName:@"运行时特性" viewControllerClassName:@"NSRunLoopViewController" detail:@"执行机制相关"]];
+    [foundation addSnippetItem:[WRSnippetItem itemWithName:@"并发编程" viewControllerClassName:@"ConcurrViewController" detail:@"线程、GCD相关"]];
     
-    [cocoa addSnippetItem:[WRSnippetItem itemWithName:@"消息机制" viewControllerClassName:@"MessageViewController" detail:@"KVO&C、通知机制等"]];
+    [foundation addSnippetItem:[WRSnippetItem itemWithName:@"运行时特性" viewControllerClassName:@"NSRunLoopViewController" detail:@"执行机制相关"]];
     
-    groups = @[cocoa, cocoa, cocoa, cocoa, cocoa];
+    [foundation addSnippetItem:[WRSnippetItem itemWithName:@"消息机制" viewControllerClassName:@"MessageViewController" detail:@"KVO&C、通知机制等"]];
+    
+    groups = @[foundation, foundation, foundation, foundation, foundation];
     
     return groups;
 }
