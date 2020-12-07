@@ -37,7 +37,7 @@ NSThread* myThread = [[NSThread alloc] initWithTarget:self selector:@selecto (do
 [self performSelectorInBackground:@selector(doSomething) withObject:nil];
 ```
 
-完整示例见: [直接通过创建NSThread加载用户头像列表](https://github.com/Walkerant/Study/blob/master/ios/Snippets/Snippets/Concurrent/Controller/NSThreadViewController1.m)
+完整示例见: [直接通过创建NSThread加载用户头像列表](https://github.com/Walkerant/Study/blob/master/ios/Snippets/Snippets/Foundation/Concurrent/Controller/NSThreadViewController1.m)
 
 ### 继承
 
@@ -79,7 +79,7 @@ NSThread* myThread = [[NSThread alloc] initWithTarget:self selector:@selecto (do
 }
 ```
 
-完整示例见: [通过继承NSThread加载用户头像列表](https://github.com/Walkerant/Study/blob/master/ios/Snippets/Snippets/Concurrent/Controller/NSThreadViewController2.m)
+完整示例见: [通过继承NSThread加载用户头像列表](https://github.com/Walkerant/Study/blob/master/ios/Snippets/Snippets/Foundation/Concurrent/Controller/NSThreadViewController2.m)
 
 通过NSThread可以有效利用多核设备的性能，但同时也会引发一个问题——**如果所有线程都是自己创建，那么有可能活动的线程数会以指数级增长，而每个线程都会消耗一定量的内存和内核资源，这就会成为新问题。**
 
@@ -455,7 +455,7 @@ dispatch_apply(1e6, DISPATCH_APPLY_AUTO, ^(size_t x) {
 
 可以看见，用任务组`dispatch_group`约束来自不同队列的任务之后，程序依然可按照预期的流程执行。
 
-详细示例见：[使用dispatch_group约束任务的执行流程](https://github.com/Walkerant/Study/blob/master/ios/Snippets/Snippets/Concurrent/Controller/WRGCDViewController.m)
+详细示例见：[使用dispatch_group约束任务的执行流程](https://github.com/Walkerant/Study/blob/master/ios/Snippets/Snippets/Foundation/Concurrent/Controller/WRGCDViewController.m)
 
 ### 信号量`dispatch_semaphore`
 信号量适合控制一个（组）仅限于有限个用户访问的共享资源，信号量的初始值表示可同时访问的数量，或者共享资源的数量。
@@ -513,7 +513,7 @@ dispatch_apply(1e6, DISPATCH_APPLY_AUTO, ^(size_t x) {
 @end
 ```
 
-完整示例见：[用信号量模拟海底捞的营业活动](https://github.com/Walkerant/Study/blob/master/ios/Snippets/Snippets/Concurrent/Model/GCDSemaphoreExample.m)
+完整示例见：[用信号量模拟海底捞的营业活动](https://github.com/Walkerant/Study/blob/master/ios/Snippets/Snippets/Foundation/Concurrent/Model/GCDSemaphoreExample.m)
 
 ### 调度块dispatch_block
 调度块是根据现有的block对象，根据特定信息在堆上创建一个新的调度块对象。
@@ -588,7 +588,7 @@ dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), di
 }
 ```
 
-完整示例见：[用Dispatch Source监控文件系统](https://github.com/Walkerant/Study/blob/master/ios/Snippets/Snippets/Concurrent/Model/GCDSourceExample.m)
+完整示例见：[用Dispatch Source监控文件系统](https://github.com/Walkerant/Study/blob/master/ios/Snippets/Snippets/Foundation/Concurrent/Model/GCDSourceExample.m)
 
 #### 定时器
 
@@ -679,7 +679,7 @@ NSOperationQueue用来维护一组NSOperation对象的执行顺序和流程。�
 }
 ```
 
-完整代码见：[NSOperation实践](https://github.com/Walkerant/Study/blob/master/ios/Snippets/Snippets/Concurrent/Model/NSOperationExample.m)
+完整代码见：[NSOperation实践](https://github.com/Walkerant/Study/blob/master/ios/Snippets/Snippets/Foundation/Concurrent/Model/NSOperationExample.m)
 
 # pthread
 

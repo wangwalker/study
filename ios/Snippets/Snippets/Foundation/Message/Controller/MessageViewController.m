@@ -10,6 +10,7 @@
 #import "WRSnippetItem.h"
 #import "WRSnippetGroup.h"
 #import "KVCTransaction.h"
+#import <CoreGraphics/CoreGraphics.h>
 
 @interface MessageViewController ()
 @property (nonatomic) UIAlertController *collectionAggAlert;
@@ -29,7 +30,7 @@
     WRSnippetGroup *kvo = [WRSnippetGroup groupWithName:@"Key-Value Observing"];
     
     [kvo addSnippetItem:[WRSnippetItem itemWithName:@"指定依赖关系" viewControllerClassName:@"ColorConvertorViewController" detail:@"Lab到RGB颜色空间的转换"]];
-    
+    UIView *view; CGGradientRef *layer;
     return kvo;
 }
 
