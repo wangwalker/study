@@ -12,7 +12,7 @@
 
 @implementation WRSnippetManager
 
-+ (instancetype)sharedManager{
++ (instancetype)sharedManager {
     static WRSnippetManager *manager;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -21,9 +21,14 @@
     return manager;
 }
 
-- (NSArray<WRSnippetGroup *> *)allSnippetGroups{
-    static NSArray<WRSnippetGroup*>* groups;
-    
+- (NSArray<WRSnippetGroup *> *)allSnippetGroups {
+    return [NSArray arrayWithObjects:
+            [self foundation],
+            [self media],
+             nil];
+}
+
+- (WRSnippetGroup *)foundation {
     WRSnippetGroup *foundation = [WRSnippetGroup groupWithName:@"Foundation"];
     
     [foundation addSnippetItem:[WRSnippetItem itemWithName:@"集合类" viewControllerClassName:@"CollectionViewController" detail:@"排序、遍历、查找等操作"]];
@@ -34,9 +39,15 @@
     
     [foundation addSnippetItem:[WRSnippetItem itemWithName:@"消息机制" viewControllerClassName:@"MessageViewController" detail:@"KVO&C、通知机制等"]];
     
-    groups = @[foundation, foundation, foundation, foundation, foundation];
+    return foundation;
+}
+
+- (WRSnippetGroup *)media {
+    WRSnippetGroup *media = [WRSnippetGroup groupWithName:@"Media"];
     
-    return groups;
+    [media addSnippetItem:[WRSnippetItem itemWithName:@"Quartz 2D" viewControllerClassName:@"QuartzManagerViewController" detail:@"也叫Core Graphics"]];
+
+    return media;
 }
 
 @end

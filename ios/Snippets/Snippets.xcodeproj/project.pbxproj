@@ -21,7 +21,16 @@
 		0B0CC11F25786F5F00D54B6C /* WRProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0CC11D25786F5F00D54B6C /* WRProduct.m */; };
 		0B0CC12525786FFD00D54B6C /* NSDictionaryOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0CC12425786FFD00D54B6C /* NSDictionaryOperation.m */; };
 		0B0CC12B2578707500D54B6C /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0CC12A2578707500D54B6C /* CollectionViewController.m */; };
+		0B4BC2D02586F94A001514EA /* QuartzPatternViewExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4BC2CF2586F94A001514EA /* QuartzPatternViewExample.m */; };
+		0B4BC2D625870476001514EA /* QuartzGradientViewExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4BC2D525870476001514EA /* QuartzGradientViewExample.m */; };
+		0B4BC2DC25870E35001514EA /* QuartzShadingViewExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4BC2DB25870E35001514EA /* QuartzShadingViewExample.m */; };
+		0B4BC2E22587139A001514EA /* QuartzTransparentLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4BC2E12587139A001514EA /* QuartzTransparentLayer.m */; };
 		0B656609256CA25300F09E60 /* BlockExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B656608256CA25300F09E60 /* BlockExample.m */; };
+		0B8966D52580BCED003F2DBC /* QuartzManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8966D42580BCED003F2DBC /* QuartzManagerViewController.m */; };
+		0B8966DE2580BD3A003F2DBC /* QuartzBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8966DD2580BD3A003F2DBC /* QuartzBaseViewController.m */; };
+		0B8966E42580C323003F2DBC /* WRQuartzSnippetItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8966E32580C323003F2DBC /* WRQuartzSnippetItem.m */; };
+		0B8966F12580C667003F2DBC /* QuartzPathViewExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8966F02580C667003F2DBC /* QuartzPathViewExample.m */; };
+		0B8966FB2581F98F003F2DBC /* QuartzTransformViewExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8966FA2581F98F003F2DBC /* QuartzTransformViewExample.m */; };
 		0BB749E725678E74004E1373 /* NSRunTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB749E625678E74004E1373 /* NSRunTimeViewController.m */; };
 		0BC78B1C248F77E30037F815 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC78B1B248F77E30037F815 /* AppDelegate.m */; };
 		0BC78B1F248F77E30037F815 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC78B1E248F77E30037F815 /* SceneDelegate.m */; };
@@ -95,8 +104,26 @@
 		0B0CC12425786FFD00D54B6C /* NSDictionaryOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSDictionaryOperation.m; sourceTree = "<group>"; };
 		0B0CC1292578707500D54B6C /* CollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
 		0B0CC12A2578707500D54B6C /* CollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
+		0B4BC2CE2586F94A001514EA /* QuartzPatternViewExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuartzPatternViewExample.h; sourceTree = "<group>"; };
+		0B4BC2CF2586F94A001514EA /* QuartzPatternViewExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuartzPatternViewExample.m; sourceTree = "<group>"; };
+		0B4BC2D425870476001514EA /* QuartzGradientViewExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuartzGradientViewExample.h; sourceTree = "<group>"; };
+		0B4BC2D525870476001514EA /* QuartzGradientViewExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuartzGradientViewExample.m; sourceTree = "<group>"; };
+		0B4BC2DA25870E35001514EA /* QuartzShadingViewExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuartzShadingViewExample.h; sourceTree = "<group>"; };
+		0B4BC2DB25870E35001514EA /* QuartzShadingViewExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuartzShadingViewExample.m; sourceTree = "<group>"; };
+		0B4BC2E02587139A001514EA /* QuartzTransparentLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuartzTransparentLayer.h; sourceTree = "<group>"; };
+		0B4BC2E12587139A001514EA /* QuartzTransparentLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuartzTransparentLayer.m; sourceTree = "<group>"; };
 		0B656607256CA25300F09E60 /* BlockExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockExample.h; sourceTree = "<group>"; };
 		0B656608256CA25300F09E60 /* BlockExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockExample.m; sourceTree = "<group>"; };
+		0B8966D32580BCED003F2DBC /* QuartzManagerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuartzManagerViewController.h; sourceTree = "<group>"; };
+		0B8966D42580BCED003F2DBC /* QuartzManagerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuartzManagerViewController.m; sourceTree = "<group>"; };
+		0B8966DC2580BD3A003F2DBC /* QuartzBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuartzBaseViewController.h; sourceTree = "<group>"; };
+		0B8966DD2580BD3A003F2DBC /* QuartzBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuartzBaseViewController.m; sourceTree = "<group>"; };
+		0B8966E22580C323003F2DBC /* WRQuartzSnippetItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WRQuartzSnippetItem.h; sourceTree = "<group>"; };
+		0B8966E32580C323003F2DBC /* WRQuartzSnippetItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WRQuartzSnippetItem.m; sourceTree = "<group>"; };
+		0B8966EF2580C667003F2DBC /* QuartzPathViewExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuartzPathViewExample.h; sourceTree = "<group>"; };
+		0B8966F02580C667003F2DBC /* QuartzPathViewExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuartzPathViewExample.m; sourceTree = "<group>"; };
+		0B8966F92581F98F003F2DBC /* QuartzTransformViewExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuartzTransformViewExample.h; sourceTree = "<group>"; };
+		0B8966FA2581F98F003F2DBC /* QuartzTransformViewExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuartzTransformViewExample.m; sourceTree = "<group>"; };
 		0BB749E525678E74004E1373 /* NSRunTimeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSRunTimeViewController.h; sourceTree = "<group>"; };
 		0BB749E625678E74004E1373 /* NSRunTimeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSRunTimeViewController.m; sourceTree = "<group>"; };
 		0BC78B17248F77E30037F815 /* Snippets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snippets.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -244,6 +271,55 @@
 			path = Collection;
 			sourceTree = "<group>";
 		};
+		0B8966CB2580BAF8003F2DBC /* Quartz */ = {
+			isa = PBXGroup;
+			children = (
+				0B8966CF2580BB2F003F2DBC /* Controller */,
+				0B8966E82580C329003F2DBC /* Model */,
+				0B8966F52580C66D003F2DBC /* View */,
+			);
+			path = Quartz;
+			sourceTree = "<group>";
+		};
+		0B8966CF2580BB2F003F2DBC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0B8966D32580BCED003F2DBC /* QuartzManagerViewController.h */,
+				0B8966D42580BCED003F2DBC /* QuartzManagerViewController.m */,
+				0B8966DC2580BD3A003F2DBC /* QuartzBaseViewController.h */,
+				0B8966DD2580BD3A003F2DBC /* QuartzBaseViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0B8966E82580C329003F2DBC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0B8966E22580C323003F2DBC /* WRQuartzSnippetItem.h */,
+				0B8966E32580C323003F2DBC /* WRQuartzSnippetItem.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0B8966F52580C66D003F2DBC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0B8966EF2580C667003F2DBC /* QuartzPathViewExample.h */,
+				0B8966F02580C667003F2DBC /* QuartzPathViewExample.m */,
+				0B8966F92581F98F003F2DBC /* QuartzTransformViewExample.h */,
+				0B8966FA2581F98F003F2DBC /* QuartzTransformViewExample.m */,
+				0B4BC2CE2586F94A001514EA /* QuartzPatternViewExample.h */,
+				0B4BC2CF2586F94A001514EA /* QuartzPatternViewExample.m */,
+				0B4BC2D425870476001514EA /* QuartzGradientViewExample.h */,
+				0B4BC2D525870476001514EA /* QuartzGradientViewExample.m */,
+				0B4BC2DA25870E35001514EA /* QuartzShadingViewExample.h */,
+				0B4BC2DB25870E35001514EA /* QuartzShadingViewExample.m */,
+				0B4BC2E02587139A001514EA /* QuartzTransparentLayer.h */,
+				0B4BC2E12587139A001514EA /* QuartzTransparentLayer.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		0BC78B0E248F77E30037F815 = {
 			isa = PBXGroup;
 			children = (
@@ -271,6 +347,7 @@
 				0BD390EC256375B80050D5F8 /* Scaffold */,
 				0BD390DA2563746F0050D5F8 /* Infrastructure */,
 				0B0CC10F25786E2D00D54B6C /* Foundation */,
+				0B8966CB2580BAF8003F2DBC /* Quartz */,
 				0BC78B26248F77E90037F815 /* Assets.xcassets */,
 				0BC78B28248F77E90037F815 /* LaunchScreen.storyboard */,
 				0BC78B2B248F77E90037F815 /* Info.plist */,
@@ -544,10 +621,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BE6E97C255A3B5F00118E14 /* WRSnippetGroup.m in Sources */,
+				0B4BC2E22587139A001514EA /* QuartzTransparentLayer.m in Sources */,
 				0BE6E976255A3B4800118E14 /* WRSnippetItem.m in Sources */,
 				0BC78B22248F77E30037F815 /* BaseSnippetViewController.m in Sources */,
 				0BE6E961255A21F300118E14 /* NSThreadViewController1.m in Sources */,
 				0BFE29A7255CD65E00F7CB96 /* GCDQueueExample.m in Sources */,
+				0B8966F12580C667003F2DBC /* QuartzPathViewExample.m in Sources */,
 				0BFE29B6255E62E200F7CB96 /* GCDSourceExample.m in Sources */,
 				0BC78B1C248F77E30037F815 /* AppDelegate.m in Sources */,
 				0BFE29B0255E28C400F7CB96 /* GCDSemaphoreExample.m in Sources */,
@@ -556,17 +635,24 @@
 				0B0CC107257868F200D54B6C /* BaseUIViewController.m in Sources */,
 				0B0CC11F25786F5F00D54B6C /* WRProduct.m in Sources */,
 				0B0CC0E42577306700D54B6C /* ClassmateContact.m in Sources */,
+				0B8966FB2581F98F003F2DBC /* QuartzTransformViewExample.m in Sources */,
 				0BE9413524E66C9E0064E662 /* GCDGroupExample.m in Sources */,
 				0BE6E994255B6C0A00118E14 /* WRGithubUserThread.m in Sources */,
 				0B0CC0B5257498D000D54B6C /* KeyValueObserver.m in Sources */,
 				0BE9F4C02565FF0500175FEA /* RuntimeExample.m in Sources */,
 				0BE6E970255A24D400118E14 /* WRGithubUser.m in Sources */,
 				0BE6E9AF255BCD6100118E14 /* HomeViewController.m in Sources */,
+				0B4BC2D02586F94A001514EA /* QuartzPatternViewExample.m in Sources */,
 				0BC78B2D248F77E90037F815 /* main.m in Sources */,
 				0BD390F22564B1350050D5F8 /* NSRunLoopViewController.m in Sources */,
 				0B0CC0D82574E94000D54B6C /* MessageViewController.m in Sources */,
+				0B4BC2DC25870E35001514EA /* QuartzShadingViewExample.m in Sources */,
+				0B8966DE2580BD3A003F2DBC /* QuartzBaseViewController.m in Sources */,
 				0BE6E9A3255BB2CE00118E14 /* NSOperationExample.m in Sources */,
+				0B4BC2D625870476001514EA /* QuartzGradientViewExample.m in Sources */,
+				0B8966D52580BCED003F2DBC /* QuartzManagerViewController.m in Sources */,
 				0BB749E725678E74004E1373 /* NSRunTimeViewController.m in Sources */,
+				0B8966E42580C323003F2DBC /* WRQuartzSnippetItem.m in Sources */,
 				0BD390D62562571F0050D5F8 /* WRSynchronizeExample.m in Sources */,
 				0B0CC0C22574CADB00D54B6C /* ColorConvertorViewController.m in Sources */,
 				0BD390E3256375020050D5F8 /* RunLoopExample.m in Sources */,
