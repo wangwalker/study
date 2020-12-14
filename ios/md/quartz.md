@@ -11,6 +11,11 @@ Core Graphics也叫Quartz 2D，是为Apple为不同设备提供的统一性、�
 
 除此之外，Quartz 2D还可以与其他图像处理框架一起工作，比如Core Image、Core Video、OpenGL（目前为Metal）等。
 
+但实际上，Quartz 2D != Core Graphics，它们之间的关系是：Quartz 2D是Core Graphics框架用于绘图的API，Core Graphics框架能够提供更多的能力，比如动画、图片处理。
+
+> Quartz 2D is an API of the Core Graphics framework that implements drawing.
+Quartz Core is a framework that includes APIs for animation and image processing.
+
 ## 绘画上下文
 
 绘图上下文drawing context是所有绘图操作发生的地方，比如位图、PDF、视图、窗口、图层等。对于每一种绘图上下文，里面都会封装进去所有相关信息，比如颜色、分辨率、字体、颜色空间，以及设备相关信息等。
@@ -505,3 +510,7 @@ void MyPatternPaint(CGContextRef context, CGRect rect) {
     }
 }
 ```
+
+# 参考
+- [Apple官方文档](https://developer.apple.com/library/archive/documentation/GraphicsImaging/Conceptual/drawingwithquartz2d/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007533-SW1)
+- [Stack Overflow：Quartz 2D VS Core Graphics](https://stackoverflow.com/questions/1877987/whats-the-difference-between-quartz-core-core-graphics-and-quartz-2d#:~:text=The%20Quartz%20Core%20framework%20on,items%20used%20for%20Core%20Image.&text=Quartz%202D%20is%20an%20API,for%20animation%20and%20image%20processing.)
