@@ -79,7 +79,7 @@ const CGFloat kInputViewHeight = 32.f;
 }
 
 - (void)updateValueLabel:(UISlider *)slider{
-    valueLabel.text = [NSString stringWithFormat:@"%.g", slider.value];
+    valueLabel.text = [NSString stringWithFormat:@"%.3f", slider.value];
 }
 
 - (UISlider *)slider{

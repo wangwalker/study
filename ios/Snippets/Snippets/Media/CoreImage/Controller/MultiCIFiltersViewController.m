@@ -13,7 +13,8 @@
 #import "CIFilterAttributePanel.h"
 
 @interface MultiCIFiltersViewController ()
-@property (nonatomic) UILabel *filterNameLabel;
+@property (nonatomic) UIButton *filterCateButton;
+@property (nonatomic) UIButton *filterNameButton;
 @property (nonatomic) UIImageView *inputImageView;
 @property (nonatomic) CIFilterAttributePanel *attributePanel;
 
@@ -32,26 +33,40 @@
 }
 
 - (void)setupUI{
-    [self.view addSubview:self.filterNameLabel];
+    [self.view addSubview:self.filterCateButton];
+    [self.view addSubview:self.filterNameButton];
     [self.view addSubview:self.inputImageView];
 }
 
 - (void)setupBarButtons{
-    UIBarButtonItem *selectFilter, *process;
+    UIBarButtonItem *process;
     
-    selectFilter = [[UIBarButtonItem alloc] initWithTitle:@"滤镜" style:UIBarButtonItemStylePlain target:self action:@selector(selectFilter:)];
     process = [[UIBarButtonItem alloc] initWithTitle:@"处理" style:UIBarButtonItemStylePlain target:self action:@selector(processImage:)];
     
-    self.navigationItem.rightBarButtonItems = @[selectFilter, process];
+    self.navigationItem.rightBarButtonItem = process;
 }
 
-- (void)selectFilter:(UIBarButtonItem *)sender{
-    NSArray *blurs = [CIFilter filterNamesInCategory:@"CICategoryBlur"];
+- (void)processImage:(UIBarButtonItem *)sender{
+    CIFilter *filter = _attributePanel.inputModel.recentFilter;
+    NSData *imageData = UIImageJPEGRepresentation([UIImage imageNamed:@"blackboard.jpg"], .95);
+    
+    [filter setValue:[CIImage imageWithData:imageData] forKey:@"inputImage"];
+    [_inputImageView setImage:[UIImage imageWithCIImage:filter.outputImage]];
+}
+
+- (void)filterCateChanged:(UIButton *)sender{
+    static const NSArray *allCates;
+    
+    allCates = @[@"CICategoryBlur",@"CICategoryColorAdjustment",
+                 @"CICategoryColorEffect", @"CICategoryCompositeOperation",
+                 @"CICategoryDistortionEffect", @"CICategoryDistortionEffect",
+                 @"CICategoryGeometryAdjustment", @"CICategoryGradient"];
+    
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择滤镜" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     
-    for (NSString *blurName in blurs) {
-        UIAlertAction *action = [UIAlertAction actionWithTitle:[CIFilter localizedNameForFilterName:blurName] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [self setFilterName:blurName];
+    for (NSString *cateName in allCates) {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:cateName style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self.filterCateButton setTitle:cateName forState:UIControlStateNormal];
         }];
         [alert addAction:action];
     }
@@ -65,12 +80,25 @@
     }];
 }
 
-- (void)processImage:(UIBarButtonItem *)sender{
-    CIFilter *filter = _attributePanel.inputModel.recentFilter;
-    NSData *imageData = UIImageJPEGRepresentation([UIImage imageNamed:@"blackboard.jpg"], .95);
+- (void)filterNameChanged:(UIButton *)sender{
+    NSArray *filters = [CIFilter filterNamesInCategory:_filterCateButton.titleLabel.text];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择滤镜" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     
-    [filter setValue:[CIImage imageWithData:imageData] forKey:@"inputImage"];
-    [_inputImageView setImage:[UIImage imageWithCIImage:filter.outputImage]];
+    for (NSString *filterName in filters) {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:[CIFilter localizedNameForFilterName:filterName] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self.filterNameButton setTitle:filterName forState:UIControlStateNormal];
+            [self setFilterName:filterName];
+        }];
+        [alert addAction:action];
+    }
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alert addAction:cancel];
+    [self presentViewController:alert animated:YES completion:^{
+        
+    }];
 }
 
 #pragma mark - KVO
@@ -86,16 +114,12 @@
 }
 
 - (void)configUIWithFilterName:(NSString *)filterName{
-    _filterNameLabel.text = filterName;
-    _attributePanel = [CIFilterAttributePanel panelWithName:filterName];
-    
-    if ([self.view.subviews containsObject:_attributePanel]) {
-        for (UIView *view in _attributePanel.subviews) {
-            [view removeFromSuperview];
-        }
-        [_attributePanel removeFromSuperview];
+    if (!_attributePanel) {
+        _attributePanel = [CIFilterAttributePanel panelWithName:filterName];
+        [self.view addSubview:_attributePanel];
+    } else {
+        [_attributePanel updateName:filterName];
     }
-    [self.view addSubview:_attributePanel];
     
     [self.view setNeedsLayout];
     [self.view setNeedsDisplay];
@@ -104,14 +128,25 @@
 
 #pragma mark - Getter
 
-- (UILabel *)filterNameLabel{
-    if (!_filterNameLabel) {
-        _filterNameLabel = [[UILabel alloc] init];
-        _filterNameLabel.font = [UIFont systemFontOfSize:20.f];
-        _filterNameLabel.textColor = [UIColor lightGrayColor];
-        _filterNameLabel.textAlignment = NSTextAlignmentCenter;
+- (UIButton *)filterCateButton{
+    if (!_filterCateButton) {
+        _filterCateButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        [_filterCateButton setTitle:@"CICategoryBlur" forState:UIControlStateNormal];
+        [_filterCateButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [_filterCateButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+        [_filterCateButton addTarget:self action:@selector(filterCateChanged:) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _filterNameLabel;
+    return _filterCateButton;
+}
+- (UIButton *)filterNameButton{
+    if (!_filterNameButton) {
+        _filterNameButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        [_filterNameButton setTitle:@"CIBokehBlur" forState:UIControlStateNormal];
+        [_filterNameButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [_filterNameButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+        [_filterNameButton addTarget:self action:@selector(filterNameChanged:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _filterNameButton;
 }
 - (UIImageView *)inputImageView{
     if (!_inputImageView) {
@@ -124,18 +159,18 @@
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     
-    CGFloat ivWidth = CGRectGetWidth(self.view.bounds)-100.f;
+    CGFloat ivWidth = CGRectGetWidth(self.view.bounds)/2;
     CGFloat ivHeight = ivWidth*.75;
     CGPoint center = self.view.center;
     
-    self.inputImageView.frame = CGRectMake(0, 0, ivWidth, ivHeight);
-    self.inputImageView.center = CGPointMake(center.x, center.y-150);
+    _inputImageView.frame = CGRectMake(0, 0, ivWidth, ivHeight);
+    _inputImageView.center = CGPointMake(center.x, center.y-150);
     
-    self.filterNameLabel.frame = CGRectMake(0, 0, ivWidth, 32.f);
-    self.filterNameLabel.center = CGPointMake(center.x, CGRectGetMinY(self.inputImageView.frame)-32.f);
+    _filterCateButton.frame = CGRectMake(0, CGRectGetMinY(_inputImageView.frame)-66.f, ivWidth, 49.f);
+    _filterNameButton.frame = CGRectMake(center.x, CGRectGetMinY(_inputImageView.frame)-66.f, ivWidth, 49.f);
     
-    self.attributePanel.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetWidth(self.view.bounds)*.75);
-    self.attributePanel.center = CGPointMake(center.x, CGRectGetMaxY(self.view.bounds)-CGRectGetWidth(self.view.bounds));
+    _attributePanel.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetWidth(self.view.bounds)*.75);
+    _attributePanel.center = CGPointMake(center.x, CGRectGetMaxY(self.view.bounds)-CGRectGetWidth(self.view.bounds));
 }
 
 @end

@@ -45,7 +45,7 @@ typedef NS_ENUM(NSInteger, CIFilterInputItemType) {
 
 + (instancetype)modelWithFilterName:(NSString *)name;
 
-@property (nonatomic, copy, readonly) NSString *localizedName;
+@property (nonatomic, copy, readonly) NSString *name;
 
 // The recent filter that is updated recently
 @property (nonatomic, readonly) CIFilter *recentFilter;

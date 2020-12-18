@@ -44,7 +44,21 @@
     [self.scrollView setContentSize:CGSizeMake(CGRectGetWidth(self.bounds)*vms.count, CGRectGetHeight(self.bounds))];
     
     _vms = [vms copy];
+}
 
+- (void)updateName:(NSString *)name{
+    if ([name isEqualToString:_inputModel.name])
+        return;
+    
+    for (id view in _scrollView.subviews) {
+        [view removeFromSuperview];
+    }
+    for (CIFilterInputViewModel *vm in _vms) {
+        [vm.view removeFromSuperview];
+    }
+    
+    _inputModel = [CIFilterInputModel modelWithFilterName:name];
+    [self configViewModels];
 }
 
 

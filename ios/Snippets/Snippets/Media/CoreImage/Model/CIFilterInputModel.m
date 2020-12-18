@@ -65,7 +65,7 @@
 
 
 @implementation CIFilterInputModel {
-    NSString *_name, *_localizedName;
+    NSString *_name;
     CIFilter *_filter;
     NSArray<CIFilterInputItem *>*_inputItems;
 }
@@ -84,7 +84,6 @@
 
 - (void)configItemsWithName:(NSString *)name {
     _filter = [CIFilter filterWithName:name];
-    _localizedName = [CIFilter localizedNameForFilterName:name];
     
     NSMutableArray *inputItems = [NSMutableArray array];
     for (NSString *inputKey in _filter.attributes) {
@@ -108,6 +107,10 @@
     }
     
     return _filter;
+}
+
+- (NSString *)name{
+    return _name;
 }
 
 @end

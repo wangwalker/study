@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)panelWithName:(NSString *)name;
 
+- (void)updateName:(NSString *)name;
+
 @property (nonatomic, readonly) CIFilterInputModel *inputModel;
 
 @end
