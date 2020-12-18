@@ -1,8 +1,8 @@
 //
-//  QuartzManagerViewController.h
+//  CoreImageManageViewController.h
 //  Snippets
 //
-//  Created by Walker on 2020/12/9.
+//  Created by Walker on 2020/12/16.
 //  Copyright © 2020 Walker. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface QuartzManagerViewController : BaseSnippetViewController
+@interface CoreImageManageViewController : BaseSnippetViewController
 
 @end
 

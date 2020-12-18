@@ -45,7 +45,9 @@
 - (WRSnippetGroup *)media {
     WRSnippetGroup *media = [WRSnippetGroup groupWithName:@"Media"];
     
-    [media addSnippetItem:[WRSnippetItem itemWithName:@"Quartz 2D" viewControllerClassName:@"QuartzManagerViewController" detail:@"也叫Core Graphics"]];
+    [media addSnippetItem:[WRSnippetItem itemWithName:@"Quartz 2D" viewControllerClassName:@"QuartzManagerViewController" detail:@"二维绘图引擎"]];
+    
+    [media addSnippetItem:[WRSnippetItem itemWithName:@"CoreImage" viewControllerClassName:@"CoreImageManageViewController" detail:@"图片处理相关"]];
 
     return media;
 }

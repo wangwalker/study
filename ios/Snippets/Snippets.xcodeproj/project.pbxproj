@@ -31,6 +31,16 @@
 		0B8966E42580C323003F2DBC /* WRQuartzSnippetItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8966E32580C323003F2DBC /* WRQuartzSnippetItem.m */; };
 		0B8966F12580C667003F2DBC /* QuartzPathViewExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8966F02580C667003F2DBC /* QuartzPathViewExample.m */; };
 		0B8966FB2581F98F003F2DBC /* QuartzTransformViewExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8966FA2581F98F003F2DBC /* QuartzTransformViewExample.m */; };
+		0B9E6E9C2589AA6600286DD0 /* CoreImageSnippetItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9E6E9B2589AA6600286DD0 /* CoreImageSnippetItem.m */; };
+		0B9E6EAA2589AB2600286DD0 /* CoreImageManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9E6EA92589AB2600286DD0 /* CoreImageManageViewController.m */; };
+		0B9E6EC12589ABF400286DD0 /* SingleCIFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9E6EBF2589ABF400286DD0 /* SingleCIFilterViewController.m */; };
+		0B9E6EC22589ABF400286DD0 /* SingleCIFilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B9E6EC02589ABF400286DD0 /* SingleCIFilterViewController.xib */; };
+		0B9E6EC72589AECC00286DD0 /* blackboard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0B9E6EC62589AECC00286DD0 /* blackboard.jpg */; };
+		0B9E6ED22589F6F600286DD0 /* CIFilterInputModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9E6ED12589F6F600286DD0 /* CIFilterInputModel.m */; };
+		0B9E6EDB2589F76000286DD0 /* CIFilterAttributePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9E6EDA2589F76000286DD0 /* CIFilterAttributePanel.m */; };
+		0B9E6EE5258ADE2100286DD0 /* CIFilterInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9E6EE4258ADE2100286DD0 /* CIFilterInputView.m */; };
+		0B9E6EEB258AEEAF00286DD0 /* CIFilterInputViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9E6EEA258AEEAF00286DD0 /* CIFilterInputViewModel.m */; };
+		0B9E6EF1258AFBD700286DD0 /* MultiCIFiltersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9E6EF0258AFBD700286DD0 /* MultiCIFiltersViewController.m */; };
 		0BB749E725678E74004E1373 /* NSRunTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB749E625678E74004E1373 /* NSRunTimeViewController.m */; };
 		0BC78B1C248F77E30037F815 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC78B1B248F77E30037F815 /* AppDelegate.m */; };
 		0BC78B1F248F77E30037F815 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BC78B1E248F77E30037F815 /* SceneDelegate.m */; };
@@ -124,6 +134,24 @@
 		0B8966F02580C667003F2DBC /* QuartzPathViewExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuartzPathViewExample.m; sourceTree = "<group>"; };
 		0B8966F92581F98F003F2DBC /* QuartzTransformViewExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuartzTransformViewExample.h; sourceTree = "<group>"; };
 		0B8966FA2581F98F003F2DBC /* QuartzTransformViewExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuartzTransformViewExample.m; sourceTree = "<group>"; };
+		0B9E6E9A2589AA6600286DD0 /* CoreImageSnippetItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreImageSnippetItem.h; sourceTree = "<group>"; };
+		0B9E6E9B2589AA6600286DD0 /* CoreImageSnippetItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreImageSnippetItem.m; sourceTree = "<group>"; };
+		0B9E6EA82589AB2600286DD0 /* CoreImageManageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreImageManageViewController.h; sourceTree = "<group>"; };
+		0B9E6EA92589AB2600286DD0 /* CoreImageManageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreImageManageViewController.m; sourceTree = "<group>"; };
+		0B9E6EBE2589ABF400286DD0 /* SingleCIFilterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SingleCIFilterViewController.h; sourceTree = "<group>"; };
+		0B9E6EBF2589ABF400286DD0 /* SingleCIFilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SingleCIFilterViewController.m; sourceTree = "<group>"; };
+		0B9E6EC02589ABF400286DD0 /* SingleCIFilterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingleCIFilterViewController.xib; sourceTree = "<group>"; };
+		0B9E6EC62589AECC00286DD0 /* blackboard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blackboard.jpg; sourceTree = "<group>"; };
+		0B9E6ED02589F6F600286DD0 /* CIFilterInputModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIFilterInputModel.h; sourceTree = "<group>"; };
+		0B9E6ED12589F6F600286DD0 /* CIFilterInputModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CIFilterInputModel.m; sourceTree = "<group>"; };
+		0B9E6ED92589F76000286DD0 /* CIFilterAttributePanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIFilterAttributePanel.h; sourceTree = "<group>"; };
+		0B9E6EDA2589F76000286DD0 /* CIFilterAttributePanel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CIFilterAttributePanel.m; sourceTree = "<group>"; };
+		0B9E6EE3258ADE2100286DD0 /* CIFilterInputView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIFilterInputView.h; sourceTree = "<group>"; };
+		0B9E6EE4258ADE2100286DD0 /* CIFilterInputView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CIFilterInputView.m; sourceTree = "<group>"; };
+		0B9E6EE9258AEEAF00286DD0 /* CIFilterInputViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CIFilterInputViewModel.h; sourceTree = "<group>"; };
+		0B9E6EEA258AEEAF00286DD0 /* CIFilterInputViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CIFilterInputViewModel.m; sourceTree = "<group>"; };
+		0B9E6EEF258AFBD700286DD0 /* MultiCIFiltersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultiCIFiltersViewController.h; sourceTree = "<group>"; };
+		0B9E6EF0258AFBD700286DD0 /* MultiCIFiltersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MultiCIFiltersViewController.m; sourceTree = "<group>"; };
 		0BB749E525678E74004E1373 /* NSRunTimeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSRunTimeViewController.h; sourceTree = "<group>"; };
 		0BB749E625678E74004E1373 /* NSRunTimeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSRunTimeViewController.m; sourceTree = "<group>"; };
 		0BC78B17248F77E30037F815 /* Snippets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snippets.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -320,6 +348,79 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		0B9E6E962589A84E00286DD0 /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				0B8966CB2580BAF8003F2DBC /* Quartz */,
+				0B9E6EA42589AA8B00286DD0 /* CoreImage */,
+			);
+			path = Media;
+			sourceTree = "<group>";
+		};
+		0B9E6EA02589AA8200286DD0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0B9E6E9A2589AA6600286DD0 /* CoreImageSnippetItem.h */,
+				0B9E6E9B2589AA6600286DD0 /* CoreImageSnippetItem.m */,
+				0B9E6ED02589F6F600286DD0 /* CIFilterInputModel.h */,
+				0B9E6ED12589F6F600286DD0 /* CIFilterInputModel.m */,
+				0B9E6EE9258AEEAF00286DD0 /* CIFilterInputViewModel.h */,
+				0B9E6EEA258AEEAF00286DD0 /* CIFilterInputViewModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0B9E6EA42589AA8B00286DD0 /* CoreImage */ = {
+			isa = PBXGroup;
+			children = (
+				0B9E6EA02589AA8200286DD0 /* Model */,
+				0B9E6EAE2589AB2D00286DD0 /* Controller */,
+				0B9E6EDF2589F76500286DD0 /* View */,
+			);
+			path = CoreImage;
+			sourceTree = "<group>";
+		};
+		0B9E6EAE2589AB2D00286DD0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0B9E6EA82589AB2600286DD0 /* CoreImageManageViewController.h */,
+				0B9E6EA92589AB2600286DD0 /* CoreImageManageViewController.m */,
+				0B9E6EBE2589ABF400286DD0 /* SingleCIFilterViewController.h */,
+				0B9E6EBF2589ABF400286DD0 /* SingleCIFilterViewController.m */,
+				0B9E6EC02589ABF400286DD0 /* SingleCIFilterViewController.xib */,
+				0B9E6EEF258AFBD700286DD0 /* MultiCIFiltersViewController.h */,
+				0B9E6EF0258AFBD700286DD0 /* MultiCIFiltersViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0B9E6ECB2589AEFE00286DD0 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				0B9E6EC62589AECC00286DD0 /* blackboard.jpg */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		0B9E6ECC2589AF1B00286DD0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0B9E6ECB2589AEFE00286DD0 /* Images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		0B9E6EDF2589F76500286DD0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0B9E6ED92589F76000286DD0 /* CIFilterAttributePanel.h */,
+				0B9E6EDA2589F76000286DD0 /* CIFilterAttributePanel.m */,
+				0B9E6EE3258ADE2100286DD0 /* CIFilterInputView.h */,
+				0B9E6EE4258ADE2100286DD0 /* CIFilterInputView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		0BC78B0E248F77E30037F815 = {
 			isa = PBXGroup;
 			children = (
@@ -343,11 +444,12 @@
 		0BC78B19248F77E30037F815 /* Snippets */ = {
 			isa = PBXGroup;
 			children = (
+				0B9E6ECC2589AF1B00286DD0 /* Resources */,
 				0BD390E7256375390050D5F8 /* Intrinsic */,
 				0BD390EC256375B80050D5F8 /* Scaffold */,
 				0BD390DA2563746F0050D5F8 /* Infrastructure */,
 				0B0CC10F25786E2D00D54B6C /* Foundation */,
-				0B8966CB2580BAF8003F2DBC /* Quartz */,
+				0B9E6E962589A84E00286DD0 /* Media */,
 				0BC78B26248F77E90037F815 /* Assets.xcassets */,
 				0BC78B28248F77E90037F815 /* LaunchScreen.storyboard */,
 				0BC78B2B248F77E90037F815 /* Info.plist */,
@@ -593,9 +695,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B0CC0EF2577310100D54B6C /* ClassmateContactViewController.xib in Resources */,
+				0B9E6EC72589AECC00286DD0 /* blackboard.jpg in Resources */,
 				0B0CC0C32574CADB00D54B6C /* ColorConvertorViewController.xib in Resources */,
 				0BC78B2A248F77E90037F815 /* LaunchScreen.storyboard in Resources */,
 				0BC78B27248F77E90037F815 /* Assets.xcassets in Resources */,
+				0B9E6EC22589ABF400286DD0 /* SingleCIFilterViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -620,6 +724,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B9E6EE5258ADE2100286DD0 /* CIFilterInputView.m in Sources */,
+				0B9E6EEB258AEEAF00286DD0 /* CIFilterInputViewModel.m in Sources */,
 				0BE6E97C255A3B5F00118E14 /* WRSnippetGroup.m in Sources */,
 				0B4BC2E22587139A001514EA /* QuartzTransparentLayer.m in Sources */,
 				0BE6E976255A3B4800118E14 /* WRSnippetItem.m in Sources */,
@@ -629,6 +735,8 @@
 				0B8966F12580C667003F2DBC /* QuartzPathViewExample.m in Sources */,
 				0BFE29B6255E62E200F7CB96 /* GCDSourceExample.m in Sources */,
 				0BC78B1C248F77E30037F815 /* AppDelegate.m in Sources */,
+				0B9E6E9C2589AA6600286DD0 /* CoreImageSnippetItem.m in Sources */,
+				0B9E6EAA2589AB2600286DD0 /* CoreImageManageViewController.m in Sources */,
 				0BFE29B0255E28C400F7CB96 /* GCDSemaphoreExample.m in Sources */,
 				0B0CC12B2578707500D54B6C /* CollectionViewController.m in Sources */,
 				0B0CC0EE2577310100D54B6C /* ClassmateContactViewController.m in Sources */,
@@ -642,10 +750,12 @@
 				0BE9F4C02565FF0500175FEA /* RuntimeExample.m in Sources */,
 				0BE6E970255A24D400118E14 /* WRGithubUser.m in Sources */,
 				0BE6E9AF255BCD6100118E14 /* HomeViewController.m in Sources */,
+				0B9E6EDB2589F76000286DD0 /* CIFilterAttributePanel.m in Sources */,
 				0B4BC2D02586F94A001514EA /* QuartzPatternViewExample.m in Sources */,
 				0BC78B2D248F77E90037F815 /* main.m in Sources */,
 				0BD390F22564B1350050D5F8 /* NSRunLoopViewController.m in Sources */,
 				0B0CC0D82574E94000D54B6C /* MessageViewController.m in Sources */,
+				0B9E6EC12589ABF400286DD0 /* SingleCIFilterViewController.m in Sources */,
 				0B4BC2DC25870E35001514EA /* QuartzShadingViewExample.m in Sources */,
 				0B8966DE2580BD3A003F2DBC /* QuartzBaseViewController.m in Sources */,
 				0BE6E9A3255BB2CE00118E14 /* NSOperationExample.m in Sources */,
@@ -658,10 +768,12 @@
 				0BD390E3256375020050D5F8 /* RunLoopExample.m in Sources */,
 				0B656609256CA25300F09E60 /* BlockExample.m in Sources */,
 				0B0CC11525786EF500D54B6C /* NSArrayOperation.m in Sources */,
+				0B9E6EF1258AFBD700286DD0 /* MultiCIFiltersViewController.m in Sources */,
 				0BC78B1F248F77E30037F815 /* SceneDelegate.m in Sources */,
 				0B0CC0FB257772E500D54B6C /* KVCTransaction.m in Sources */,
 				0BE6E99A255B70D200118E14 /* NSThreadViewController2.m in Sources */,
 				0B0CC12525786FFD00D54B6C /* NSDictionaryOperation.m in Sources */,
+				0B9E6ED22589F6F600286DD0 /* CIFilterInputModel.m in Sources */,
 				0BE6E9B5255BD10C00118E14 /* ConcurrViewController.m in Sources */,
 				0B0CC0BB2574C69C00D54B6C /* ColorConvertor.m in Sources */,
 				0BE6E982255A3DBE00118E14 /* WRSnippetManager.m in Sources */,
