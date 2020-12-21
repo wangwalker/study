@@ -1,5 +1,8 @@
 iOS开发相关知识：
 
+# Architecture
+1. [iOS系统架构层次结构](https://github.com/Walkerant/Study/tree/master/ios/md/architecture.md) 从上到下四层结构：交互层Cocoa Touch、媒体层Media、核心服务层Core Services、操作系统层Core OS。
+
 # Fundation
 1. [集合类使用指南](https://github.com/Walkerant/Study/tree/master/ios/md/collection.md) NSArray、NSDictionary和NSSet的排序、查找、枚举操作等。
 2. [并发编程实践](https://github.com/Walkerant/Study/tree/master/ios/md/concurrent.md) NSThread、NSOperation、GCD的使用方法和代码片段，以及线程同步机制，尤其强大的GCD，比如分组任务、信号量等。
