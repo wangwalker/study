@@ -47,7 +47,7 @@ typedef NS_ENUM(NSInteger, CIFilterInputItemType) {
 
 @property (nonatomic, copy, readonly) NSString *name;
 
-// The recent filter that is updated recently
+// The recent filter that is updated right now
 @property (nonatomic, readonly) CIFilter *recentFilter;
 
 @property (nonatomic, readonly) NSArray<CIFilterInputItem *>*inputItems;

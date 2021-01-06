@@ -15,10 +15,6 @@
     CIFilterInputItemType _type;
 }
 
-@dynamic name;
-@dynamic type;
-@dynamic sliderRange;
-
 + (instancetype)itemWithParams:(NSDictionary *)params name:(nonnull NSString *)name{
     return [[self alloc] initWithParams:params name:name];
 }
@@ -47,18 +43,6 @@
     } else {
         _type = CIFilterInputItemUnknown;
     }
-}
-
-- (NSString *)name {
-    return _name;
-}
-
-- (NSArray *)sliderRange{
-    return _sliderRange;
-}
-
-- (CIFilterInputItemType)type {
-    return _type;
 }
 
 @end

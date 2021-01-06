@@ -12,12 +12,17 @@
 #import "CIFilterInputViewModel.h"
 #import "CIFilterAttributePanel.h"
 
+API_AVAILABLE(ios(14))
 @interface MultiCIFiltersViewController ()
+
 @property (nonatomic) UIButton *filterCateButton;
 @property (nonatomic) UIButton *filterNameButton;
 @property (nonatomic) UIImageView *inputImageView;
+@property (nonatomic) PHPickerConfiguration *config;
+@property (nonatomic) PHPickerViewController *pickerController;
 @property (nonatomic) CIFilterAttributePanel *attributePanel;
 
+@property (nonatomic) UIImage *selectedImage;
 @property (nonatomic, copy) NSString *filterName;
 
 @end
@@ -48,9 +53,9 @@
 
 - (void)processImage:(UIBarButtonItem *)sender{
     CIFilter *filter = _attributePanel.inputModel.recentFilter;
-    NSData *imageData = UIImageJPEGRepresentation([UIImage imageNamed:@"blackboard.jpg"], .95);
+    NSData *imageData = UIImageJPEGRepresentation(_selectedImage, .95);
     
-    [filter setValue:[CIImage imageWithData:imageData] forKey:@"inputImage"];
+    [filter setValue:[CIImage imageWithData:imageData] forKey:kCIInputImageKey];
     [_inputImageView setImage:[UIImage imageWithCIImage:filter.outputImage]];
 }
 
@@ -101,6 +106,35 @@
     }];
 }
 
+#pragma mark - PHPickerDelegate
+
+- (void)picker:(PHPickerViewController *)picker didFinishPicking:(NSArray<PHPickerResult *> *)results API_AVAILABLE(ios(14)){
+    [picker dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    NSItemProvider *privider = results.firstObject.itemProvider;
+    if ([privider canLoadObjectOfClass:UIImage.class]) {
+        [privider loadObjectOfClass:UIImage.class completionHandler:^(__kindof id<NSItemProviderReading>  _Nullable image, NSError * _Nullable error) {
+            if (error || !image) {
+                return;
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.inputImageView.image = image;
+                self.selectedImage = image;
+            });
+        }];
+    }
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    CGPoint point = [touches.anyObject locationInView:self.view];
+    if (CGRectContainsPoint(self.inputImageView.frame, point)) {
+        [self presentViewController:self.pickerController animated:YES completion:^{
+            
+        }];
+    }
+}
+
 #pragma mark - KVO
 
 - (void)addObservers{
@@ -126,7 +160,23 @@
     [self.view layoutIfNeeded];
 }
 
-#pragma mark - Getter
+#pragma mark - Accessor
+
+- (PHPickerConfiguration *)config API_AVAILABLE(ios(14)){
+    if (!_config) {
+        _config = [[PHPickerConfiguration alloc] init];
+        _config.filter = PHPickerFilter.imagesFilter;
+    }
+    return _config;
+}
+
+- (PHPickerViewController *)pickerController API_AVAILABLE(ios(14)){
+    if (!_pickerController) {
+        _pickerController = [[PHPickerViewController alloc] initWithConfiguration:self.config];
+        _pickerController.delegate = self;
+    }
+    return _pickerController;
+}
 
 - (UIButton *)filterCateButton{
     if (!_filterCateButton) {
@@ -150,8 +200,9 @@
 }
 - (UIImageView *)inputImageView{
     if (!_inputImageView) {
+        _selectedImage = [UIImage imageNamed:@"blackboard.jpg"];
         _inputImageView = [[UIImageView alloc] init];
-        _inputImageView.image = [UIImage imageNamed:@"blackboard.jpg"];
+        _inputImageView.image = _selectedImage;
     }
     return _inputImageView;
 }

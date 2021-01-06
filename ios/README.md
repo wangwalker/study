@@ -13,6 +13,7 @@ iOS开发相关知识：
  
 # Media
 1. [Quartz 2D绘图引擎](https://github.com/Walkerant/Study/tree/master/ios/md/quartz.md) 也叫Core Graphics，绘图上下文，颜色空间，路径：直线、曲线、子路径，放射变换，渐变，模式，透明图层等。
+2. [Core Image：图片处理](https://github.com/Walkerant/Study/tree/master/ios/md/core-image.md) 滤镜概念、创建滤镜、处理流程，内置滤镜分类，滤镜链，人脸检测，提高性能的注意点等。
 
 # Application
 1. [APP启动流程及优化](https://github.com/Walkerant/Study/tree/master/ios/md/launch.md) 三个启动流程，以及相应的优化方法。

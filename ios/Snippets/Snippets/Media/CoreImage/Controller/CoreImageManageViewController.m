@@ -32,6 +32,8 @@
     
     [group addSnippetItem:[WRSnippetItem itemWithName:@"滤镜综合应用" viewControllerClassName:@"MultiCIFiltersViewController" detail:@"自定义选择"]];
     
+    [group addSnippetItem:[WRSnippetItem itemWithName:@"人脸检测" viewControllerClassName:@"FaceDetectionViewController" detail:@"只是检测边缘，非识别"]];
+    
     return group;
 }
 

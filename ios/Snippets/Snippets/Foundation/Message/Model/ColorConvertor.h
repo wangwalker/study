@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-static int const kColorConvertorKVOContextSomeOne;
+static char kColorConvertorKVOContextSomeOne = 0;
 
 @interface ColorConvertor : NSObject
 

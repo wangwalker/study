@@ -21,6 +21,11 @@
 		0B0CC11F25786F5F00D54B6C /* WRProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0CC11D25786F5F00D54B6C /* WRProduct.m */; };
 		0B0CC12525786FFD00D54B6C /* NSDictionaryOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0CC12425786FFD00D54B6C /* NSDictionaryOperation.m */; };
 		0B0CC12B2578707500D54B6C /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0CC12A2578707500D54B6C /* CollectionViewController.m */; };
+		0B104A1325A581A20033095B /* FaceDetectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B104A1225A581A20033095B /* FaceDetectionViewController.m */; };
+		0B104A1E25A59F8F0033095B /* shannon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0B104A1D25A59F8F0033095B /* shannon.jpg */; };
+		0B104A2625A5A5A40033095B /* auction.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0B104A2525A5A5A40033095B /* auction.jpg */; };
+		0B104A3125A5ABA50033095B /* stevejobs.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0B104A3025A5ABA50033095B /* stevejobs.jpg */; };
+		0B104A3925A5AD870033095B /* family.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B104A3825A5AD870033095B /* family.png */; };
 		0B4BC2D02586F94A001514EA /* QuartzPatternViewExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4BC2CF2586F94A001514EA /* QuartzPatternViewExample.m */; };
 		0B4BC2D625870476001514EA /* QuartzGradientViewExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4BC2D525870476001514EA /* QuartzGradientViewExample.m */; };
 		0B4BC2DC25870E35001514EA /* QuartzShadingViewExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B4BC2DB25870E35001514EA /* QuartzShadingViewExample.m */; };
@@ -114,6 +119,12 @@
 		0B0CC12425786FFD00D54B6C /* NSDictionaryOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSDictionaryOperation.m; sourceTree = "<group>"; };
 		0B0CC1292578707500D54B6C /* CollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
 		0B0CC12A2578707500D54B6C /* CollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
+		0B104A1125A581A20033095B /* FaceDetectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FaceDetectionViewController.h; sourceTree = "<group>"; };
+		0B104A1225A581A20033095B /* FaceDetectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FaceDetectionViewController.m; sourceTree = "<group>"; };
+		0B104A1D25A59F8F0033095B /* shannon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shannon.jpg; sourceTree = "<group>"; };
+		0B104A2525A5A5A40033095B /* auction.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = auction.jpg; sourceTree = "<group>"; };
+		0B104A3025A5ABA50033095B /* stevejobs.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = stevejobs.jpg; sourceTree = "<group>"; };
+		0B104A3825A5AD870033095B /* family.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = family.png; sourceTree = "<group>"; };
 		0B4BC2CE2586F94A001514EA /* QuartzPatternViewExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuartzPatternViewExample.h; sourceTree = "<group>"; };
 		0B4BC2CF2586F94A001514EA /* QuartzPatternViewExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuartzPatternViewExample.m; sourceTree = "<group>"; };
 		0B4BC2D425870476001514EA /* QuartzGradientViewExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuartzGradientViewExample.h; sourceTree = "<group>"; };
@@ -390,6 +401,8 @@
 				0B9E6EC02589ABF400286DD0 /* SingleCIFilterViewController.xib */,
 				0B9E6EEF258AFBD700286DD0 /* MultiCIFiltersViewController.h */,
 				0B9E6EF0258AFBD700286DD0 /* MultiCIFiltersViewController.m */,
+				0B104A1125A581A20033095B /* FaceDetectionViewController.h */,
+				0B104A1225A581A20033095B /* FaceDetectionViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -397,7 +410,11 @@
 		0B9E6ECB2589AEFE00286DD0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				0B104A3025A5ABA50033095B /* stevejobs.jpg */,
+				0B104A2525A5A5A40033095B /* auction.jpg */,
 				0B9E6EC62589AECC00286DD0 /* blackboard.jpg */,
+				0B104A1D25A59F8F0033095B /* shannon.jpg */,
+				0B104A3825A5AD870033095B /* family.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -694,6 +711,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B104A3925A5AD870033095B /* family.png in Resources */,
+				0B104A1E25A59F8F0033095B /* shannon.jpg in Resources */,
+				0B104A2625A5A5A40033095B /* auction.jpg in Resources */,
+				0B104A3125A5ABA50033095B /* stevejobs.jpg in Resources */,
 				0B0CC0EF2577310100D54B6C /* ClassmateContactViewController.xib in Resources */,
 				0B9E6EC72589AECC00286DD0 /* blackboard.jpg in Resources */,
 				0B0CC0C32574CADB00D54B6C /* ColorConvertorViewController.xib in Resources */,
@@ -743,6 +764,7 @@
 				0B0CC107257868F200D54B6C /* BaseUIViewController.m in Sources */,
 				0B0CC11F25786F5F00D54B6C /* WRProduct.m in Sources */,
 				0B0CC0E42577306700D54B6C /* ClassmateContact.m in Sources */,
+				0B104A1325A581A20033095B /* FaceDetectionViewController.m in Sources */,
 				0B8966FB2581F98F003F2DBC /* QuartzTransformViewExample.m in Sources */,
 				0BE9413524E66C9E0064E662 /* GCDGroupExample.m in Sources */,
 				0BE6E994255B6C0A00118E14 /* WRGithubUserThread.m in Sources */,
