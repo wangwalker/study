@@ -73,6 +73,7 @@
     }
     return _scrollView;
 }
+
 - (CIFilterInputModel *)inputModel{
     return _inputModel;
 }

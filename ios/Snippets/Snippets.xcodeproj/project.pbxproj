@@ -212,6 +212,7 @@
 		0BE9413424E66C9E0064E662 /* GCDGroupExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDGroupExample.m; sourceTree = "<group>"; };
 		0BE9F4BE2565FF0500175FEA /* RuntimeExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RuntimeExample.h; sourceTree = "<group>"; };
 		0BE9F4BF2565FF0500175FEA /* RuntimeExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RuntimeExample.m; sourceTree = "<group>"; };
+		0BEACAB025BF9BAB0064345B /* Snippets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Snippets.entitlements; sourceTree = "<group>"; };
 		0BFE29A5255CD65E00F7CB96 /* GCDQueueExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDQueueExample.h; sourceTree = "<group>"; };
 		0BFE29A6255CD65E00F7CB96 /* GCDQueueExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDQueueExample.m; sourceTree = "<group>"; };
 		0BFE29AE255E28C400F7CB96 /* GCDSemaphoreExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDSemaphoreExample.h; sourceTree = "<group>"; };
@@ -461,6 +462,7 @@
 		0BC78B19248F77E30037F815 /* Snippets */ = {
 			isa = PBXGroup;
 			children = (
+				0BEACAB025BF9BAB0064345B /* Snippets.entitlements */,
 				0B9E6ECC2589AF1B00286DD0 /* Resources */,
 				0BD390E7256375390050D5F8 /* Intrinsic */,
 				0BD390EC256375B80050D5F8 /* Scaffold */,
@@ -961,6 +963,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Snippets/Snippets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F63A6QRT8J;
 				INFOPLIST_FILE = Snippets/Info.plist;
@@ -978,6 +981,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Snippets/Snippets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F63A6QRT8J;
 				INFOPLIST_FILE = Snippets/Info.plist;
