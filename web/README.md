@@ -27,7 +27,7 @@
 
 ### 网络协议
 
-1. [HTTP和HTTPS协议](https://github.com/Walkerant/Study/tree/master/web/md/brower-http.md) HTTP：版本演化，URI，报文格式，首部字段，请求格式，方法，状态，TCP连接，性能问题，安全问题；HTTPS：Hash算法，对称、非对称加密算法，单向加密、双向加密，SSL和TLS。
+1. [HTTP和HTTPS协议](https://github.com/Walkerant/Study/tree/master/web/md/http.md) HTTP：版本演化，URI，报文格式，首部字段，请求格式，方法，状态，TCP连接，性能问题，安全问题；HTTPS：Hash算法，对称、非对称加密算法，单向加密、双向加密，SSL和TLS。
 
 ### Q&A
 
