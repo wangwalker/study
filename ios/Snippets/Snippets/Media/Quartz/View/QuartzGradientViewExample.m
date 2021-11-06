@@ -10,7 +10,7 @@
 
 @implementation QuartzGradientViewExample
 
-CGGradientRef CreateGradient() {
+CGGradientRef CreateGradient(void) {
     CGGradientRef gradient;
     CGColorSpaceRef colorSpace;
     size_t num_locations    = 2;

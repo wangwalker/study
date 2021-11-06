@@ -11,17 +11,17 @@
 
 @implementation RunLoopExample
 
-void timerDefaultModeCallback() {
+void timerDefaultModeCallback(CFRunLoopObserverRef observer, CFRunLoopActivity activity, void *info) {
     CFRunLoopRef runLoop = CFRunLoopGetCurrent();
     NSArray *allModes = CFBridgingRelease(CFRunLoopCopyAllModes(runLoop));
     printf("timer on default mode\nall modes: %s", [[allModes description] UTF8String]);
 }
 
-void timerCommonModeCallback() {
+void timerCommonModeCallback(CFRunLoopObserverRef observer, CFRunLoopActivity activity, void *info) {
     printf("timer on common mode\n");
 }
 
-void dislayLinkDefaultModeCallback() {
+void dislayLinkDefaultModeCallback(CFRunLoopObserverRef observer, CFRunLoopActivity activity, void *info) {
     printf("display link on default mode\n");
 }
 

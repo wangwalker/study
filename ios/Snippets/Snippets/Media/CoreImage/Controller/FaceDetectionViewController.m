@@ -54,7 +54,7 @@
     CIImage *image = [CIImage imageWithData:UIImageJPEGRepresentation(self.image, .95)];
     NSLog(@"image size: %@", NSStringFromCGSize(self.image.size));
     
-    NSDictionary *options = @{CIDetectorAccuracy: CIDetectorAccuracyHigh};
+    NSDictionary *options = @{CIDetectorAccuracy: CIDetectorAccuracyLow};
     CIDetector *detector = [CIDetector detectorOfType:CIDetectorTypeFace context:_context options:options];
     options = @{CIDetectorImageOrientation: [[image properties] valueForKey:(NSString *)kCGImagePropertyOrientation]};
     
@@ -77,9 +77,14 @@
     [self.imageView addSubview:label];
 }
 
+/**
+ * Note: the bounds from CIFaceFeature does not satisfy UIView's coordinates.
+ * In UIView, the origin is at top left corner, but in CoreImage, the origin is at bottom left corner.
+ */
 - (CGRect)convertFaceBoundsToView:(CGRect)bounds{
+    CGFloat newY = self.image.size.height - CGRectGetMaxY(bounds);
     CGFloat ratio = CGRectGetWidth(self.imageView.bounds)/self.image.size.width;
-    return CGRectMake(CGRectGetMinX(bounds)*ratio, CGRectGetMinY(bounds)*ratio, CGRectGetWidth(bounds)*ratio, CGRectGetHeight(bounds)*ratio);
+    return CGRectMake(CGRectGetMinX(bounds)*ratio, newY*ratio, CGRectGetWidth(bounds)*ratio, CGRectGetHeight(bounds)*ratio);
 }
 
 - (UIImageView *)imageView{
