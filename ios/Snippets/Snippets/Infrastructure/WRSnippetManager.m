@@ -39,6 +39,8 @@
     
     [foundation addSnippetItem:[WRSnippetItem itemWithName:@"消息机制" viewControllerClassName:@"MessageViewController" detail:@"KVO&C、通知机制等"]];
     
+    [foundation addSnippetItem:[WRSnippetItem itemWithName:@"网络" viewControllerClassName:@"NetworkViewController" detail:@"Socket、HTTP"]];
+    
     return foundation;
 }
 
