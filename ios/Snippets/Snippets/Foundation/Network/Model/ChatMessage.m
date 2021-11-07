@@ -16,13 +16,6 @@
 @synthesize membership = _membership;
 @synthesize type = _type;
 
-+ (void)load{
-    
-}
-
-+ (void)initialize{
-    
-}
 + (instancetype)messageWithMessageShip:(ChatMessageMembership)membership type:(ChatMessageType)type{
     return [[self alloc] initWithMembership:membership type:type];
 }

@@ -73,6 +73,12 @@
 		0BFE29A7255CD65E00F7CB96 /* GCDQueueExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE29A6255CD65E00F7CB96 /* GCDQueueExample.m */; };
 		0BFE29B0255E28C400F7CB96 /* GCDSemaphoreExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE29AF255E28C400F7CB96 /* GCDSemaphoreExample.m */; };
 		0BFE29B6255E62E200F7CB96 /* GCDSourceExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE29B5255E62E200F7CB96 /* GCDSourceExample.m */; };
+		157A8BC02736E1B9008FCDC4 /* Communicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8BBF2736E1B9008FCDC4 /* Communicator.m */; };
+		157A8BC3273752AB008FCDC4 /* CommunicatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8BC2273752AB008FCDC4 /* CommunicatorViewController.m */; };
+		157A8BC62737632D008FCDC4 /* NetworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8BC52737632D008FCDC4 /* NetworkViewController.m */; };
+		157A8BC927378364008FCDC4 /* TCPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8BC827378364008FCDC4 /* TCPClient.m */; };
+		157A8BCF2737A63B008FCDC4 /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8BCE2737A63B008FCDC4 /* ChatView.m */; };
+		157A8BD22737A675008FCDC4 /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8BD12737A675008FCDC4 /* ChatMessage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -219,6 +225,18 @@
 		0BFE29AF255E28C400F7CB96 /* GCDSemaphoreExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDSemaphoreExample.m; sourceTree = "<group>"; };
 		0BFE29B4255E62E200F7CB96 /* GCDSourceExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCDSourceExample.h; sourceTree = "<group>"; };
 		0BFE29B5255E62E200F7CB96 /* GCDSourceExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDSourceExample.m; sourceTree = "<group>"; };
+		157A8BBE2736E1B9008FCDC4 /* Communicator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Communicator.h; sourceTree = "<group>"; };
+		157A8BBF2736E1B9008FCDC4 /* Communicator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Communicator.m; sourceTree = "<group>"; };
+		157A8BC1273752AB008FCDC4 /* CommunicatorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommunicatorViewController.h; sourceTree = "<group>"; };
+		157A8BC2273752AB008FCDC4 /* CommunicatorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommunicatorViewController.m; sourceTree = "<group>"; };
+		157A8BC42737632D008FCDC4 /* NetworkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkViewController.h; sourceTree = "<group>"; };
+		157A8BC52737632D008FCDC4 /* NetworkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkViewController.m; sourceTree = "<group>"; };
+		157A8BC727378364008FCDC4 /* TCPClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCPClient.h; sourceTree = "<group>"; };
+		157A8BC827378364008FCDC4 /* TCPClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCPClient.m; sourceTree = "<group>"; };
+		157A8BCD2737A63B008FCDC4 /* ChatView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatView.h; sourceTree = "<group>"; };
+		157A8BCE2737A63B008FCDC4 /* ChatView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatView.m; sourceTree = "<group>"; };
+		157A8BD02737A675008FCDC4 /* ChatMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatMessage.h; sourceTree = "<group>"; };
+		157A8BD12737A675008FCDC4 /* ChatMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatMessage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,6 +306,7 @@
 		0B0CC10F25786E2D00D54B6C /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				157A8BBB2736E176008FCDC4 /* Network */,
 				0B0CC11925786EFF00D54B6C /* Collection */,
 				0BE6E965255A223100118E14 /* Concurrent */,
 				0BD390EB256375850050D5F8 /* Execution */,
@@ -610,6 +629,49 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		157A8BBB2736E176008FCDC4 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				157A8BCC2737A61D008FCDC4 /* View */,
+				157A8BBD2736E18E008FCDC4 /* Controller */,
+				157A8BBC2736E185008FCDC4 /* Model */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		157A8BBC2736E185008FCDC4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				157A8BBE2736E1B9008FCDC4 /* Communicator.h */,
+				157A8BBF2736E1B9008FCDC4 /* Communicator.m */,
+				157A8BC727378364008FCDC4 /* TCPClient.h */,
+				157A8BC827378364008FCDC4 /* TCPClient.m */,
+				157A8BD02737A675008FCDC4 /* ChatMessage.h */,
+				157A8BD12737A675008FCDC4 /* ChatMessage.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		157A8BBD2736E18E008FCDC4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				157A8BC42737632D008FCDC4 /* NetworkViewController.h */,
+				157A8BC52737632D008FCDC4 /* NetworkViewController.m */,
+				157A8BC1273752AB008FCDC4 /* CommunicatorViewController.h */,
+				157A8BC2273752AB008FCDC4 /* CommunicatorViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		157A8BCC2737A61D008FCDC4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				157A8BCD2737A63B008FCDC4 /* ChatView.h */,
+				157A8BCE2737A63B008FCDC4 /* ChatView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -757,6 +819,7 @@
 				0BFE29A7255CD65E00F7CB96 /* GCDQueueExample.m in Sources */,
 				0B8966F12580C667003F2DBC /* QuartzPathViewExample.m in Sources */,
 				0BFE29B6255E62E200F7CB96 /* GCDSourceExample.m in Sources */,
+				157A8BD22737A675008FCDC4 /* ChatMessage.m in Sources */,
 				0BC78B1C248F77E30037F815 /* AppDelegate.m in Sources */,
 				0B9E6E9C2589AA6600286DD0 /* CoreImageSnippetItem.m in Sources */,
 				0B9E6EAA2589AB2600286DD0 /* CoreImageManageViewController.m in Sources */,
@@ -766,6 +829,8 @@
 				0B0CC107257868F200D54B6C /* BaseUIViewController.m in Sources */,
 				0B0CC11F25786F5F00D54B6C /* WRProduct.m in Sources */,
 				0B0CC0E42577306700D54B6C /* ClassmateContact.m in Sources */,
+				157A8BC02736E1B9008FCDC4 /* Communicator.m in Sources */,
+				157A8BC927378364008FCDC4 /* TCPClient.m in Sources */,
 				0B104A1325A581A20033095B /* FaceDetectionViewController.m in Sources */,
 				0B8966FB2581F98F003F2DBC /* QuartzTransformViewExample.m in Sources */,
 				0BE9413524E66C9E0064E662 /* GCDGroupExample.m in Sources */,
@@ -786,13 +851,16 @@
 				0B4BC2D625870476001514EA /* QuartzGradientViewExample.m in Sources */,
 				0B8966D52580BCED003F2DBC /* QuartzManagerViewController.m in Sources */,
 				0BB749E725678E74004E1373 /* NSRunTimeViewController.m in Sources */,
+				157A8BC62737632D008FCDC4 /* NetworkViewController.m in Sources */,
 				0B8966E42580C323003F2DBC /* WRQuartzSnippetItem.m in Sources */,
 				0BD390D62562571F0050D5F8 /* WRSynchronizeExample.m in Sources */,
 				0B0CC0C22574CADB00D54B6C /* ColorConvertorViewController.m in Sources */,
 				0BD390E3256375020050D5F8 /* RunLoopExample.m in Sources */,
 				0B656609256CA25300F09E60 /* BlockExample.m in Sources */,
+				157A8BCF2737A63B008FCDC4 /* ChatView.m in Sources */,
 				0B0CC11525786EF500D54B6C /* NSArrayOperation.m in Sources */,
 				0B9E6EF1258AFBD700286DD0 /* MultiCIFiltersViewController.m in Sources */,
+				157A8BC3273752AB008FCDC4 /* CommunicatorViewController.m in Sources */,
 				0BC78B1F248F77E30037F815 /* SceneDelegate.m in Sources */,
 				0B0CC0FB257772E500D54B6C /* KVCTransaction.m in Sources */,
 				0BE6E99A255B70D200118E14 /* NSThreadViewController2.m in Sources */,
