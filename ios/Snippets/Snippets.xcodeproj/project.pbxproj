@@ -79,6 +79,10 @@
 		157A8BC927378364008FCDC4 /* TCPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8BC827378364008FCDC4 /* TCPClient.m */; };
 		157A8BCF2737A63B008FCDC4 /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8BCE2737A63B008FCDC4 /* ChatView.m */; };
 		157A8BD22737A675008FCDC4 /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8BD12737A675008FCDC4 /* ChatMessage.m */; };
+		157A8BD527382180008FCDC4 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 157A8BD427382180008FCDC4 /* libsqlite3.tbd */; };
+		157A8BD9273823BF008FCDC4 /* SQLiteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8BD8273823BF008FCDC4 /* SQLiteManager.m */; };
+		157A8BDC2738C9BE008FCDC4 /* SQLiteChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8BDB2738C9BE008FCDC4 /* SQLiteChatMessage.m */; };
+		157A8BDF273922C0008FCDC4 /* TCPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8BDE273922C0008FCDC4 /* TCPServer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -237,6 +241,13 @@
 		157A8BCE2737A63B008FCDC4 /* ChatView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatView.m; sourceTree = "<group>"; };
 		157A8BD02737A675008FCDC4 /* ChatMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatMessage.h; sourceTree = "<group>"; };
 		157A8BD12737A675008FCDC4 /* ChatMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatMessage.m; sourceTree = "<group>"; };
+		157A8BD427382180008FCDC4 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		157A8BD7273823BF008FCDC4 /* SQLiteManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQLiteManager.h; sourceTree = "<group>"; };
+		157A8BD8273823BF008FCDC4 /* SQLiteManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQLiteManager.m; sourceTree = "<group>"; };
+		157A8BDA2738C9BE008FCDC4 /* SQLiteChatMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQLiteChatMessage.h; sourceTree = "<group>"; };
+		157A8BDB2738C9BE008FCDC4 /* SQLiteChatMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQLiteChatMessage.m; sourceTree = "<group>"; };
+		157A8BDD273922C0008FCDC4 /* TCPServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCPServer.h; sourceTree = "<group>"; };
+		157A8BDE273922C0008FCDC4 /* TCPServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCPServer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +255,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				157A8BD527382180008FCDC4 /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +318,7 @@
 		0B0CC10F25786E2D00D54B6C /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				157A8BD627382373008FCDC4 /* Persistent */,
 				157A8BBB2736E176008FCDC4 /* Network */,
 				0B0CC11925786EFF00D54B6C /* Collection */,
 				0BE6E965255A223100118E14 /* Concurrent */,
@@ -465,6 +478,7 @@
 				0BC78B35248F77EA0037F815 /* SnippetsTests */,
 				0BC78B40248F77EA0037F815 /* SnippetsUITests */,
 				0BC78B18248F77E30037F815 /* Products */,
+				157A8BD327382180008FCDC4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -644,10 +658,14 @@
 			children = (
 				157A8BBE2736E1B9008FCDC4 /* Communicator.h */,
 				157A8BBF2736E1B9008FCDC4 /* Communicator.m */,
+				157A8BDD273922C0008FCDC4 /* TCPServer.h */,
+				157A8BDE273922C0008FCDC4 /* TCPServer.m */,
 				157A8BC727378364008FCDC4 /* TCPClient.h */,
 				157A8BC827378364008FCDC4 /* TCPClient.m */,
 				157A8BD02737A675008FCDC4 /* ChatMessage.h */,
 				157A8BD12737A675008FCDC4 /* ChatMessage.m */,
+				157A8BDA2738C9BE008FCDC4 /* SQLiteChatMessage.h */,
+				157A8BDB2738C9BE008FCDC4 /* SQLiteChatMessage.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -670,6 +688,23 @@
 				157A8BCE2737A63B008FCDC4 /* ChatView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		157A8BD327382180008FCDC4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				157A8BD427382180008FCDC4 /* libsqlite3.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		157A8BD627382373008FCDC4 /* Persistent */ = {
+			isa = PBXGroup;
+			children = (
+				157A8BD7273823BF008FCDC4 /* SQLiteManager.h */,
+				157A8BD8273823BF008FCDC4 /* SQLiteManager.m */,
+			);
+			path = Persistent;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -809,6 +844,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				157A8BDC2738C9BE008FCDC4 /* SQLiteChatMessage.m in Sources */,
 				0B9E6EE5258ADE2100286DD0 /* CIFilterInputView.m in Sources */,
 				0B9E6EEB258AEEAF00286DD0 /* CIFilterInputViewModel.m in Sources */,
 				0BE6E97C255A3B5F00118E14 /* WRSnippetGroup.m in Sources */,
@@ -827,6 +863,7 @@
 				0B0CC12B2578707500D54B6C /* CollectionViewController.m in Sources */,
 				0B0CC0EE2577310100D54B6C /* ClassmateContactViewController.m in Sources */,
 				0B0CC107257868F200D54B6C /* BaseUIViewController.m in Sources */,
+				157A8BD9273823BF008FCDC4 /* SQLiteManager.m in Sources */,
 				0B0CC11F25786F5F00D54B6C /* WRProduct.m in Sources */,
 				0B0CC0E42577306700D54B6C /* ClassmateContact.m in Sources */,
 				157A8BC02736E1B9008FCDC4 /* Communicator.m in Sources */,
@@ -856,6 +893,7 @@
 				0BD390D62562571F0050D5F8 /* WRSynchronizeExample.m in Sources */,
 				0B0CC0C22574CADB00D54B6C /* ColorConvertorViewController.m in Sources */,
 				0BD390E3256375020050D5F8 /* RunLoopExample.m in Sources */,
+				157A8BDF273922C0008FCDC4 /* TCPServer.m in Sources */,
 				0B656609256CA25300F09E60 /* BlockExample.m in Sources */,
 				157A8BCF2737A63B008FCDC4 /* ChatView.m in Sources */,
 				0B0CC11525786EF500D54B6C /* NSArrayOperation.m in Sources */,

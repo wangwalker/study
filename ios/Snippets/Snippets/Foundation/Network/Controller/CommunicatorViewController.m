@@ -11,6 +11,7 @@
 #import "Communicator.h"
 #import "TCPClient.h"
 #import "ChatMessage.h"
+#import "SQLiteChatMessage.h"
 
 @interface CommunicatorViewController () <ChatMessageViewDelegate>
 @property (nonatomic) ChatView *chatView;
@@ -21,12 +22,20 @@
 
 @implementation CommunicatorViewController
 
+- (instancetype)init{
+    if (self = [super init]) {
+        [self initChat];
+        [self initUI];
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initCommunicator];
-    // Do any additional setup after loading the view.
-    [self.view addSubview:self.chatView];
-    [self.view addSubview:self.inputFiled];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self.chatView update];
 }
 
 - (void)viewDidLayoutSubviews{
@@ -76,6 +85,7 @@
     ChatMessage *message = [ChatTextMessage text:content membership:ChatMessageMembershipSelf];
     [_messages addMessage:message];
     [_chatView update];
+    [SQLiteChatMessage insertIntoDatabase:message];
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         [self.client writeContent:content];
@@ -84,14 +94,27 @@
         [self.messages addMessage:other];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.chatView update];
+            [SQLiteChatMessage insertIntoDatabase:other];
         });
         NSLog(@"\nsend: %@\nrecieve: %@", content, recievedContent);
     });
 }
 
-- (void)initCommunicator{
+- (void)initUI{
+    [self.view addSubview:self.chatView];
+    [self.view addSubview:self.inputFiled];
+}
+
+- (void)initChat{
+    NSArray *chats;
+    
     _messages = [[ChatMessageQueue alloc] initWithName:@"tcpChat"];
-    _client = [[TCPClient alloc] initWithHost:@"192.168.2.7" port:8888];
+    _client = [[TCPClient alloc] initWithHost:@"127.0.0.1" port:8888];
+    
+    chats = [SQLiteChatMessage allChatMessageFromDatabase];
+    if (chats && 0 < chats.count) {
+        [_messages addMessages:chats];
+    }
 }
 
 - (UITextField *)inputFiled{

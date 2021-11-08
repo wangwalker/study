@@ -27,6 +27,8 @@ typedef enum : NSUInteger {
 
 + (instancetype)messageWithMessageShip:(ChatMessageMembership)membership type:(ChatMessageType)type;
 
+@property (nonatomic) NSInteger localID;
+@property (nonatomic) NSInteger serverID;
 @property (nonatomic, readonly) ChatMessageMembership membership;
 @property (nonatomic, readonly) ChatMessageType type;
 @property (nonatomic, readonly, copy) NSString *content;
@@ -47,11 +49,11 @@ typedef enum : NSUInteger {
 
 - (instancetype)initWithName:(NSString *)name;
 
+- (NSInteger)addMessages:(NSArray<ChatMessage*>* )messages;
 - (BOOL)addMessage:(ChatMessage *)message;
 
 - (ChatMessage *)messageAtIndex:(NSInteger)index;
 
-@property (nonatomic, readonly) NSArray<ChatMessage*>* messages;
 @property (nonatomic, readonly) NSString *name;
 @property (nonatomic, readonly) NSUInteger count;
 

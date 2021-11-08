@@ -65,6 +65,16 @@
     return self;
 }
 
+- (NSInteger)addMessages:(NSArray<ChatMessage *> *)messages{
+    NSInteger count = 0;
+    for (ChatMessage *m in messages) {
+        if ([self addMessage:m]) {
+            count += 1;
+        }
+    }
+    return count;
+}
+
 - (BOOL)addMessage:(ChatMessage *)message{
     if (message.content.length <= 0) {
         return NO;
@@ -75,10 +85,6 @@
 
 - (ChatMessage *)messageAtIndex:(NSInteger)index{
     return _messages[index];
-}
-
-- (NSArray<ChatMessage *> *)messages{
-    return [_messages copy];
 }
 
 - (NSUInteger)count{
