@@ -45,18 +45,4 @@ typedef enum : NSUInteger {
 @end
 
 
-@interface ChatMessageQueue : NSObject
-
-- (instancetype)initWithName:(NSString *)name;
-
-- (NSInteger)addMessages:(NSArray<ChatMessage*>* )messages;
-- (BOOL)addMessage:(ChatMessage *)message;
-
-- (ChatMessage *)messageAtIndex:(NSInteger)index;
-
-@property (nonatomic, readonly) NSString *name;
-@property (nonatomic, readonly) NSUInteger count;
-
-@end
-
 NS_ASSUME_NONNULL_END

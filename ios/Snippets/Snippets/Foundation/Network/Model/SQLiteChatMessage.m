@@ -30,13 +30,13 @@ SQLiteManager *sqliteManager;
     return [NSString stringWithUTF8String:stmt];
 }
 
-+ (BOOL)insertIntoDatabase:(ChatMessage *)chatMessage{
+- (BOOL)insertChatMessage:(ChatMessage *)chatMessage{
     NSString *stmtFormat = @"INSERT INTO 'CHAT_MESSAGE' (type, membership, content) VALUES (%ld, %ld, '%s');";
     NSString *stmt = [NSString stringWithFormat:stmtFormat, chatMessage.type, chatMessage.membership, chatMessage.content.UTF8String];
     return [sqliteManager insertRowWithStatement:stmt];
 }
 
-+ (NSArray *)allChatMessageFromDatabase{
+- (NSArray *)retrieveAllChatMessages{
     NSString *stmt = @"SELECT * FROM CHAT_MESSAGE;";
     NSArray *rows = [sqliteManager selectRowsWithStatement:stmt];
     if (nil == rows || 0 == rows.count) {
@@ -48,6 +48,19 @@ SQLiteManager *sqliteManager;
         [chats addObject:chatMessage];
     }
     return chats;
+}
+
+#pragma mark ChatMessagePersistentDelegate
+
+- (BOOL)chatMessageQueue:(ChatMessageQueue *)messageQueue willInsertChatMessage:(ChatMessage *)chatMessage{
+    NSLog(@"will insert chat message: %@", chatMessage.content);
+    return YES;
+}
+
+- (BOOL)chatMessageQueue:(ChatMessageQueue *)messageQueue didInsertChatMessage:(ChatMessage *)chatMessage{
+    NSLog(@"did insert chat message: %@", chatMessage.content);
+    [self insertChatMessage:chatMessage];
+    return YES;
 }
 
 @end

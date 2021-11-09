@@ -1,8 +1,8 @@
 //
-//  PersistentChatMessage.h
+//  CoreDataChatMessage.h
 //  Snippets
 //
-//  Created by Walker Wang on 2021/11/8.
+//  Created by Walker Wang on 2021/11/9.
 //  Copyright © 2021 Walker. All rights reserved.
 //
 
@@ -11,9 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class ChatMessage;
+@interface CoreDataChatMessage : NSObject <ChatMessagePersistentDelegate>
 
-@interface SQLiteChatMessage : NSObject <ChatMessagePersistentDelegate>
+- (NSArray *)retrieveAllChatMessages;
 
 @end
 

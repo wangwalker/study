@@ -11,6 +11,7 @@
 #import "Communicator.h"
 #import "TCPClient.h"
 #import "ChatMessage.h"
+#import "ChatMessageQueue.h"
 #import "SQLiteChatMessage.h"
 
 @interface CommunicatorViewController () <ChatMessageViewDelegate>
@@ -18,6 +19,7 @@
 @property (nonatomic) UITextField *inputFiled;
 @property (nonatomic) TCPClient *client;
 @property (nonatomic) ChatMessageQueue *messages;
+@property (nonatomic) SQLiteChatMessage *sqlite;
 @end
 
 @implementation CommunicatorViewController
@@ -85,7 +87,6 @@
     ChatMessage *message = [ChatTextMessage text:content membership:ChatMessageMembershipSelf];
     [_messages addMessage:message];
     [_chatView update];
-    [SQLiteChatMessage insertIntoDatabase:message];
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         [self.client writeContent:content];
@@ -94,7 +95,6 @@
         [self.messages addMessage:other];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.chatView update];
-            [SQLiteChatMessage insertIntoDatabase:other];
         });
         NSLog(@"\nsend: %@\nrecieve: %@", content, recievedContent);
     });
@@ -110,11 +110,15 @@
     
     _messages = [[ChatMessageQueue alloc] initWithName:@"tcpChat"];
     _client = [[TCPClient alloc] initWithHost:@"127.0.0.1" port:8888];
+    _sqlite = [[SQLiteChatMessage alloc] init];
     
-    chats = [SQLiteChatMessage allChatMessageFromDatabase];
+    chats = [_sqlite retrieveAllChatMessages];
     if (chats && 0 < chats.count) {
-        [_messages addMessages:chats];
+        _messages = [[ChatMessageQueue alloc] initWithName:@"tcpChat" messages:chats];
     }
+    
+    // do data persistent when operate chat messages queue
+    _messages.persistenceDelegate = _sqlite;
 }
 
 - (UITextField *)inputFiled{
