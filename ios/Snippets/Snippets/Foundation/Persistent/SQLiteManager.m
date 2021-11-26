@@ -90,6 +90,13 @@ NSMutableArray *existedDatabaseNames;
     if (nil == dbPath) {
         return NO;
     }
+    /// Sqlite有三种类型
+    /// 常规型：传入一个文件路径
+    /// 临时型：传入一个空路径。临时数据库将在连接关闭时自动删除。
+    /// 内存型：如果传入:memery:作为路径名，将创建一个内存数据库，同样在连接关闭时会销毁。
+    /// 内存型数据库
+    /// 如果用:memery:?cache=shared作为路径，可以创建一个共享缓存的内存数据库
+    /// 这样在其他带有相同参数的数据库中就可以共享缓存。
     connected = SQLITE_OK == sqlite3_open(dbPath.UTF8String, &sqlite);
     return connected;
 }

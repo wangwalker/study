@@ -432,6 +432,55 @@ let qr = Barcode.qrcode("qr")
   - 实例存储属性
   - `static`类型属性
   - `class`类型属性，可以在子类中`override`父类的实现
+- 属性包装器，用`@propertyWrapper`定义，是对属性本身的功能增强。
+  - 原理：编译器会自动为包装器合成代码，来保存、获取包装值
+  - 有两种用法：不带初始值的，带初始值的
+
+```swift
+// 不带初始值的属性包装器
+@propertyWrapper
+struct Regularized {
+    private var value: Double = 0
+    var wrappedValue: Double {
+        get { return value }
+        set { value = newValue / 100.0}
+    }
+}
+// 带初始值的属性包装器
+@propertyWrapper
+struct RegularizedNumber {
+    private var maximum: Double
+    private var number: Double
+    
+    var wrappedValue: Double {
+        get { return number }
+        set { number = newValue / maximum }
+    }
+    
+    init() {
+        maximum = 100
+        number = 0
+    }
+    init(max: Int, num: Int = 0) {
+        maximum = Double(max)
+        number = Double(num)
+    }
+    init(max: Float, num: Float = 0) {
+        maximum = Double(max)
+        number = Double(num)
+    }
+    init(max: Double, num: Double) {
+        maximum = max
+        number = num
+    }
+}
+
+struct Circle {
+    @Regularized public var radius: Double
+    @RegularizedNumber(max: 10) var x: Double
+    @RegularizedNumber(max: 100) var y: Double
+}
+```
 
 ### 方法
 

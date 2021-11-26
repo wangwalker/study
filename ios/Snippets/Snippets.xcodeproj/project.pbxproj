@@ -83,6 +83,11 @@
 		157A8BD9273823BF008FCDC4 /* SQLiteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8BD8273823BF008FCDC4 /* SQLiteManager.m */; };
 		157A8BDC2738C9BE008FCDC4 /* SQLiteChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8BDB2738C9BE008FCDC4 /* SQLiteChatMessage.m */; };
 		157A8BDF273922C0008FCDC4 /* TCPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8BDE273922C0008FCDC4 /* TCPServer.m */; };
+		157A8BE127394780008FCDC4 /* ChatMessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8BE027394780008FCDC4 /* ChatMessageTests.m */; };
+		157A8BE4273A5436008FCDC4 /* ChatMessageQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8BE3273A5436008FCDC4 /* ChatMessageQueue.m */; };
+		157A8BE7273A5B78008FCDC4 /* Snippets.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 157A8BE5273A5B78008FCDC4 /* Snippets.xcdatamodeld */; };
+		157A8BE9273A5C9E008FCDC4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 157A8BE8273A5C9E008FCDC4 /* CoreData.framework */; };
+		157A8C74273A62B8008FCDC4 /* CoreDataChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8C73273A62B8008FCDC4 /* CoreDataChatMessage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -248,6 +253,13 @@
 		157A8BDB2738C9BE008FCDC4 /* SQLiteChatMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQLiteChatMessage.m; sourceTree = "<group>"; };
 		157A8BDD273922C0008FCDC4 /* TCPServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCPServer.h; sourceTree = "<group>"; };
 		157A8BDE273922C0008FCDC4 /* TCPServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCPServer.m; sourceTree = "<group>"; };
+		157A8BE027394780008FCDC4 /* ChatMessageTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatMessageTests.m; sourceTree = "<group>"; };
+		157A8BE2273A5436008FCDC4 /* ChatMessageQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatMessageQueue.h; sourceTree = "<group>"; };
+		157A8BE3273A5436008FCDC4 /* ChatMessageQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatMessageQueue.m; sourceTree = "<group>"; };
+		157A8BE6273A5B78008FCDC4 /* Snippets.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Snippets.xcdatamodel; sourceTree = "<group>"; };
+		157A8BE8273A5C9E008FCDC4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
+		157A8C72273A62B8008FCDC4 /* CoreDataChatMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataChatMessage.h; sourceTree = "<group>"; };
+		157A8C73273A62B8008FCDC4 /* CoreDataChatMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataChatMessage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +275,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				157A8BE9273A5C9E008FCDC4 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,6 +526,7 @@
 			isa = PBXGroup;
 			children = (
 				0BC78B36248F77EA0037F815 /* SnippetsTests.m */,
+				157A8BE027394780008FCDC4 /* ChatMessageTests.m */,
 				0BC78B38248F77EA0037F815 /* Info.plist */,
 			);
 			path = SnippetsTests;
@@ -548,6 +562,7 @@
 				0BC78B1D248F77E30037F815 /* SceneDelegate.h */,
 				0BC78B1E248F77E30037F815 /* SceneDelegate.m */,
 				0BC78B2C248F77E90037F815 /* main.m */,
+				157A8BE5273A5B78008FCDC4 /* Snippets.xcdatamodeld */,
 			);
 			path = Intrinsic;
 			sourceTree = "<group>";
@@ -664,8 +679,12 @@
 				157A8BC827378364008FCDC4 /* TCPClient.m */,
 				157A8BD02737A675008FCDC4 /* ChatMessage.h */,
 				157A8BD12737A675008FCDC4 /* ChatMessage.m */,
+				157A8BE2273A5436008FCDC4 /* ChatMessageQueue.h */,
+				157A8BE3273A5436008FCDC4 /* ChatMessageQueue.m */,
 				157A8BDA2738C9BE008FCDC4 /* SQLiteChatMessage.h */,
 				157A8BDB2738C9BE008FCDC4 /* SQLiteChatMessage.m */,
+				157A8C72273A62B8008FCDC4 /* CoreDataChatMessage.h */,
+				157A8C73273A62B8008FCDC4 /* CoreDataChatMessage.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -693,6 +712,7 @@
 		157A8BD327382180008FCDC4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				157A8BE8273A5C9E008FCDC4 /* CoreData.framework */,
 				157A8BD427382180008FCDC4 /* libsqlite3.tbd */,
 			);
 			name = Frameworks;
@@ -774,6 +794,7 @@
 				TargetAttributes = {
 					0BC78B16248F77E30037F815 = {
 						CreatedOnToolsVersion = 11.4;
+						LastSwiftMigration = 1300;
 					};
 					0BC78B31248F77EA0037F815 = {
 						CreatedOnToolsVersion = 11.4;
@@ -866,6 +887,7 @@
 				157A8BD9273823BF008FCDC4 /* SQLiteManager.m in Sources */,
 				0B0CC11F25786F5F00D54B6C /* WRProduct.m in Sources */,
 				0B0CC0E42577306700D54B6C /* ClassmateContact.m in Sources */,
+				157A8BE7273A5B78008FCDC4 /* Snippets.xcdatamodeld in Sources */,
 				157A8BC02736E1B9008FCDC4 /* Communicator.m in Sources */,
 				157A8BC927378364008FCDC4 /* TCPClient.m in Sources */,
 				0B104A1325A581A20033095B /* FaceDetectionViewController.m in Sources */,
@@ -893,12 +915,14 @@
 				0BD390D62562571F0050D5F8 /* WRSynchronizeExample.m in Sources */,
 				0B0CC0C22574CADB00D54B6C /* ColorConvertorViewController.m in Sources */,
 				0BD390E3256375020050D5F8 /* RunLoopExample.m in Sources */,
+				157A8C74273A62B8008FCDC4 /* CoreDataChatMessage.m in Sources */,
 				157A8BDF273922C0008FCDC4 /* TCPServer.m in Sources */,
 				0B656609256CA25300F09E60 /* BlockExample.m in Sources */,
 				157A8BCF2737A63B008FCDC4 /* ChatView.m in Sources */,
 				0B0CC11525786EF500D54B6C /* NSArrayOperation.m in Sources */,
 				0B9E6EF1258AFBD700286DD0 /* MultiCIFiltersViewController.m in Sources */,
 				157A8BC3273752AB008FCDC4 /* CommunicatorViewController.m in Sources */,
+				157A8BE4273A5436008FCDC4 /* ChatMessageQueue.m in Sources */,
 				0BC78B1F248F77E30037F815 /* SceneDelegate.m in Sources */,
 				0B0CC0FB257772E500D54B6C /* KVCTransaction.m in Sources */,
 				0BE6E99A255B70D200118E14 /* NSThreadViewController2.m in Sources */,
@@ -915,6 +939,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BC78B37248F77EA0037F815 /* SnippetsTests.m in Sources */,
+				157A8BE127394780008FCDC4 /* ChatMessageTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1069,6 +1094,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Snippets/Snippets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F63A6QRT8J;
@@ -1079,6 +1105,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.walker.Snippets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1087,6 +1115,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Snippets/Snippets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F63A6QRT8J;
@@ -1097,6 +1126,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.walker.Snippets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1217,6 +1247,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		157A8BE5273A5B78008FCDC4 /* Snippets.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				157A8BE6273A5B78008FCDC4 /* Snippets.xcdatamodel */,
+			);
+			currentVersion = 157A8BE6273A5B78008FCDC4 /* Snippets.xcdatamodel */;
+			path = Snippets.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0BC78B0F248F77E30037F815 /* Project object */;
 }
