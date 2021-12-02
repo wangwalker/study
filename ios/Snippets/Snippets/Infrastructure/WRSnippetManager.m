@@ -50,6 +50,8 @@
     [media addSnippetItem:[WRSnippetItem itemWithName:@"Quartz 2D" viewControllerClassName:@"QuartzManagerViewController" detail:@"二维绘图引擎"]];
     
     [media addSnippetItem:[WRSnippetItem itemWithName:@"CoreImage" viewControllerClassName:@"CoreImageManageViewController" detail:@"图片处理相关"]];
+    
+    [media addSnippetItem:[WRSnippetItem itemWithName:@"AVFoundation" viewControllerClassName:@"AVFoundationViewController" detail:@"音视频处理"]];
 
     return media;
 }

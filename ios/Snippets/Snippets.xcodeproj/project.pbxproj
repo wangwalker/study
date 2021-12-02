@@ -88,6 +88,17 @@
 		157A8BE7273A5B78008FCDC4 /* Snippets.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 157A8BE5273A5B78008FCDC4 /* Snippets.xcdatamodeld */; };
 		157A8BE9273A5C9E008FCDC4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 157A8BE8273A5C9E008FCDC4 /* CoreData.framework */; };
 		157A8C74273A62B8008FCDC4 /* CoreDataChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8C73273A62B8008FCDC4 /* CoreDataChatMessage.m */; };
+		157A8CC12754D616008FCDC4 /* AVFoundationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8CC02754D616008FCDC4 /* AVFoundationViewController.m */; };
+		157A8CC42754D6CE008FCDC4 /* BasicVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8CC32754D6CE008FCDC4 /* BasicVideoViewController.m */; };
+		157A8CC72754E8F1008FCDC4 /* VideoAssetInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8CC62754E8F1008FCDC4 /* VideoAssetInfo.m */; };
+		157A8CCA2755B4E8008FCDC4 /* PlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8CC92755B4E8008FCDC4 /* PlayerView.m */; };
+		157A8CCF2756220F008FCDC4 /* CompositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8CCE2756220F008FCDC4 /* CompositionViewController.m */; };
+		157A8CD22756234A008FCDC4 /* VideoPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8CD12756234A008FCDC4 /* VideoPickerViewController.m */; };
+		157A8CD52756281C008FCDC4 /* VideoPickerProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8CD42756281C008FCDC4 /* VideoPickerProxy.m */; };
+		157A8CD827576FC6008FCDC4 /* VideoCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8CD727576FC6008FCDC4 /* VideoCollection.m */; };
+		157A8CDE2757918E008FCDC4 /* SDAVAssetExportSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8CDD2757918E008FCDC4 /* SDAVAssetExportSession.m */; };
+		157A8D8C2758C93C008FCDC4 /* VideoReencoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8D8B2758C93C008FCDC4 /* VideoReencoder.m */; };
+		157A8D8F2758FCCB008FCDC4 /* ReencodingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8D8E2758FCCB008FCDC4 /* ReencodingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -260,6 +271,33 @@
 		157A8BE8273A5C9E008FCDC4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		157A8C72273A62B8008FCDC4 /* CoreDataChatMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataChatMessage.h; sourceTree = "<group>"; };
 		157A8C73273A62B8008FCDC4 /* CoreDataChatMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataChatMessage.m; sourceTree = "<group>"; };
+		157A8CBF2754D616008FCDC4 /* AVFoundationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AVFoundationViewController.h; sourceTree = "<group>"; };
+		157A8CC02754D616008FCDC4 /* AVFoundationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AVFoundationViewController.m; sourceTree = "<group>"; };
+		157A8CC22754D6CE008FCDC4 /* BasicVideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasicVideoViewController.h; sourceTree = "<group>"; };
+		157A8CC32754D6CE008FCDC4 /* BasicVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BasicVideoViewController.m; sourceTree = "<group>"; };
+		157A8CC52754E8F1008FCDC4 /* VideoAssetInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoAssetInfo.h; sourceTree = "<group>"; };
+		157A8CC62754E8F1008FCDC4 /* VideoAssetInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoAssetInfo.m; sourceTree = "<group>"; };
+		157A8CC82755B4E8008FCDC4 /* PlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerView.h; sourceTree = "<group>"; };
+		157A8CC92755B4E8008FCDC4 /* PlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerView.m; sourceTree = "<group>"; };
+		157A8CCD2756220F008FCDC4 /* CompositionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompositionViewController.h; sourceTree = "<group>"; };
+		157A8CCE2756220F008FCDC4 /* CompositionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompositionViewController.m; sourceTree = "<group>"; };
+		157A8CD02756234A008FCDC4 /* VideoPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoPickerViewController.h; sourceTree = "<group>"; };
+		157A8CD12756234A008FCDC4 /* VideoPickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoPickerViewController.m; sourceTree = "<group>"; };
+		157A8CD32756281C008FCDC4 /* VideoPickerProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoPickerProxy.h; sourceTree = "<group>"; };
+		157A8CD42756281C008FCDC4 /* VideoPickerProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoPickerProxy.m; sourceTree = "<group>"; };
+		157A8CD627576FC6008FCDC4 /* VideoCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoCollection.h; sourceTree = "<group>"; };
+		157A8CD727576FC6008FCDC4 /* VideoCollection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoCollection.m; sourceTree = "<group>"; };
+		157A8CDC2757918E008FCDC4 /* SDAVAssetExportSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDAVAssetExportSession.h; sourceTree = "<group>"; };
+		157A8CDD2757918E008FCDC4 /* SDAVAssetExportSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDAVAssetExportSession.m; sourceTree = "<group>"; };
+		157A8CDF27587F66008FCDC4 /* libavformat.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavformat.a; path = "../../../lib/ffmpeg-ios/FFmpeg-iOS/lib/libavformat.a"; sourceTree = "<group>"; };
+		157A8CE127587FD8008FCDC4 /* libavcodec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavcodec.a; path = "../../../lib/ffmpeg-ios/FFmpeg-iOS/lib/libavcodec.a"; sourceTree = "<group>"; };
+		157A8CE3275882D8008FCDC4 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		157A8CE5275882E2008FCDC4 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		157A8CE7275882EF008FCDC4 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		157A8D8A2758C93C008FCDC4 /* VideoReencoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoReencoder.h; sourceTree = "<group>"; };
+		157A8D8B2758C93C008FCDC4 /* VideoReencoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoReencoder.m; sourceTree = "<group>"; };
+		157A8D8D2758FCCB008FCDC4 /* ReencodingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReencodingViewController.h; sourceTree = "<group>"; };
+		157A8D8E2758FCCB008FCDC4 /* ReencodingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReencodingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -408,6 +446,7 @@
 		0B9E6E962589A84E00286DD0 /* Media */ = {
 			isa = PBXGroup;
 			children = (
+				157A8CBB2754D58C008FCDC4 /* Playable */,
 				0B8966CB2580BAF8003F2DBC /* Quartz */,
 				0B9E6EA42589AA8B00286DD0 /* CoreImage */,
 			);
@@ -712,6 +751,11 @@
 		157A8BD327382180008FCDC4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				157A8CE7275882EF008FCDC4 /* libiconv.tbd */,
+				157A8CE5275882E2008FCDC4 /* libbz2.tbd */,
+				157A8CE3275882D8008FCDC4 /* libz.tbd */,
+				157A8CE127587FD8008FCDC4 /* libavcodec.a */,
+				157A8CDF27587F66008FCDC4 /* libavformat.a */,
 				157A8BE8273A5C9E008FCDC4 /* CoreData.framework */,
 				157A8BD427382180008FCDC4 /* libsqlite3.tbd */,
 			);
@@ -725,6 +769,67 @@
 				157A8BD8273823BF008FCDC4 /* SQLiteManager.m */,
 			);
 			path = Persistent;
+			sourceTree = "<group>";
+		};
+		157A8CBB2754D58C008FCDC4 /* Playable */ = {
+			isa = PBXGroup;
+			children = (
+				157A8CBE2754D5D6008FCDC4 /* Model */,
+				157A8CBD2754D5CF008FCDC4 /* View */,
+				157A8CBC2754D5C3008FCDC4 /* Controller */,
+			);
+			path = Playable;
+			sourceTree = "<group>";
+		};
+		157A8CBC2754D5C3008FCDC4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				157A8CD02756234A008FCDC4 /* VideoPickerViewController.h */,
+				157A8CD12756234A008FCDC4 /* VideoPickerViewController.m */,
+				157A8CBF2754D616008FCDC4 /* AVFoundationViewController.h */,
+				157A8CC02754D616008FCDC4 /* AVFoundationViewController.m */,
+				157A8CC22754D6CE008FCDC4 /* BasicVideoViewController.h */,
+				157A8CC32754D6CE008FCDC4 /* BasicVideoViewController.m */,
+				157A8CCD2756220F008FCDC4 /* CompositionViewController.h */,
+				157A8CCE2756220F008FCDC4 /* CompositionViewController.m */,
+				157A8D8D2758FCCB008FCDC4 /* ReencodingViewController.h */,
+				157A8D8E2758FCCB008FCDC4 /* ReencodingViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		157A8CBD2754D5CF008FCDC4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				157A8CC82755B4E8008FCDC4 /* PlayerView.h */,
+				157A8CC92755B4E8008FCDC4 /* PlayerView.m */,
+				157A8CD627576FC6008FCDC4 /* VideoCollection.h */,
+				157A8CD727576FC6008FCDC4 /* VideoCollection.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		157A8CBE2754D5D6008FCDC4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				157A8CDB2757914A008FCDC4 /* SDVAExporter */,
+				157A8CC52754E8F1008FCDC4 /* VideoAssetInfo.h */,
+				157A8CC62754E8F1008FCDC4 /* VideoAssetInfo.m */,
+				157A8CD32756281C008FCDC4 /* VideoPickerProxy.h */,
+				157A8CD42756281C008FCDC4 /* VideoPickerProxy.m */,
+				157A8D8A2758C93C008FCDC4 /* VideoReencoder.h */,
+				157A8D8B2758C93C008FCDC4 /* VideoReencoder.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		157A8CDB2757914A008FCDC4 /* SDVAExporter */ = {
+			isa = PBXGroup;
+			children = (
+				157A8CDC2757918E008FCDC4 /* SDAVAssetExportSession.h */,
+				157A8CDD2757918E008FCDC4 /* SDAVAssetExportSession.m */,
+			);
+			path = SDVAExporter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -866,16 +971,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				157A8BDC2738C9BE008FCDC4 /* SQLiteChatMessage.m in Sources */,
+				157A8CD52756281C008FCDC4 /* VideoPickerProxy.m in Sources */,
 				0B9E6EE5258ADE2100286DD0 /* CIFilterInputView.m in Sources */,
 				0B9E6EEB258AEEAF00286DD0 /* CIFilterInputViewModel.m in Sources */,
 				0BE6E97C255A3B5F00118E14 /* WRSnippetGroup.m in Sources */,
 				0B4BC2E22587139A001514EA /* QuartzTransparentLayer.m in Sources */,
+				157A8CC42754D6CE008FCDC4 /* BasicVideoViewController.m in Sources */,
 				0BE6E976255A3B4800118E14 /* WRSnippetItem.m in Sources */,
 				0BC78B22248F77E30037F815 /* BaseSnippetViewController.m in Sources */,
+				157A8D8C2758C93C008FCDC4 /* VideoReencoder.m in Sources */,
 				0BE6E961255A21F300118E14 /* NSThreadViewController1.m in Sources */,
 				0BFE29A7255CD65E00F7CB96 /* GCDQueueExample.m in Sources */,
 				0B8966F12580C667003F2DBC /* QuartzPathViewExample.m in Sources */,
 				0BFE29B6255E62E200F7CB96 /* GCDSourceExample.m in Sources */,
+				157A8CC72754E8F1008FCDC4 /* VideoAssetInfo.m in Sources */,
 				157A8BD22737A675008FCDC4 /* ChatMessage.m in Sources */,
 				0BC78B1C248F77E30037F815 /* AppDelegate.m in Sources */,
 				0B9E6E9C2589AA6600286DD0 /* CoreImageSnippetItem.m in Sources */,
@@ -884,6 +993,7 @@
 				0B0CC12B2578707500D54B6C /* CollectionViewController.m in Sources */,
 				0B0CC0EE2577310100D54B6C /* ClassmateContactViewController.m in Sources */,
 				0B0CC107257868F200D54B6C /* BaseUIViewController.m in Sources */,
+				157A8CC12754D616008FCDC4 /* AVFoundationViewController.m in Sources */,
 				157A8BD9273823BF008FCDC4 /* SQLiteManager.m in Sources */,
 				0B0CC11F25786F5F00D54B6C /* WRProduct.m in Sources */,
 				0B0CC0E42577306700D54B6C /* ClassmateContact.m in Sources */,
@@ -891,7 +1001,9 @@
 				157A8BC02736E1B9008FCDC4 /* Communicator.m in Sources */,
 				157A8BC927378364008FCDC4 /* TCPClient.m in Sources */,
 				0B104A1325A581A20033095B /* FaceDetectionViewController.m in Sources */,
+				157A8CCA2755B4E8008FCDC4 /* PlayerView.m in Sources */,
 				0B8966FB2581F98F003F2DBC /* QuartzTransformViewExample.m in Sources */,
+				157A8CCF2756220F008FCDC4 /* CompositionViewController.m in Sources */,
 				0BE9413524E66C9E0064E662 /* GCDGroupExample.m in Sources */,
 				0BE6E994255B6C0A00118E14 /* WRGithubUserThread.m in Sources */,
 				0B0CC0B5257498D000D54B6C /* KeyValueObserver.m in Sources */,
@@ -899,9 +1011,12 @@
 				0BE6E970255A24D400118E14 /* WRGithubUser.m in Sources */,
 				0BE6E9AF255BCD6100118E14 /* HomeViewController.m in Sources */,
 				0B9E6EDB2589F76000286DD0 /* CIFilterAttributePanel.m in Sources */,
+				157A8CDE2757918E008FCDC4 /* SDAVAssetExportSession.m in Sources */,
 				0B4BC2D02586F94A001514EA /* QuartzPatternViewExample.m in Sources */,
 				0BC78B2D248F77E90037F815 /* main.m in Sources */,
+				157A8D8F2758FCCB008FCDC4 /* ReencodingViewController.m in Sources */,
 				0BD390F22564B1350050D5F8 /* NSRunLoopViewController.m in Sources */,
+				157A8CD827576FC6008FCDC4 /* VideoCollection.m in Sources */,
 				0B0CC0D82574E94000D54B6C /* MessageViewController.m in Sources */,
 				0B9E6EC12589ABF400286DD0 /* SingleCIFilterViewController.m in Sources */,
 				0B4BC2DC25870E35001514EA /* QuartzShadingViewExample.m in Sources */,
@@ -926,6 +1041,7 @@
 				0BC78B1F248F77E30037F815 /* SceneDelegate.m in Sources */,
 				0B0CC0FB257772E500D54B6C /* KVCTransaction.m in Sources */,
 				0BE6E99A255B70D200118E14 /* NSThreadViewController2.m in Sources */,
+				157A8CD22756234A008FCDC4 /* VideoPickerViewController.m in Sources */,
 				0B0CC12525786FFD00D54B6C /* NSDictionaryOperation.m in Sources */,
 				0B9E6ED22589F6F600286DD0 /* CIFilterInputModel.m in Sources */,
 				0BE6E9B5255BD10C00118E14 /* ConcurrViewController.m in Sources */,
@@ -1094,6 +1210,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Snippets/Snippets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -1103,7 +1220,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.walker.Snippets;
+				PRODUCT_BUNDLE_IDENTIFIER = com.walker.codes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1115,6 +1232,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Snippets/Snippets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -1124,7 +1242,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.walker.Snippets;
+				PRODUCT_BUNDLE_IDENTIFIER = com.walker.codes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
