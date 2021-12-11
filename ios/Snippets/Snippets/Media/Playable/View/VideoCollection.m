@@ -53,7 +53,7 @@
 
 - (UICollectionView *)collection{
     if (!_collection) {
-        CGFloat w = (UIScreen.mainScreen.bounds.size.width-2)/3;
+        CGFloat w = (UIScreen.mainScreen.bounds.size.width-2-16)/3;
         UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
         layout.minimumLineSpacing = 1.f;
         layout.minimumInteritemSpacing = 1.f;
@@ -96,6 +96,15 @@
     [self.contentView addSubview:self.imageView];
     self.layer.borderColor = UIColor.lightGrayColor.CGColor;
     self.layer.borderWidth = 1.f;
+    [self addRoundCorner];
+}
+- (void)addRoundCorner{
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    maskLayer.frame = self.bounds;
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:maskLayer.bounds cornerRadius:10];
+    maskLayer.strokeColor = UIColor.lightGrayColor.CGColor;
+    maskLayer.path = path.CGPath;
+    self.layer.mask = maskLayer;
 }
 - (UIImageView *)imageView{
     if (!_imageView) {

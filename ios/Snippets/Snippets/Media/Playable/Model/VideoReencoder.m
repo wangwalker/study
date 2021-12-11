@@ -46,6 +46,22 @@
 
 #pragma mark - Private
 
+/*!
+  @abstract 利用 @c AVAssetReader 和 @c AVAssetWriter 进行格式转换的流程
+  @discussion
+  1. 通过 @c tracksWithMediaType: 取出不同类型的媒体轨道数据 @c AVAssetReaderTrackOutput，比如音频、视频轨道
+
+  2. 对于不同类型的媒体数据，指定不同的解压参数，比如
+    给音频数据指定解码类型为 @c kAudioFormatLinearPCM
+    给视频数据指定解码类型为 @c kCVPixelFormatType_422YpCbCr8
+  指定解码参数之后，用其初始化不同类型的 @c AVAssetReaderOutput 对象，保存解码数据，同时生成对应的 @c AVAssetWriterInput 对象，用来保存最终的转换格式后的编码数据
+  
+ 3. 通过 @c addOutput:  连接 @c AVAssetReader和 @c AVAssetReaderOutput对象
+    同理，通过 @c addInput:  连接 @c AVAssetWriter 和 @c AVAssetWriterInput 对象
+  
+ 4. 调用 audio/videoTrackOutput 的 @c copyNextSampleBuffer 方法分步取出 @c CMSampleBufferRef 编码之后的数据
+    并分步调用 audio/videoInput 的 @c appendSampleBuffer: 方法，写入编码之后的数据，直至没有数据，即完成
+ */
 - (void)loadTracksWithCompletionHandler:(VideoReencodedHandler)completion{
     [iAsset loadValuesAsynchronouslyForKeys:@[@"tracks"] completionHandler:^{
         dispatch_async(self.mainQueue, ^{

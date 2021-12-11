@@ -27,7 +27,7 @@
 }
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    [self.collection setFrame:CGRectMake(0, 49, UIScreen.mainScreen.bounds.size.width, UIScreen.mainScreen.bounds.size.width/3+8)];
+    [self.collection setFrame:CGRectMake(8, 49, UIScreen.mainScreen.bounds.size.width-16, UIScreen.mainScreen.bounds.size.width/3+8)];
 }
 #pragma mark - Delegate
 

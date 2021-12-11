@@ -99,6 +99,8 @@
 		157A8CDE2757918E008FCDC4 /* SDAVAssetExportSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8CDD2757918E008FCDC4 /* SDAVAssetExportSession.m */; };
 		157A8D8C2758C93C008FCDC4 /* VideoReencoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8D8B2758C93C008FCDC4 /* VideoReencoder.m */; };
 		157A8D8F2758FCCB008FCDC4 /* ReencodingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8D8E2758FCCB008FCDC4 /* ReencodingViewController.m */; };
+		157A8D92275B254C008FCDC4 /* AudioRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8D91275B254C008FCDC4 /* AudioRecorder.m */; };
+		157A8D97275C67E5008FCDC4 /* ImageExif.m in Sources */ = {isa = PBXBuildFile; fileRef = 157A8D96275C67E5008FCDC4 /* ImageExif.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -298,6 +300,10 @@
 		157A8D8B2758C93C008FCDC4 /* VideoReencoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoReencoder.m; sourceTree = "<group>"; };
 		157A8D8D2758FCCB008FCDC4 /* ReencodingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReencodingViewController.h; sourceTree = "<group>"; };
 		157A8D8E2758FCCB008FCDC4 /* ReencodingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReencodingViewController.m; sourceTree = "<group>"; };
+		157A8D90275B254C008FCDC4 /* AudioRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioRecorder.h; sourceTree = "<group>"; };
+		157A8D91275B254C008FCDC4 /* AudioRecorder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioRecorder.m; sourceTree = "<group>"; };
+		157A8D95275C67E5008FCDC4 /* ImageExif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageExif.h; sourceTree = "<group>"; };
+		157A8D96275C67E5008FCDC4 /* ImageExif.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageExif.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -446,6 +452,7 @@
 		0B9E6E962589A84E00286DD0 /* Media */ = {
 			isa = PBXGroup;
 			children = (
+				157A8D93275C67B4008FCDC4 /* Displayable */,
 				157A8CBB2754D58C008FCDC4 /* Playable */,
 				0B8966CB2580BAF8003F2DBC /* Quartz */,
 				0B9E6EA42589AA8B00286DD0 /* CoreImage */,
@@ -819,6 +826,8 @@
 				157A8CD42756281C008FCDC4 /* VideoPickerProxy.m */,
 				157A8D8A2758C93C008FCDC4 /* VideoReencoder.h */,
 				157A8D8B2758C93C008FCDC4 /* VideoReencoder.m */,
+				157A8D90275B254C008FCDC4 /* AudioRecorder.h */,
+				157A8D91275B254C008FCDC4 /* AudioRecorder.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -830,6 +839,23 @@
 				157A8CDD2757918E008FCDC4 /* SDAVAssetExportSession.m */,
 			);
 			path = SDVAExporter;
+			sourceTree = "<group>";
+		};
+		157A8D93275C67B4008FCDC4 /* Displayable */ = {
+			isa = PBXGroup;
+			children = (
+				157A8D94275C67C2008FCDC4 /* Model */,
+			);
+			path = Displayable;
+			sourceTree = "<group>";
+		};
+		157A8D94275C67C2008FCDC4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				157A8D95275C67E5008FCDC4 /* ImageExif.h */,
+				157A8D96275C67E5008FCDC4 /* ImageExif.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1002,6 +1028,7 @@
 				157A8BC927378364008FCDC4 /* TCPClient.m in Sources */,
 				0B104A1325A581A20033095B /* FaceDetectionViewController.m in Sources */,
 				157A8CCA2755B4E8008FCDC4 /* PlayerView.m in Sources */,
+				157A8D92275B254C008FCDC4 /* AudioRecorder.m in Sources */,
 				0B8966FB2581F98F003F2DBC /* QuartzTransformViewExample.m in Sources */,
 				157A8CCF2756220F008FCDC4 /* CompositionViewController.m in Sources */,
 				0BE9413524E66C9E0064E662 /* GCDGroupExample.m in Sources */,
@@ -1031,6 +1058,7 @@
 				0B0CC0C22574CADB00D54B6C /* ColorConvertorViewController.m in Sources */,
 				0BD390E3256375020050D5F8 /* RunLoopExample.m in Sources */,
 				157A8C74273A62B8008FCDC4 /* CoreDataChatMessage.m in Sources */,
+				157A8D97275C67E5008FCDC4 /* ImageExif.m in Sources */,
 				157A8BDF273922C0008FCDC4 /* TCPServer.m in Sources */,
 				0B656609256CA25300F09E60 /* BlockExample.m in Sources */,
 				157A8BCF2737A63B008FCDC4 /* ChatView.m in Sources */,

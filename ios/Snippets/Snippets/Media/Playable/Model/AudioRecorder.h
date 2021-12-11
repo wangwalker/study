@@ -10,7 +10,23 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^AudioRecordingHandler)(void);
+
 @interface AudioRecorder : NSObject
+
++ (instancetype)recorderWithUrl:(NSURL * _Nonnull )url;
+
+- (BOOL)startRecording:(AudioRecordingHandler)completionHandler;
+- (BOOL)stopRecording:(AudioRecordingHandler)completionHandler;
+
+- (BOOL)startPlaying:(AudioRecordingHandler)completionHandler;
+- (BOOL)startPlaying:(NSURL *)url completion:(AudioRecordingHandler)handler;
+
+- (void)finish;
+
+@property (nonatomic) CGFloat maxDuration;
+
+@property (nonatomic, readonly) NSURL *fileUrl;
 
 @end
 
