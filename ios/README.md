@@ -19,10 +19,9 @@
 ### Media
 
 - [Quartz 2D绘图引擎](https://github.com/Walkerant/Study/tree/master/ios/md/quartz.md) 也叫Core Graphics，绘图上下文，颜色空间，路径：直线、曲线、子路径，放射变换，渐变，模式，透明图层等。
-
 - [Core Image：图片处理](https://github.com/Walkerant/Study/tree/master/ios/md/core-image.md) 滤镜概念、创建滤镜、处理流程，内置滤镜分类，滤镜链，人脸检测，提高性能的注意点等。
-
 - [Core Animation：动画](https://github.com/Walkerant/Study/tree/master/ios/md/core-animation.md) UIView VS CALayer，CALayer可动画属性、图层结构模型，CABasicAnimation、CAKeyFrameAnimation、CAAnimationGroup等。
+- [ffmpeg：基本介绍](https://github.com/Walkerant/Study/tree/master/ios/md/avf-ffmpeg.md) 项目介绍、基本结构、命令行使用方法，核心模块、核心数据结构定义和基本使用方式。
 
 ### Application
 
