@@ -184,11 +184,16 @@ Core Image除过用**CFilter**来处理图片外，还可以通过一些预定�
     [self.imageView addSubview:label];
 }
 
+/**
+ * Note: the bounds from CIFaceFeature does not satisfy UIView's coordinates.
+ * In UIView, the origin is at top left corner, but in CoreImage, the origin is at bottom left corner.
+ * CoreImage中的坐标系统和UIView中的坐标系统不一致，前者的原点在左下角，而后者的原点在左上角
+ */
 - (CGRect)convertFaceBoundsToView:(CGRect)bounds{
+    CGFloat newY = self.image.size.height - CGRectGetMaxY(bounds);
     CGFloat ratio = CGRectGetWidth(self.imageView.bounds)/self.image.size.width;
-    return CGRectMake(CGRectGetMinX(bounds)*ratio, CGRectGetMinY(bounds)*ratio, CGRectGetWidth(bounds)*ratio, CGRectGetHeight(bounds)*ratio);
+    return CGRectMake(CGRectGetMinX(bounds)*ratio, newY*ratio, CGRectGetWidth(bounds)*ratio, CGRectGetHeight(bounds)*ratio);
 }
-
 ```
 
 经过使用发现，只要当图片中含有少量人时结果比较准确，当图片清晰度降低、并且人较多时结果不一定准确。
