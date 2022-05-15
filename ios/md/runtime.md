@@ -253,6 +253,15 @@ static char dynamicKey;
 }
 ```
 
+### objc-相关总结
+
+在Objective-C语言中，运行时runtime库中API的一些总结:
+
+- `objc_`开头的一般是类的创建、注册、注销等操作，也可以通过名字获得（元）类对象；
+- `class_`开头的一般是对表示类的内部接口的objc_class结构体的操作，比如获取实例变量、方法等；
+- `object_`开头的一般是对实例对象的操作，比如修改instance的属性名和值，方法等；
+- `ivar_`、`property_`、`protocal_`开头的一般指对实例变量、属性、协议的操作。
+
 # 消息
 
 Objective-C把一切操作称之为发送消息，比如`[someone doSth]`表示给`someone`发送了一条名为`doSth`的消息。只有在运行时，消息才会和实现进行绑定。

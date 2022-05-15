@@ -174,6 +174,15 @@ if ([change[NSKeyValueChangeNotificationIsPriorKey] boolValue]) {
 
 Key-Value-Coding同样是一种非常有用的机制，它允许Objective-C中的对象可以像字典NSDictionary一样，通过一个键Key就可以访问值或设置值，这个键就是对象属性的字符串名称。对于对象的标量属性，KVC将自动包装为对应的NSNumber类。
 
+## 作用
+
+KVC的作用包括四类：
+
+1. 对象属性的存取，通过keypath可以存取多级对象的属性，这是最常见的使用场景。
+2. 对象私有属性的存取，通过KVC可以存取对象的私有属性。
+3. 对象和字典之间的转换，通过`setValuesForKeysWithDictonary:`及`dictonaryWithValuesForKeys:`实现。
+4. 用于集合类的高阶消息操作，比如通过`@max.array`获得对象某个数组对象的最大值，还有其他更加复杂的功能。
+
 ## 使用
 不要小看这一机制，在某些场景中，利用KVC可明显提高代码质量。
 

@@ -165,6 +165,23 @@ HTTP作为应用层协议，在传输层使用TCP（Transmission Control Protoco
 
 HTTP在下层使用TCP协议实现通信，这让它的性能很大程度上取决于TCP的表现。虽然在因特网的早期问题不明显，但互联网的普及和大量使用，性能问题显得越来越明显。像**在HTTP/1.1中默认支持持久连接，HTTP/2中的多路复用连接技术**，都是为了改善性能。
 
+TCP为了提供可靠的逻辑连接服务，需要考考的问题包括：
+- 可靠性
+  - 数据损坏：为每一个Segment添加CheckSum校验和
+  - 丢失：超时重传，ACK确认机制
+  - 重复、乱序：Sequence Number每一个Segment都有一个唯一的序列号
+- 流控
+  - window size滑动窗口机制
+  - ACK
+- 拥塞控制
+  - 慢启动
+  - 拥塞避免
+  - 快速重传
+  - 快速恢复
+- 多路复用
+  - Address + Port
+  - Socket
+
 HTTP的性能问题主要在于两个方面：**HTTP事务的时延，TCP相关时延**。
 
 ###### HTTP事务时延
@@ -335,7 +352,31 @@ HTTPS协议的层次架构从上到下是这样的：
 
 在流程上，先要经过握手，交换一些信息，比如协议版本号、随机数、密码套件等，经过协商，服务器确定本次连接使用的密码套件，该套件取得双方认可之后，并且客户端通过服务器发送的证书确认服务器的身份后，双方开始协商，最终协商出预备主密钥，主密钥，密钥块，然后才进行加密操作。
 
+![https-auth-flow](../images/https-flow.png)
+
+##### 组成部分
+
+根据[RFC-2246](https://www.ietf.org/rfc/rfc2246.txt)可知，TLS协议由两部分：Handshake Protocol握手协议和Record Protocol记录协议共同组成。
+
+- **Handshake Protocol** 用来协商通信双方所使用的的协议版本、密码套件、解压缩方法、随机数等机密信息
+  - alert protocol 用于处理错误情况，比如警告和失败等
+  - change cipher spec protocol 用于改变当前session中的密码套件等机密信息
+  - application data protocol
+- **Record Protocol** 是分层协议，主要负责切分数据、（选择性）压缩、加解密、HMAC消息验证，RFC中分为4层，实现者可以额外增加其他层
+
 ##### 部署
 
 在升级HTTP为HTTPS的过程中，需要获得两样东西：**证书和密钥对**。一般情况下，服务器实体需要自行生成密钥对，基于密钥对的CSR文件，然后向CA证书颁发机构申请，即可获得CA证书。
+
+### HTTP vs HTTPS
+
+简单来说，HTTPS是HTTP的安全版本。HTTP是基于TCP使用明文传输的应用层协议，HTTPS在TCP和HTTP之间加入了SSL层或者TLS层，用于实现加解密。
+
+- 层次（从上到下）：HTTP-TCP-IP；HTTP-TLS-TCP-IP
+- 端口：HTTP是80，HTTPS是443
+- 安全性：HTTP不安全，HTTPS安全
+- 开销：
+  - 加解密：HTTPS因为多了加解密过程，开销大
+  - 握手：HTTP只需要TCP的三次握手，而HTTPS除了TCP的三次握手，还要经过多次TLS握手
+  - 费用：HTTPS需要申请证书，这需要花费一定的费用
 

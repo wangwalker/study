@@ -28,6 +28,9 @@ while (appHasTasks) {
 其中，涉及RunLoop的系统级服务：GCD、Block、Thread等，应用级服务包括：NSObject(NSDelayedPerforming)、NSObject(NSThreadPerformAddtion)、NSTimer、CADisplayLink、CATransition、NSPort、NSURLConnection等。
 
 # 原理
+
+![Runloop-overview](../images/ios-runloop-overview.png)
+
 ## Run Loop Mode
 
 根据[Apple官方文档](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/RunLoopManagement/RunLoopManagement.html#//apple_ref/doc/uid/10000057i-CH16-SW3)，RunLoop Modes是由**输入源Input Source、定时间Timer和观察者Observer**组成的一个集合。每次启动一个RunLoop，都要指定一种Mode，而在此Mode下，只有与其相关的事件（Input Source，Timer，Observer）才能被调度。如果要切换RunLoop的Mode，那么需要先停止当前RunLoop，再以新Mode启动。
