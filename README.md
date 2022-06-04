@@ -1,6 +1,7 @@
 # [Book](https://github.com/Walkerant/Study/tree/master/book)
 
 - [《操作系统导论》](https://github.com/Walkerant/Study/tree/master/book/01_os_threes_easy_pieces) 从三个方面：虚拟化（CPU和内存）、并发和持久化对操作系统进行全面而深刻的探讨，并且含有大量实践，足以理解。
+- [《Effective Objective-C》](https://github.com/Walkerant/Study/tree/master/book/02_effective_objective_c) 分7章从52个方面阐述了高效使用Objective-C的方法秘籍，尤其内存管理、消息转发机制、Block和GCD等方面。
 
 # [iOS](https://github.com/Walkerant/Study/tree/master/ios)
 
