@@ -19,6 +19,6 @@
 
 |章节|简介|
 |-|-|
-|[第一部分：虚拟化](https://github.com/Walkerant/Study/blob/master/book/01_os_threes_easy_pieces/1_virtualization.md)|CPU的虚拟化——进程，进场创建、管理、数据结构，进程调度机制；内存虚拟化——地址空间、地址转换，分段、分页，快速地址转换TLB|
-|[第二部分：并发](https://github.com/Walkerant/Study/blob/master/book/01_os_threes_easy_pieces/2_concurrency.md)|线程概念，创建和管理，锁的概念和实现原理、信号量、条件变量，基于事件的并发——事件循环、异步I/O、`select()`、`poll()`等|
+|[第一部分：虚拟化](https://github.com/wangwalker/Study/blob/master/book/01_os_threes_easy_pieces/1_virtualization.md)|CPU的虚拟化——进程，进场创建、管理、数据结构，进程调度机制；内存虚拟化——地址空间、地址转换，分段、分页，快速地址转换TLB|
+|[第二部分：并发](https://github.com/wangwalker/Study/blob/master/book/01_os_threes_easy_pieces/2_concurrency.md)|线程概念，创建和管理，锁的概念和实现原理、信号量、条件变量，基于事件的并发——事件循环、异步I/O、`select()`、`poll()`等|
 |[第三部分：持久化]()|IO设备、架构，磁盘驱动器原理，RAID，文件与目录以及API、实现原理`inode`等|

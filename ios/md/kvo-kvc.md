@@ -132,7 +132,7 @@ if ([change[NSKeyValueChangeNotificationIsPriorKey] boolValue]) {
 }
 ```
 
-详细例子见：[通过KVO实现颜色空间LAB到RGB之间的转换](https://github.com/Walkerant/Study/blob/master/ios/Snippets/Snippets/Foundation/Message/Controller/ColorConvertorViewController.m)
+详细例子见：[通过KVO实现颜色空间LAB到RGB之间的转换](https://github.com/wangwalker/Study/blob/master/ios/Snippets/Snippets/Foundation/Message/Controller/ColorConvertorViewController.m)
 
 在这里，一定要注意：
 - 在合适的时机，移除观察者，否则容易发生内存泄漏；
@@ -255,7 +255,7 @@ KVC的作用包括四类：
 @end
 ```
 
-通过这几十行代码就可以实现Model和View之间的绑定，非常高效。详细见：[使用KVC快速绑定Model和View](https://github.com/Walkerant/Study/blob/master/ios/Snippets/Snippets/Foundation/Message/Controller/ClassmateContactViewController.m)。
+通过这几十行代码就可以实现Model和View之间的绑定，非常高效。详细见：[使用KVC快速绑定Model和View](https://github.com/wangwalker/Study/blob/master/ios/Snippets/Snippets/Foundation/Message/Controller/ClassmateContactViewController.m)。
 
 ## 键路径KeyPath
 KVC 同样允许我们通过关系来访问对象。假设 `person` 对象有属性 `address`，`address` 有属性 `city`，我们可以这样通过 `person` 来访问 `city`：

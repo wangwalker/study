@@ -3,7 +3,7 @@
 |||
 |-|-|
 |封面|![cover](https://images-na.ssl-images-amazon.com/images/I/512-SBQ3PML.jpg)|
-|书名|[《Effective Objective-C 》](https://github.com/Walkerant/Study/blob/master/book/02_effective_objective_c/content.pdf)|
+|书名|[《Effective Objective-C 》](https://github.com/wangwalker/Study/blob/master/book/02_effective_objective_c/content.pdf)|
 |作者| Matt Galloway |
 |评分|8.7|
 |时间|2017.1|
@@ -18,10 +18,10 @@
 
 |章节|简介|
 |-|-|
-|[第一章：熟悉Objective-C](https://github.com/Walkerant/Study/blob/master/book/02_effective_objective_c/1_introduction.pdf)|Objective-C的历史和基本使用语法|
-|[第二章：对象、消息和运行期](https://github.com/Walkerant/Study/blob/master/book/02_effective_objective_c/2_runtime.pdf)|对象属性、内存管理，发送消息、消息转发机制，类对象|
-|[第三章：接口和API设计](https://github.com/Walkerant/Study/blob/master/book/02_effective_objective_c/3_interface.pdf)|接口设计规范，NSCoping协议等|
-|[第四章：协议和分类](https://github.com/Walkerant/Study/blob/master/book/02_effective_objective_c/4_category.pdf)|协议，委托代理，分类和扩展|
-|[第五章：内存管理](https://github.com/Walkerant/Study/blob/master/book/02_effective_objective_c/5_memory.pdf)|ARC，引用计数原理，内存管理语义，循环引用等|
-|[第六章：Block和GCD](https://github.com/Walkerant/Study/blob/master/book/02_effective_objective_c/6_gcd_block.pdf)|Block和GCD的原理及关系，三种Block，线程同步，组任务等|
-|[第七章：系统框架](https://github.com/Walkerant/Study/blob/master/book/02_effective_objective_c/7_framework.pdf)|Foundation，类的初始化等|
+|[第一章：熟悉Objective-C](https://github.com/wangwalker/Study/blob/master/book/02_effective_objective_c/1_introduction.pdf)|Objective-C的历史和基本使用语法|
+|[第二章：对象、消息和运行期](https://github.com/wangwalker/Study/blob/master/book/02_effective_objective_c/2_runtime.pdf)|对象属性、内存管理，发送消息、消息转发机制，类对象|
+|[第三章：接口和API设计](https://github.com/wangwalker/Study/blob/master/book/02_effective_objective_c/3_interface.pdf)|接口设计规范，NSCoping协议等|
+|[第四章：协议和分类](https://github.com/wangwalker/Study/blob/master/book/02_effective_objective_c/4_category.pdf)|协议，委托代理，分类和扩展|
+|[第五章：内存管理](https://github.com/wangwalker/Study/blob/master/book/02_effective_objective_c/5_memory.pdf)|ARC，引用计数原理，内存管理语义，循环引用等|
+|[第六章：Block和GCD](https://github.com/wangwalker/Study/blob/master/book/02_effective_objective_c/6_gcd_block.pdf)|Block和GCD的原理及关系，三种Block，线程同步，组任务等|
+|[第七章：系统框架](https://github.com/wangwalker/Study/blob/master/book/02_effective_objective_c/7_framework.pdf)|Foundation，类的初始化等|

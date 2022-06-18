@@ -1,7 +1,7 @@
 原型Prototype是JavaScript对象继承体系的根基，而类和对象是构建复杂系统的有效方法，它们的重要程度不言而喻。
 
 # 原型Prototype
-在[前面的文章中](https://github.com/Walkerant/Study/blob/master/web/md/js-prototype.md)，已经对原型的概念和使用方式进行了介绍，并且对原型链也进行了讨论。下面，再来谈谈一些其他问题。
+在[前面的文章中](https://github.com/wangwalker/Study/blob/master/web/md/js-prototype.md)，已经对原型的概念和使用方式进行了介绍，并且对原型链也进行了讨论。下面，再来谈谈一些其他问题。
 
 ## `F.prototype`
 

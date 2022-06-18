@@ -17,7 +17,7 @@ git config --global http.sslVerify false
 
 ```bash
 # 以下二选一
-git clone git@gitlab.com:Walkerant/demo.git
+git clone git@gitlab.com:wangwalker/demo.git
 git clone git@url-of-your-git-account.project-name.git
 cd pistachio-admin-web
 touch README.md
@@ -32,8 +32,8 @@ git push -u origin master
 cd existing_folder
 git init
 # 以下二选一
-git remote add origin https://gitlab.com/Walkerant/demo.git
-git remote add origin git@gitlab.com:Walkerant/demo.git
+git remote add origin https://gitlab.com/wangwalker/demo.git
+git remote add origin git@gitlab.com:wangwalker/demo.git
 git add .
 git commit -m "Initial commit"
 git push -u origin master
@@ -45,8 +45,8 @@ git push -u origin master
 cd existing_repo
 git remote rename origin old-origin
 # 以下二选一
-git remote add origin https://gitlab.com/Walkerant/demo.git
-git remote add origin git@gitlab.com:Walkerant/demo.git
+git remote add origin https://gitlab.com/wangwalker/demo.git
+git remote add origin git@gitlab.com:wangwalker/demo.git
 git push -u origin --all
 git push -u origin --tags
 ```
