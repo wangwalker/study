@@ -4,11 +4,11 @@
 >
 > By adopting Combine, you’ll make your code easier to read and maintain, by centralizing your event-processing code and eliminating troublesome techniques like nested closures and convention-based callbacks.
 
-**Combine是为处理随时间而变化的数据的一种声明式（响应式）框架**。它由三个核心组件构成：
+**Combine是为处理基于时间而变化的数据的一种声明式（响应式）框架**。它由三个核心组件构成：
 
-- **Publisher**，负责生产事件，比如可以发出通知的NotificationCenter、对象属性、UITextfield的event，以及网络请求等。
-- **Subscriber**，负责消费事件，比如负责接收Notification的某个对象。
-- **Operator**，负责转换从上游的发布者发出的数据格式，以便订阅者能够使用。
+- **Publisher**，负责生产事件，比如可以发通知的NotificationCenter、对象属性、UITextfield的event，网络请求等。
+- **Subscriber**，负责消费事件，比如接收Notification的某个对象。
+- **Operator**，负责转换上游发布者发布的数据为另一种格式，以便下游的订阅者使用。
 
 针对Publisher和Subscriber中处理的数据类型，Combine为此各定义了对应的类型:
 
@@ -26,7 +26,7 @@
 
 ##### 常见问题
 
-随着业务逻辑变得越来越复杂，如果不采取合理的手段进行**治理**，程序通常会变得**失控**。具体来说，通常是不断增加的嵌套闭包和回调深度耦合在一起，**程序的可读性、可维护性、可扩展性会不断减弱，修复的成本会不断上升，以致于程序（软件）将逐渐丧失其应有的价值**。
+随着业务逻辑变得越来越复杂，如果不采取合理的手段进行**治理**，程序通常会变得**失控**。具体来说，一个软件项目变得越来越复杂通常是因为，不断增加的嵌套闭包和回调深度耦合在一起，从而使**程序的可读性、可维护性、可扩展性不断减弱，修复的成本不断上升，以致于程序（软件）将逐渐丧失其应有的价值**。
 
 ##### 解决方案
 
@@ -64,7 +64,7 @@ Combine也作为一种类似于ReactiveX的响应式编程框架，它是通过*
 
 > Publisher sends sequences of values over time to one or more Subscribers.
 
-发布者随着时间负责生产数据/值/事件，并发布给后面的一个或多个订阅者Subscriber。
+发布者负责生产数据/值/事件，并发布给下游的一个或多个订阅者Subscriber。
 
 ```swift
 public protocol Publisher {
@@ -82,28 +82,28 @@ public protocol Publisher {
 ```
 
 - **Core Components**
-  - **Publisher** 如上所示，定义了发布者会发出的数据/值/事件的类型，可能出现的错误，并提供了用于接收订阅者的方法
-  - **AnyPublisher** 官方文档中说是为了**type erasure**，简单来说就是为了消除Publisher中具体的类型信息，让Publisher变得更加通用，类似于 `AnyObject` 的概念。所有的Publisher通过`eraceToAnySubject()`都会转换成AnyPublisher。
-  - **Published** 属性包装器，封装对象的某个属性，当其改变时，即可获得对应的事件通知。
-  - **Cancellable** 里面只定义了一个方法 `cancel()` ，为什么需要它？是因为在某些场景下，需要**主动取消**某个活动，比如典型的网络请求中，用户可能在后面取消某个正在进行的HTTP请求。
-  - **AnyCancellable** 类似AnyPublisher
-  - **ConnectablePublisher** 为了防止在某些条件还未准备好，就可能发布某个事件的一种Publisher；直到订阅者主动调用 `connect()` 方法，准备好之后，才会发布某个事件/值。
+  - **Publisher** 如上所示，定义了发布者会发出的数据/值/事件的类型，可能出现的错误，并提供了用于接收订阅者的方法；
+  - **AnyPublisher** 官方文档中说是为了**type erasure**，简单来说就是为了消除Publisher中具体的类型信息，让Publisher变得更加通用，类似于 `AnyObject` 的概念。所有的Publisher通过`eraceToAnySubject()`都会转换成AnyPublisher；
+  - **Published** 属性包装器，封装对象的某个属性，当其改变时，即可获得对应的事件通知；
+  - **Cancellable** 里面只定义了一个方法 `cancel()` ，为什么需要它？是因为在某些场景下，需要**主动取消**某个活动，比如典型的网络请求中，用户可能在后面取消某个正在进行的HTTP请求。；
+  - **AnyCancellable** 类似AnyPublisher；
+  - **ConnectablePublisher** 为了防止在某些条件还未准备好，就可能发布某个事件的一种Publisher；直到订阅者主动调用 `connect()` 方法，准备好之后，才会发布某个事件/值；
 - **Convenience Publishers**
-  - **Future**  以异步的方式发布单个值，然后 `finish` 或者 `fail`
-  - **Just** 只发布一次Output，然后完成
-  - **Deferred** 提供一个closure，只有在Subscriber订阅时才生成对应的Publisher
-  - **Empty** 一个永远不发布内容的发布者，可立即结束
-  - **Fail** 发送一个特定Error以立即结束事件
-  - **Record** 能够记录一系列输入和完成事件，以便后续重放
-  - **Sequence** 将给定的一个序列按序通知到订阅者
-  - **Published** 属性包装器，将任意值封装成Publisher
-- **Subject** 可以发送自定义数据/值/事件的Publisher
-  - **PassthoughSubject** 只是将来自上游的事件传递下去
-  - **CurrentValueSubject** 对单个值的封装，当这个值修改时，会自动发出事件
+  - **Future**  以异步的方式发布单个值，然后 `finish` 或者 `fail`；
+  - **Just** 只发布一次Output，然后完成；
+  - **Deferred** 提供一个closure，只有在Subscriber订阅时才生成对应的Publisher；
+  - **Empty** 一个永远不发布内容的发布者，可立即结束；
+  - **Fail** 发送一个特定Error以立即结束事件；
+  - **Record** 能够记录一系列输入和完成事件，以便后续重放；
+  - **Sequence** 将给定的一个序列按序通知到订阅者；
+  - **Published** 属性包装器，将任意值封装成Publisher；
+- **Subject** 可以发送自定义数据/值/事件的Publisher；
+  - **PassthoughSubject** 只是将来自上游的事件传递下去；
+  - **CurrentValueSubject** 对单个值的封装，当这个值修改时，会自动发出事件；
 - **Foundation**
-  - URLSession Publisher
-  - Timer Publisher
-  - Notification Publisher
+  - URLSession Publisher；
+  - Timer Publisher；
+  - Notification Publisher。
 
 ### Subscriber
 
@@ -133,21 +133,21 @@ public protocol Subscriber: CustomCombineIdentifierConvertible {
 ```
 
 - **Core Components**
-  - **Subscriber**  protocol
+  - **Subscriber**  protocol；
   - **Subscribers**
-    - **Sink** 最通用且常用的订阅者，可将基于闭包的逻辑嵌入到Combine中。
-    - **Assign** 一种简便用法，可直接将接收到的值绑定到**指定类**的KeyPath上。
-  - **AnySubscriber** 同样经过 `type erasure` 让Subscriber变得更加通用。
+    - **Sink** 最通用且常用的订阅者，可将基于闭包的逻辑嵌入到Combine中；
+    - **Assign** 一种简便用法，可直接将接收到的值绑定到**指定类**的KeyPath上；
+  - **AnySubscriber** 同样经过 `type erasure` 让Subscriber变得更加通用；
   - **Subscriptions**
-    - **Subscription** 用以表示发布者和订阅者之间对应关系，成功订阅时会接收到的消息，只会发送一次。
-    - **Value** Publisher发出的数据，只要发送，就会收到，没有次数限制。
+    - **Subscription** 用以表示发布者和订阅者之间对应关系，成功订阅时会接收到的消息，只会发送一次；
+    - **Value** Publisher发出的数据，只要发送，就会收到，没有次数限制；
     - **Completion** 数据流结束时发送的消息，要么 `.finished` 和 `.failure(Error)`，最多只发送一次，一旦发送，Publisher和Subscriber之间的绑定就会中断。
 
 ### Subject
 
-主题Subject是一种特殊的发布者，可通过`send`方法发布自定义数据/值/事件到相应的事件流中，Combine中内置了两个Subject：
+主题Subject是一种特殊的发布者，可通过`send`发布自定义数据/值/事件到相应的事件流中，Combine中内置了两个Subject：
 
-- **PassthoughSubject** 只是将事件传递给下游的Publisher和Subscriber。
+- **PassthoughSubject** 只是将事件传递给下游的Publisher和Subscriber；
 - **CurrentValueSubject** 会持有一个值，在设置值时发送事件，并保留新的值。
 
 Subject概念的引入，给了Combine，以及所有采用了**发布-订阅模式**框架更大的自由度，让我们可以创建出各种各样的Publisher，以完成具体的业务需求。
@@ -210,46 +210,46 @@ pub2.send(completion: .finished)
 
 - **转换**
   - **map/tryMap/flatMap/compactMap/mapError**
-    - **compactMap** 会将结果中的 `nil` 去除掉，而这就是**compact**的含义
-    - **flatMap** 会将发送的多层嵌套序列值展开为单层序列，然后 `map`
-    - **mapError** 负责转换 `Error` 到其他需要的类型
-    - **tryMap** 就是为`map` 提供了对抛出错误的支持
-  - replaceNil
-  - setFailureType
+    - **compactMap** 会将结果中的 `nil` 去除掉，而这就是**compact**的含义；
+    - **flatMap** 会将发送的多层嵌套序列值展开为单层序列，然后 `map`；
+    - **mapError** 负责转换 `Error` 到其他需要的类型；
+    - **tryMap** 就是为`map` 提供了对抛出错误的支持；
+  - replaceNil；
+  - setFailureType；
 - **过滤**
-  - filter/tryFilter
-  - removeDuplicates
-  - replaceEmpty/replaceError
+  - filter/tryFilter；
+  - removeDuplicates；
+  - replaceEmpty/replaceError；
 - **聚合**
-  - **collect** 将Publisher发出的**多次单个事件集合**到一起，组成一个序列对象
-  - **reduce** 将多个事件**合并**到一起
-  - **scan** 和reduce类似，但scan会保留每一次合并之后的结果，而reduce只会保留最终的合并结果
-  - **buffer** 对发出的事件提供**缓冲**支持，可根据 `size: Int` 参数指定缓冲大小
+  - **collect** 将Publisher发出的**多次单个事件集合**到一起，组成一个序列对象；
+  - **reduce** 将多个事件**合并**到一起；
+  - **scan** 和reduce类似，但scan会保留每一次合并之后的结果，而reduce只会保留最终的合并结果；
+  - **buffer** 对发出的事件提供**缓冲**支持，可根据 `size: Int` 参数指定缓冲大小；
 - 统计
-  - count
-  - min/max
+  - count；
+  - min/max；
 - 匹配
-  - contains/tryContains
-  - allSatisfy/tryAllSatisfy
+  - contains/tryContains；
+  - allSatisfy/tryAllSatisfy；
 - 序列
-  - drop/tryDrop/dropFirst
-  - append/prepend
-  - prefix/first/last/output
+  - drop/tryDrop/dropFirst；
+  - append/prepend；
+  - prefix/first/last/output；
 - **组合**
-  - **merge** 将多个Publisher组合在一起，形成一个**交错的事件流**
-  - **zip** 也是将多个Publisher组合在一起，但是会发出一个以**tuple组织在一起**的事件流
-  - **combineLatest** 也是将多个Publisher组合在一起，也是以tuple组织收到的事件流，但**只要其中一方发出新事件，就会立即发出一个包含此新事件的tuple给下游订阅者**
+  - **merge** 将多个Publisher组合在一起，形成一个**交错的事件流**；
+  - **zip** 也是将多个Publisher组合在一起，但是会发出一个以**tuple组织在一起**的事件流；
+  - **combineLatest** 也是将多个Publisher组合在一起，也是以tuple组织收到的事件流，但**只要其中一方发出新事件，就会立即发出一个包含此新事件的tuple给下游订阅者**；
 - 时间相关
-  - debounce
-  - delay
-  - throttle
-  - timeout
-  - measureInterval
+  - debounce；
+  - delay；
+  - throttle；
+  - timeout；
+  - measureInterval；
 - Other
-  - encode/decode
-  - **share** 可以让单个Publisher有多个Subscriber，形成**一对多**的连接关系
-  - breakpoint/breakpointOnError
-  - handleEvents
+  - encode/decode；
+  - **share** 可以让单个Publisher有多个Subscriber，形成**一对多**的连接关系；
+  - breakpoint/breakpointOnError；
+  - handleEvents。
 
 ### Scheduler
 
@@ -259,10 +259,10 @@ pub2.send(completion: .finished)
 
 至于When的问题，其实是在Operator中和时间相关的一系列方法：
 
-- `delay` 延迟，按照指定的时间延迟执行
-- `debounce` 防抖，在特定事件段之内只能发出一次最后一次事件，其他事件将会被丢弃
-- `throttle` 节流，和debounce类似，但 `throttle` 可以通过 `latest: bool` 来设置发出的事件是最新的还是最先的
-- `timeout` 超时，超过指定的时间将终止发布事件
+- `delay` 延迟，按照指定的时间延迟执行；
+- `debounce` 防抖，在特定事件段内只发出最后一次事件，其他事件被丢弃；
+- `throttle` 节流，和debounce类似，但 `throttle` 可以通过 `latest: bool` 来设置发出的事件是最新的还是最先的；
+- `timeout` 超时，超过指定的时间将终止发布事件。
 
 `debounce` 和 `throttle` 这两个"限流"操作符，主要用在**对系统资源比较消耗的场景**，比如网络请求、本地磁盘I/O读写，或者界面渲染等事件。
 
@@ -271,11 +271,11 @@ pub2.send(completion: .finished)
 ```swift
 let bounces:[(Int,TimeInterval)] = [
  (0, 0),
- (1, 0.25),  // 0.25s interval since last index
- (2, 1),     // 0.75s interval since last index
- (3, 1.25),  // 0.25s interval since last index
- (4, 1.5),   // 0.25s interval since last index
- (5, 2)      // 0.5s interval since last index
+ (1, 0.25),
+ (2, 1), 
+ (3, 1.25),
+ (4, 1.5),
+ (5, 2)
 ]
 
 let subject = PassthroughSubject<Int, Never>()
@@ -292,7 +292,7 @@ for bounce in bounces {
 }
 
 /// Received index 1
-/// Received index 2
+/// Received index 4
 /// Received index 5
 ```
 
